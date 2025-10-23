@@ -7,7 +7,7 @@
           <div class="flex items-center">
             <router-link to="/" class="flex items-center">
               <img 
-                src="/src/assets/images/Group 1.png" 
+                src="/src/assets/images/logodove.png" 
                 alt="Calvary Chapel Phnom Penh Logo" 
                 class="h-40 md:h-44 w-auto object-contain"
               />

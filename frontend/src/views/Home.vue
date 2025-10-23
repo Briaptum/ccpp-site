@@ -179,7 +179,6 @@ Don't forget to bring a friend!</p>
 
 <script>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
 import backgroundImage from '@/assets/images/background.jpg'
 
 export default {
@@ -190,65 +189,63 @@ export default {
     const loading = ref(true)
     const error = ref('')
     
-    // Gallery images from Facebook
+    // Gallery images
     const galleryImages = ref([])
 
-    // Fetch images from backend
+    // Load static gallery images
     const fetchGalleryImages = async () => {
-      try {
-        loading.value = true
-        error.value = ''
-        
-        const response = await axios.get('/api/v1/gallery/photos?limit=12')
-        
-        if (response.data && response.data.photos) {
-          // Map the response to match our gallery format
-          galleryImages.value = response.data.photos.map(photo => ({
-            src: photo.source,
-            alt: photo.alt,
-            title: photo.title
-          }))
+      loading.value = true
+      
+      // Use static placeholder images
+      galleryImages.value = [
+        {
+          src: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?w=800',
+          alt: 'Sunday Worship Service',
+          title: 'Sunday Worship Service'
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800',
+          alt: 'Community Fellowship',
+          title: 'Community Fellowship'
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800',
+          alt: 'Bible Study Group',
+          title: 'Bible Study Group'
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800',
+          alt: 'Youth Ministry',
+          title: 'Youth Ministry'
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800',
+          alt: 'Community Outreach',
+          title: 'Community Outreach'
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=800',
+          alt: 'Prayer Meeting',
+          title: 'Prayer Meeting'
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800',
+          alt: 'Church Community',
+          title: 'Church Community'
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=800',
+          alt: 'Sunday School',
+          title: 'Sunday School'
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=800',
+          alt: 'Worship Music',
+          title: 'Worship Music'
         }
-      } catch (err) {
-        console.error('Failed to fetch gallery images:', err)
-        error.value = 'Failed to load gallery images. Please try again later.'
-        
-        // Fallback to placeholder images if Facebook API fails
-        galleryImages.value = [
-          {
-            src: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?w=800',
-            alt: 'Sunday Worship Service',
-            title: 'Sunday Worship Service'
-          },
-          {
-            src: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800',
-            alt: 'Community Fellowship',
-            title: 'Community Fellowship'
-          },
-          {
-            src: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800',
-            alt: 'Bible Study Group',
-            title: 'Bible Study Group'
-          },
-          {
-            src: 'https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800',
-            alt: 'Youth Ministry',
-            title: 'Youth Ministry'
-          },
-          {
-            src: 'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800',
-            alt: 'Community Outreach',
-            title: 'Community Outreach'
-          },
-          {
-            src: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=800',
-            alt: 'Prayer Meeting',
-            title: 'Prayer Meeting'
-          }
-        ]
-      } finally {
-        loading.value = false
-      }
+      ]
+      
+      loading.value = false
     }
 
     const openLightbox = (index) => {
