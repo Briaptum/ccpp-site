@@ -8,6 +8,7 @@ import (
 	"ccpp-backend/internal/domain/services"
 	"ccpp-backend/internal/infrastructure/database"
 	infraRepos "ccpp-backend/internal/infrastructure/repositories"
+	infraServices "ccpp-backend/internal/infrastructure/services"
 	"ccpp-backend/internal/infrastructure/routes"
 
 	"github.com/gin-gonic/gin"
@@ -34,6 +35,13 @@ func main() {
 
 	// Initialize services
 	userService := services.NewUserService(userRepo)
+	
+	// Initialize Facebook service
+	facebookAccessToken := os.Getenv("FACEBOOK_ACCESS_TOKEN")
+	if facebookAccessToken == "" {
+		log.Println("Warning: FACEBOOK_ACCESS_TOKEN not set, gallery features will not work")
+	}
+	facebookService := infraServices.NewFacebookService(facebookAccessToken)
 
 	// Setup Gin router
 	router := gin.Default()
@@ -53,7 +61,7 @@ func main() {
 	})
 
 	// Setup routes
-	routes.SetupRoutes(router, userService)
+	routes.SetupRoutes(router, userService, facebookService)
 
 	// Get port from environment or use default
 	port := os.Getenv("PORT")

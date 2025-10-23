@@ -2,14 +2,14 @@
   <div id="app" class="min-h-screen bg-gray-50">
     <nav class="bg-white shadow-md border-b">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20 md:h-24">
+        <div class="flex justify-between h-24 md:h-32">
           <!-- Logo -->
           <div class="flex items-center">
             <router-link to="/" class="flex items-center">
               <img 
-                src="/src/assets/images/logo2.avif" 
+                src="/src/assets/images/Group 1.png" 
                 alt="Calvary Chapel Phnom Penh Logo" 
-                class="h-16 md:h-20 w-auto object-contain"
+                class="h-40 md:h-44 w-auto object-contain"
               />
             </router-link>
           </div>
@@ -46,8 +46,8 @@
             </router-link>
             <router-link
               to="/donate"
-              class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors"
-              :class="{ 'text-primary-600': $route.name === 'Donate' }"
+              class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors bg-blue-500 hover:bg-primary-600 text-white hover:text-white"
+              :class="{ 'bg-blue-700': $route.name === 'Donate' }"
             >
               Donate
             </router-link>
