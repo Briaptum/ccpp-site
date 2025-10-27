@@ -5,9 +5,9 @@ import (
 	"os"
 
 	"ccpp-backend/internal/domain/models"
-	"ccpp-backend/internal/domain/services"
 	"ccpp-backend/internal/infrastructure/database"
 	infraRepos "ccpp-backend/internal/infrastructure/repositories"
+	infraServices "ccpp-backend/internal/infrastructure/services"
 	"ccpp-backend/internal/infrastructure/routes"
 
 	"github.com/gin-gonic/gin"
@@ -25,15 +25,17 @@ func main() {
 	db := database.GetDB()
 
 	// Auto migrate the schema
-	if err := db.AutoMigrate(&models.User{}); err != nil {
+	if err := db.AutoMigrate(&models.User{}, &models.Contact{}); err != nil {
 		log.Fatal("Failed to migrate database:", err)
 	}
 
 	// Initialize repositories
 	userRepo := infraRepos.NewUserRepository(db)
+	contactRepo := infraRepos.NewContactRepository(db)
 
 	// Initialize services
-	userService := services.NewUserService(userRepo)
+	userService := infraServices.NewUserService(userRepo)
+	contactService := infraServices.NewContactService(contactRepo)
 
 	// Setup Gin router
 	router := gin.Default()
@@ -53,7 +55,7 @@ func main() {
 	})
 
 	// Setup routes
-	routes.SetupRoutes(router, userService)
+	routes.SetupRoutes(router, userService, contactService)
 
 	// Get port from environment or use default
 	port := os.Getenv("PORT")

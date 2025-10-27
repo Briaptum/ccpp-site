@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 sm:px-0">
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 mb-12">
+    <div class="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16 mb-12">
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-4xl md:text-6xl font-bold mb-4">Contact Us</h1>
         <p class="text-xl md:text-2xl">We'd Love to Hear from You</p>
@@ -264,6 +264,7 @@
 
 <script>
 import { ref } from 'vue'
+import { contactService } from '@/services/contactService'
 
 export default {
   name: 'Contact',
@@ -286,8 +287,8 @@ export default {
       message.value = ''
       
       try {
-        // Simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 2000))
+        // Submit form to backend
+        await contactService.createContact(form.value)
         
         message.value = 'Thank you for your message! We\'ll get back to you soon.'
         messageType.value = 'success'
@@ -302,7 +303,7 @@ export default {
           message: ''
         }
       } catch (error) {
-        message.value = 'Sorry, there was an error sending your message. Please try again.'
+        message.value = error.message || 'Sorry, there was an error sending your message. Please try again.'
         messageType.value = 'error'
       } finally {
         submitting.value = false

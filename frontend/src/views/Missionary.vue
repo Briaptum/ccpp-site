@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 sm:px-0">
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-green-600 to-green-800 text-white py-16 mb-12">
+    <div class="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16 mb-12">
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-4xl md:text-6xl font-bold mb-4">Missionary Work</h1>
         <p class="text-xl md:text-2xl">Spreading God's Love Around the World</p>
@@ -39,7 +39,7 @@
               Supporting education for children in rural Kenya through school construction and teacher training.
             </p>
             <div class="bg-gray-200 rounded-full h-2 mb-2">
-              <div class="bg-green-600 h-2 rounded-full" style="width: 75%"></div>
+              <div class="bg-primary-600 h-2 rounded-full" style="width: 75%"></div>
             </div>
             <p class="text-sm text-gray-500">$45,000 of $60,000 raised</p>
           </div>
@@ -51,7 +51,7 @@
               Providing free medical care and health education to underserved communities in the Philippines.
             </p>
             <div class="bg-gray-200 rounded-full h-2 mb-2">
-              <div class="bg-green-600 h-2 rounded-full" style="width: 60%"></div>
+              <div class="bg-primary-600 h-2 rounded-full" style="width: 60%"></div>
             </div>
             <p class="text-sm text-gray-500">$18,000 of $30,000 raised</p>
           </div>
@@ -63,7 +63,7 @@
               Installing clean water systems in Haitian communities to provide safe drinking water.
             </p>
             <div class="bg-gray-200 rounded-full h-2 mb-2">
-              <div class="bg-green-600 h-2 rounded-full" style="width: 90%"></div>
+              <div class="bg-primary-600 h-2 rounded-full" style="width: 90%"></div>
             </div>
             <p class="text-sm text-gray-500">$27,000 of $30,000 raised</p>
           </div>
@@ -77,22 +77,22 @@
         <h2 class="text-3xl font-bold text-gray-900 mb-8">Our Mission Team</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="text-center">
-            <div class="w-32 h-32 bg-green-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <div class="w-32 h-32 bg-primary-200 rounded-full mx-auto mb-4 flex items-center justify-center">
               <span class="text-4xl">👨‍💼</span>
             </div>
             <h3 class="text-xl font-semibold mb-2">David Wilson</h3>
-            <p class="text-green-600 font-medium mb-3">Mission Director</p>
+            <p class="text-primary-600 font-medium mb-3">Mission Director</p>
             <p class="text-gray-600">
               Leading our international mission efforts with over 10 years of experience in global ministry.
             </p>
           </div>
           
           <div class="text-center">
-            <div class="w-32 h-32 bg-green-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <div class="w-32 h-32 bg-primary-200 rounded-full mx-auto mb-4 flex items-center justify-center">
               <span class="text-4xl">👩‍💼</span>
             </div>
             <h3 class="text-xl font-semibold mb-2">Maria Rodriguez</h3>
-            <p class="text-green-600 font-medium mb-3">Community Development Coordinator</p>
+            <p class="text-primary-600 font-medium mb-3">Community Development Coordinator</p>
             <p class="text-gray-600">
               Focusing on sustainable development and community empowerment in Latin American countries.
             </p>

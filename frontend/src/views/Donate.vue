@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 sm:px-0">
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-16 mb-12">
+    <div class="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16 mb-12">
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-4xl md:text-6xl font-bold mb-4">Support Our Mission</h1>
         <p class="text-xl md:text-2xl">Your Generosity Makes a Difference</p>

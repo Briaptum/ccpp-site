@@ -7,8 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRoutes(router *gin.Engine, userService services.UserService) {
+func SetupRoutes(router *gin.Engine, userService services.UserService, contactService services.ContactService) {
 	userHandler := handlers.NewUserHandler(userService)
+	contactHandler := handlers.NewContactHandler(contactService)
 
 	api := router.Group("/api/v1")
 	{
@@ -19,6 +20,14 @@ func SetupRoutes(router *gin.Engine, userService services.UserService) {
 			users.GET("/:id", userHandler.GetUser)
 			users.PUT("/:id", userHandler.UpdateUser)
 			users.DELETE("/:id", userHandler.DeleteUser)
+		}
+
+		contacts := api.Group("/contacts")
+		{
+			contacts.POST("", contactHandler.CreateContact)
+			contacts.GET("", contactHandler.GetAllContacts)
+			contacts.GET("/:id", contactHandler.GetContactByID)
+			contacts.DELETE("/:id", contactHandler.DeleteContact)
 		}
 	}
 

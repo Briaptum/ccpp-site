@@ -7,9 +7,9 @@
           <div class="flex items-center">
             <router-link to="/" class="flex items-center">
               <img 
-                src="/src/assets/images/logodove.png" 
+                src="/src/assets/images/ccpp-logo.png" 
                 alt="Calvary Chapel Phnom Penh Logo" 
-                class="h-40 md:h-44 w-auto object-contain"
+                class="h-20 md:h-20 w-auto object-contain"
               />
             </router-link>
           </div>
@@ -44,10 +44,60 @@
             >
               Contact
             </router-link>
+            
+            <!-- How to Help Dropdown -->
+            <div class="relative" @mouseenter="helpDropdownOpen = true" @mouseleave="helpDropdownOpen = false">
+              <button
+                class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors flex items-center"
+              >
+                How to Help
+                <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div
+                v-show="helpDropdownOpen"
+                class="absolute left-0 mt-0 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50"
+              >
+                <div class="py-1">
+                  <a
+                    href="#prayer"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
+                  >
+                    Prayer
+                  </a>
+                  <a
+                    href="#donation"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
+                  >
+                    Donation
+                  </a>
+                  <a
+                    href="#needs-list"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
+                  >
+                    Needs List
+                  </a>
+                  <a
+                    href="#testimonial"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
+                  >
+                    Testimonial
+                  </a>
+                  <a
+                    href="#service"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
+                  >
+                    Service
+                  </a>
+                </div>
+              </div>
+            </div>
+            
             <router-link
               to="/donate"
-              class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors bg-blue-500 hover:bg-primary-600 text-white hover:text-white"
-              :class="{ 'bg-blue-700': $route.name === 'Donate' }"
+              class="text-gray-700 hover:text-primary-700 px-3 py-2 rounded-md text-base font-medium transition-colors bg-primary-500 hover:bg-primary-600 text-white hover:text-white"
+              :class="{ 'bg-primary-700': $route.name === 'Donate' }"
             >
               Donate
             </router-link>
@@ -123,6 +173,64 @@
           >
             Contact
           </router-link>
+          
+          <!-- Mobile How to Help Dropdown -->
+          <div>
+            <button
+              @click="mobileHelpDropdownOpen = !mobileHelpDropdownOpen"
+              class="w-full text-left px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors flex items-center justify-between"
+            >
+              How to Help
+              <svg 
+                class="h-5 w-5 transition-transform"
+                :class="{ 'rotate-180': mobileHelpDropdownOpen }"
+                xmlns="http://www.w3.org/2000/svg" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div v-show="mobileHelpDropdownOpen" class="pl-4 space-y-1">
+              <a
+                href="#prayer"
+                @click="mobileMenuOpen = false; mobileHelpDropdownOpen = false"
+                class="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+              >
+                Prayer
+              </a>
+              <a
+                href="#donation"
+                @click="mobileMenuOpen = false; mobileHelpDropdownOpen = false"
+                class="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+              >
+                Donation
+              </a>
+              <a
+                href="#needs-list"
+                @click="mobileMenuOpen = false; mobileHelpDropdownOpen = false"
+                class="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+              >
+                Needs List
+              </a>
+              <a
+                href="#testimonial"
+                @click="mobileMenuOpen = false; mobileHelpDropdownOpen = false"
+                class="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+              >
+                Testimonial
+              </a>
+              <a
+                href="#service"
+                @click="mobileMenuOpen = false; mobileHelpDropdownOpen = false"
+                class="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+              >
+                Service
+              </a>
+            </div>
+          </div>
+          
           <router-link
             to="/donate"
             @click="mobileMenuOpen = false"
@@ -154,7 +262,9 @@ export default {
   name: 'App',
   data() {
     return {
-      mobileMenuOpen: false
+      mobileMenuOpen: false,
+      helpDropdownOpen: false,
+      mobileHelpDropdownOpen: false
     }
   },
   watch: {
