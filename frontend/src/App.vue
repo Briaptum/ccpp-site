@@ -47,49 +47,58 @@
             
             <!-- How to Help Dropdown -->
             <div class="relative" @mouseenter="helpDropdownOpen = true" @mouseleave="helpDropdownOpen = false">
-              <button
-                class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors flex items-center"
-              >
-                How to Help
-                <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+              <div class="flex items-center">
+                <router-link
+                  to="/how-to-help"
+                  class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors"
+                  :class="{ 'text-primary-600': $route.name === 'HowToHelp' }"
+                >
+                  How to Help
+                </router-link>
+                <button
+                  class="text-gray-700 hover:text-primary-600 px-1 py-2 rounded-md transition-colors"
+                  @click="helpDropdownOpen = !helpDropdownOpen"
+                >
+                  <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
               <div
                 v-show="helpDropdownOpen"
                 class="absolute left-0 mt-0 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50"
               >
                 <div class="py-1">
-                  <a
-                    href="#prayer"
+                  <router-link
+                    to="/how-to-help#prayer"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
                   >
                     Prayer
-                  </a>
-                  <a
-                    href="#donation"
+                  </router-link>
+                  <router-link
+                    to="/how-to-help#donation"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
                   >
                     Donation
-                  </a>
-                  <a
-                    href="#needs-list"
+                  </router-link>
+                  <router-link
+                    to="/how-to-help#needs-list"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
                   >
                     Needs List
-                  </a>
-                  <a
-                    href="#testimonial"
+                  </router-link>
+                  <router-link
+                    to="/how-to-help#testimonial"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
                   >
                     Testimonial
-                  </a>
-                  <a
-                    href="#service"
+                  </router-link>
+                  <router-link
+                    to="/how-to-help#service"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
                   >
                     Service
-                  </a>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -176,58 +185,67 @@
           
           <!-- Mobile How to Help Dropdown -->
           <div>
-            <button
-              @click="mobileHelpDropdownOpen = !mobileHelpDropdownOpen"
-              class="w-full text-left px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors flex items-center justify-between"
-            >
-              How to Help
-              <svg 
-                class="h-5 w-5 transition-transform"
-                :class="{ 'rotate-180': mobileHelpDropdownOpen }"
-                xmlns="http://www.w3.org/2000/svg" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
+            <div class="flex items-center">
+              <router-link
+                to="/how-to-help"
+                @click="mobileMenuOpen = false"
+                class="flex-1 px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+                :class="{ 'text-primary-600 bg-primary-50': $route.name === 'HowToHelp' }"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+                How to Help
+              </router-link>
+              <button
+                @click="mobileHelpDropdownOpen = !mobileHelpDropdownOpen"
+                class="px-3 py-3 rounded-md text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+              >
+                <svg 
+                  class="h-5 w-5 transition-transform"
+                  :class="{ 'rotate-180': mobileHelpDropdownOpen }"
+                  xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
             <div v-show="mobileHelpDropdownOpen" class="pl-4 space-y-1">
-              <a
-                href="#prayer"
+              <router-link
+                to="/how-to-help#prayer"
                 @click="mobileMenuOpen = false; mobileHelpDropdownOpen = false"
                 class="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors"
               >
                 Prayer
-              </a>
-              <a
-                href="#donation"
+              </router-link>
+              <router-link
+                to="/how-to-help#donation"
                 @click="mobileMenuOpen = false; mobileHelpDropdownOpen = false"
                 class="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors"
               >
                 Donation
-              </a>
-              <a
-                href="#needs-list"
+              </router-link>
+              <router-link
+                to="/how-to-help#needs-list"
                 @click="mobileMenuOpen = false; mobileHelpDropdownOpen = false"
                 class="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors"
               >
                 Needs List
-              </a>
-              <a
-                href="#testimonial"
+              </router-link>
+              <router-link
+                to="/how-to-help#testimonial"
                 @click="mobileMenuOpen = false; mobileHelpDropdownOpen = false"
                 class="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors"
               >
                 Testimonial
-              </a>
-              <a
-                href="#service"
+              </router-link>
+              <router-link
+                to="/how-to-help#service"
                 @click="mobileMenuOpen = false; mobileHelpDropdownOpen = false"
                 class="block px-3 py-2 rounded-md text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors"
               >
                 Service
-              </a>
+              </router-link>
             </div>
           </div>
           

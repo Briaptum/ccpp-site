@@ -30,29 +30,41 @@ WE BELIEVE that there is one living and true God, eternally existing in three pe
     </div>
 
     <!-- Services Section -->
-    <div class="max-w-6xl mx-auto mb-12">
-      <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Please join us for:</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card text-center">
-          <div class="text-4xl mb-4">⛪</div>
-          <h3 class="text-xl font-semibold mb-3">Sunday Worship</h3>
-          <p class="text-gray-600">Join us every Sunday at 9:00 AM for inspiring worship and fellowship.</p>
-        </div>
-        
-        <div class="card text-center">
-          <div class="text-4xl mb-4">📚</div>
-          <h3 class="text-xl font-semibold mb-3">Wednesday Bible Study</h3>
-          <p class="text-gray-600">Wednesday night Bible Study at 7:00 p.m. 
+    <div class="relative py-16 mb-12 overflow-hidden">
+      <!-- Background Image with Blur -->
+      <div 
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        :style="{ backgroundImage: `url(${servicesBackgroundImage})` }"
+      >
+        <!-- Blur overlay -->
+        <div class="absolute inset-0 backdrop-blur-sm bg-white bg-opacity-20"></div>
+      </div>
+      
+      <!-- Content -->
+      <div class="relative z-10 max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-white-300 mb-8">Please join us for:</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="card text-center bg-white bg-opacity-90 backdrop-blur-sm">
+            <div class="text-4xl mb-4">⛪</div>
+            <h3 class="text-xl font-semibold mb-3">Sunday Worship</h3>
+            <p class="text-gray-600">Join us every Sunday at 9:00 AM for inspiring worship and fellowship.</p>
+          </div>
+          
+          <div class="card text-center bg-white bg-opacity-90 backdrop-blur-sm">
+            <div class="text-4xl mb-4">📚</div>
+            <h3 class="text-xl font-semibold mb-3">Wednesday Bible Study</h3>
+            <p class="text-gray-600">Wednesday night Bible Study at 7:00 p.m. 
 
 </p>
-        </div>
-        
-        <div class="card text-center">
-          <div class="text-4xl mb-4">🤝</div>
-          <h3 class="text-xl font-semibold mb-3">Children Program</h3>
-          <p class="text-gray-600">​
+          </div>
+          
+          <div class="card text-center bg-white bg-opacity-90 backdrop-blur-sm">
+            <div class="text-4xl mb-4">🤝</div>
+            <h3 class="text-xl font-semibold mb-3">Children Program</h3>
+            <p class="text-gray-600">​
 Sunday School is provided for children under the age of 12. <br>
 Don't forget to bring a friend!</p>
+          </div>
         </div>
       </div>
     </div>
@@ -79,9 +91,9 @@ Don't forget to bring a friend!</p>
         <!-- Gallery Grid -->
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           <div 
-            v-for="(image, index) in galleryImages" 
+            v-for="(image, index) in paginatedImages" 
             :key="index"
-            @click="openLightbox(index)"
+            @click="openLightbox(getActualImageIndex(index))"
             class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer group"
           >
             <div class="aspect-w-16 aspect-h-12 bg-gray-200">
@@ -96,10 +108,47 @@ Don't forget to bring a friend!</p>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
               </svg>
             </div>
-            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-              <p class="text-white text-sm font-medium">{{ image.title }}</p>
-            </div>
           </div>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div v-if="totalPages > 1" class="flex justify-center items-center space-x-4 mt-8">
+          <button
+            @click="previousPage"
+            :disabled="currentPage === 1"
+            class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+          >
+            Previous
+          </button>
+          
+          <div class="flex space-x-2">
+            <button
+              v-for="page in visiblePages"
+              :key="page"
+              @click="goToPage(page)"
+              :class="[
+                'px-3 py-2 rounded-lg transition-colors',
+                page === currentPage 
+                  ? 'bg-primary-600 text-white' 
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              ]"
+            >
+              {{ page }}
+            </button>
+          </div>
+          
+          <button
+            @click="nextPage"
+            :disabled="currentPage === totalPages"
+            class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+          >
+            Next
+          </button>
+        </div>
+        
+        <!-- Page Info -->
+        <div v-if="totalPages > 1" class="text-center mt-4 text-gray-600">
+          Showing {{ startIndex + 1 }}-{{ endIndex }} of {{ galleryImages.length }} images
         </div>
       </div>
     </div>
@@ -135,7 +184,6 @@ Don't forget to bring a friend!</p>
           :alt="galleryImages[currentImageIndex].alt"
           class="w-full h-auto max-h-[80vh] object-contain rounded-lg"
         />
-        <p class="text-white text-center mt-4 text-lg">{{ galleryImages[currentImageIndex].title }}</p>
       </div>
       
       <button
@@ -149,37 +197,81 @@ Don't forget to bring a friend!</p>
       </button>
     </div>
 
-    <!-- Quick Links -->
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Quick Links</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <router-link to="/about" class="card text-center hover:shadow-lg transition-shadow">
-          <div class="text-2xl mb-2">👥</div>
-          <span class="font-medium">About Us</span>
-        </router-link>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Church Info -->
+          <div>
+            <h3 class="text-xl font-bold mb-4">Calvary Chapel Phnom Penh</h3>
+            <p class="text-gray-300 mb-4">
+              A community of believers dedicated to worship, fellowship, and spreading the Gospel of Jesus Christ.
+            </p>
+            <div class="text-gray-300">
+              <p class="mb-2">📍 Phnom Penh, Cambodia</p>
+              <p class="mb-2">📞 Contact us for service times</p>
+              <p>✉️ Get in touch through our contact page</p>
+            </div>
+          </div>
+          
+          <!-- Services -->
+          <div>
+            <h3 class="text-xl font-bold mb-4">Our Services</h3>
+            <ul class="space-y-2 text-gray-300">
+              <li>⛪ Sunday Worship - 9:00 AM</li>
+              <li>📚 Wednesday Bible Study - 7:00 PM</li>
+              <li>👶 Children's Sunday School</li>
+              <li>🤝 Community Fellowship</li>
+            </ul>
+          </div>
+          
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <router-link to="/about" class="text-gray-300 hover:text-white transition-colors">
+                  About Us
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/missionary" class="text-gray-300 hover:text-white transition-colors">
+                  Missionary Work
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/contact" class="text-gray-300 hover:text-white transition-colors">
+                  Contact Us
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/donate" class="text-gray-300 hover:text-white transition-colors">
+                  Donate
+                </router-link>
+              </li>
+              <li>
+                <router-link to="/how-to-help" class="text-gray-300 hover:text-white transition-colors">
+                  How to Help
+                </router-link>
+              </li>
+            </ul>
+          </div>
+        </div>
         
-        <router-link to="/missionary" class="card text-center hover:shadow-lg transition-shadow">
-          <div class="text-2xl mb-2">🌍</div>
-          <span class="font-medium">Missionary</span>
-        </router-link>
-        
-        <router-link to="/contact" class="card text-center hover:shadow-lg transition-shadow">
-          <div class="text-2xl mb-2">📞</div>
-          <span class="font-medium">Contact</span>
-        </router-link>
-        
-        <router-link to="/donate" class="card text-center hover:shadow-lg transition-shadow">
-          <div class="text-2xl mb-2">💝</div>
-          <span class="font-medium">Donate</span>
-        </router-link>
+        <!-- Bottom Bar -->
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; {{ currentYear }} Calvary Chapel Phnom Penh. All rights reserved.</p>
+          <p class="mt-2 text-sm">Built with love for our community</p>
+        </div>
       </div>
-    </div>
+    </footer>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import backgroundImage from '@/assets/images/background.jpg'
+import servicesBackgroundImage from '@/assets/gallery/547212625_1236675858494072_4425998334324483137_n.jpg'
 
 export default {
   name: 'Home',
@@ -188,65 +280,88 @@ export default {
     const currentImageIndex = ref(0)
     const loading = ref(true)
     const error = ref('')
+    const currentPage = ref(1)
+    const imagesPerPage = 6
     
     // Gallery images
     const galleryImages = ref([])
 
-    // Load static gallery images
+    // Load local gallery images
     const fetchGalleryImages = async () => {
       loading.value = true
       
-      // Use static placeholder images
-      galleryImages.value = [
-        {
-          src: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?w=800',
-          alt: 'Sunday Worship Service',
-          title: 'Sunday Worship Service'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800',
-          alt: 'Community Fellowship',
-          title: 'Community Fellowship'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800',
-          alt: 'Bible Study Group',
-          title: 'Bible Study Group'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800',
-          alt: 'Youth Ministry',
-          title: 'Youth Ministry'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800',
-          alt: 'Community Outreach',
-          title: 'Community Outreach'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=800',
-          alt: 'Prayer Meeting',
-          title: 'Prayer Meeting'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800',
-          alt: 'Church Community',
-          title: 'Church Community'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=800',
-          alt: 'Sunday School',
-          title: 'Sunday School'
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=800',
-          alt: 'Worship Music',
-          title: 'Worship Music'
+      try {
+        // Import all gallery images dynamically
+        const imageModules = import.meta.glob('@/assets/gallery/*.jpg', { eager: true })
+        
+        const images = []
+        for (const path in imageModules) {
+          const imageName = path.split('/').pop().replace('.jpg', '')
+          images.push({
+            src: imageModules[path].default,
+            alt: `Gallery Image ${imageName}`,
+            title: `Gallery Image ${imageName}`
+          })
         }
-      ]
-      
-      loading.value = false
+        
+        // Sort images by filename for consistent ordering
+        images.sort((a, b) => a.title.localeCompare(b.title))
+        
+        galleryImages.value = images
+        loading.value = false
+      } catch (err) {
+        console.error('Error loading gallery images:', err)
+        error.value = 'Failed to load gallery images'
+        loading.value = false
+      }
     }
+
+    // Pagination computed properties
+    const totalPages = computed(() => Math.ceil(galleryImages.value.length / imagesPerPage))
+    
+    const startIndex = computed(() => (currentPage.value - 1) * imagesPerPage)
+    const endIndex = computed(() => Math.min(startIndex.value + imagesPerPage, galleryImages.value.length))
+    
+    const paginatedImages = computed(() => {
+      return galleryImages.value.slice(startIndex.value, endIndex.value)
+    })
+    
+    const visiblePages = computed(() => {
+      const pages = []
+      const start = Math.max(1, currentPage.value - 2)
+      const end = Math.min(totalPages.value, start + 4)
+      
+      for (let i = start; i <= end; i++) {
+        pages.push(i)
+      }
+      return pages
+    })
+
+    // Pagination methods
+    const goToPage = (page) => {
+      if (page >= 1 && page <= totalPages.value) {
+        currentPage.value = page
+      }
+    }
+    
+    const nextPage = () => {
+      if (currentPage.value < totalPages.value) {
+        currentPage.value++
+      }
+    }
+    
+    const previousPage = () => {
+      if (currentPage.value > 1) {
+        currentPage.value--
+      }
+    }
+    
+    const getActualImageIndex = (paginatedIndex) => {
+      return startIndex.value + paginatedIndex
+    }
+
+    // Current year for footer
+    const currentYear = computed(() => new Date().getFullYear())
 
     const openLightbox = (index) => {
       currentImageIndex.value = index
@@ -276,15 +391,27 @@ export default {
 
     return {
       backgroundImage,
+      servicesBackgroundImage,
       lightboxOpen,
       currentImageIndex,
       loading,
       error,
       galleryImages,
+      currentPage,
+      totalPages,
+      startIndex,
+      endIndex,
+      paginatedImages,
+      visiblePages,
       openLightbox,
       closeLightbox,
       nextImage,
-      prevImage
+      prevImage,
+      goToPage,
+      nextPage,
+      previousPage,
+      getActualImageIndex,
+      currentYear
     }
   }
 }

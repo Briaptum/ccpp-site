@@ -5,6 +5,7 @@ import Missionary from '@/views/Missionary.vue'
 import Contact from '@/views/Contact.vue'
 import Donate from '@/views/Donate.vue'
 import Users from '@/views/Users.vue'
+import HowToHelp from '@/views/HowToHelp.vue'
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     path: '/donate',
     name: 'Donate',
     component: Donate
+  },
+  {
+    path: '/how-to-help',
+    name: 'HowToHelp',
+    component: HowToHelp
   },
   {
     path: '/users',
