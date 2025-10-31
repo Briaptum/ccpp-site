@@ -6,6 +6,7 @@ import Contact from '@/views/Contact.vue'
 import Donate from '@/views/Donate.vue'
 import Users from '@/views/Users.vue'
 import HowToHelp from '@/views/HowToHelp.vue'
+import News from '@/views/News.vue'
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
+  },
+  {
+    path: '/news',
+    name: 'News',
+    component: News
   },
   {
     path: '/missionary',

@@ -235,6 +235,11 @@ Don't forget to bring a friend!</p>
                 </router-link>
               </li>
               <li>
+                <router-link to="/news" class="text-gray-300 hover:text-white transition-colors">
+                  News
+                </router-link>
+              </li>
+              <li>
                 <router-link to="/missionary" class="text-gray-300 hover:text-white transition-colors">
                   Missionary Work
                 </router-link>

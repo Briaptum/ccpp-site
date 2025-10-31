@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="min-h-screen bg-gray-50">
-    <nav class="bg-white shadow-md border-b">
+    <nav class="sticky top-0 z-50 bg-white shadow-md border-b">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-24 md:h-32">
           <!-- Logo -->
@@ -29,6 +29,13 @@
               :class="{ 'text-primary-600': $route.name === 'About' }"
             >
               About
+            </router-link>
+            <router-link
+              to="/news"
+              class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-base font-medium transition-colors"
+              :class="{ 'text-primary-600': $route.name === 'News' }"
+            >
+              News
             </router-link>
             <router-link
               to="/missionary"
@@ -165,6 +172,14 @@
             :class="{ 'text-primary-600 bg-primary-50': $route.name === 'About' }"
           >
             About
+          </router-link>
+          <router-link
+            to="/news"
+            @click="mobileMenuOpen = false"
+            class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+            :class="{ 'text-primary-600 bg-primary-50': $route.name === 'News' }"
+          >
+            News
           </router-link>
           <router-link
             to="/missionary"

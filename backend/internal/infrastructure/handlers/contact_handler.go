@@ -3,6 +3,7 @@ package handlers
 import (
 	"ccpp-backend/internal/domain/models"
 	"ccpp-backend/internal/domain/services"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -22,11 +23,13 @@ func (h *ContactHandler) CreateContact(c *gin.Context) {
 	var contact models.Contact
 
 	if err := c.ShouldBindJSON(&contact); err != nil {
+		log.Printf("Error binding JSON: %v", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	if err := h.contactService.CreateContact(&contact); err != nil {
+		log.Printf("Error creating contact: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to save contact"})
 		return
 	}
