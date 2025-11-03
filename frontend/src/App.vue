@@ -18,43 +18,37 @@
           <div class="hidden lg:flex items-center space-x-8">
             <router-link
               to="/"
-              class="text-white hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium transition-colors"
-              :class="{ 'text-gray-200 font-semibold': $route.name === 'Home' }"
+              class="nav-link"
             >
               Home
             </router-link>
             <router-link
               to="/about"
-              class="text-white hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium transition-colors"
-              :class="{ 'text-gray-200 font-semibold': $route.name === 'About' }"
+              class="nav-link"
             >
               About Us
             </router-link>
             <router-link
               to="/ministries"
-              class="text-white hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium transition-colors"
-              :class="{ 'text-gray-200 font-semibold': $route.name === 'Ministries' }"
+              class="nav-link"
             >
               Ministries
             </router-link>
             <router-link
               to="/events"
-              class="text-white hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium transition-colors"
-              :class="{ 'text-gray-200 font-semibold': $route.name === 'Events' }"
+              class="nav-link"
             >
               Events
             </router-link>
             <router-link
               to="/resources"
-              class="text-white hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium transition-colors"
-              :class="{ 'text-gray-200 font-semibold': $route.name === 'Resources' }"
+              class="nav-link"
             >
               Resources
             </router-link>
             <router-link
               to="/contact"
-              class="text-white hover:text-gray-200 px-3 py-2 rounded-md text-base font-medium transition-colors"
-              :class="{ 'text-gray-200 font-semibold': $route.name === 'Contact' }"
+              class="nav-link"
             >
               Contact
             </router-link>
@@ -101,56 +95,49 @@
           <router-link
             to="/"
             @click="mobileMenuOpen = false"
-            class="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-opacity-20 transition-colors"
-            :class="{ 'text-gray-200 font-semibold bg-opacity-20': $route.name === 'Home' }"
+            class="nav-link-mobile"
           >
             Home
           </router-link>
           <router-link
             to="/about"
             @click="mobileMenuOpen = false"
-            class="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-opacity-20 transition-colors"
-            :class="{ 'text-gray-200 font-semibold bg-opacity-20': $route.name === 'About' }"
+            class="nav-link-mobile"
           >
             About Us
           </router-link>
           <router-link
             to="/ministries"
             @click="mobileMenuOpen = false"
-            class="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-opacity-20 transition-colors"
-            :class="{ 'text-gray-200 font-semibold bg-opacity-20': $route.name === 'Ministries' }"
+            class="nav-link-mobile"
           >
             Ministries
           </router-link>
           <router-link
             to="/events"
             @click="mobileMenuOpen = false"
-            class="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-opacity-20 transition-colors"
-            :class="{ 'text-gray-200 font-semibold bg-opacity-20': $route.name === 'Events' }"
+            class="nav-link-mobile"
           >
             Events
           </router-link>
           <router-link
             to="/resources"
             @click="mobileMenuOpen = false"
-            class="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-opacity-20 transition-colors"
-            :class="{ 'text-gray-200 font-semibold bg-opacity-20': $route.name === 'Resources' }"
+            class="nav-link-mobile"
           >
             Resources
           </router-link>
           <router-link
             to="/contact"
             @click="mobileMenuOpen = false"
-            class="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-opacity-20 transition-colors"
-            :class="{ 'text-gray-200 font-semibold bg-opacity-20': $route.name === 'Contact' }"
+            class="nav-link-mobile"
           >
             Contact
           </router-link>
           <router-link
             to="/users"
             @click="mobileMenuOpen = false"
-            class="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-gray-200 hover:bg-opacity-20 transition-colors"
-            :class="{ 'text-gray-200 font-semibold bg-opacity-20': $route.name === 'Users' }"
+            class="nav-link-mobile"
           >
             Admin
           </router-link>

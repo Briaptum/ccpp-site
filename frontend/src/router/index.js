@@ -6,7 +6,6 @@ import Events from '@/views/Events.vue'
 import Resources from '@/views/Resources.vue'
 import Contact from '@/views/Contact.vue'
 import Users from '@/views/Users.vue'
-import Missionary from '@/views/Missionary.vue'
 import Donate from '@/views/Donate.vue'
 import HowToHelp from '@/views/HowToHelp.vue'
 import News from '@/views/News.vue'
@@ -46,11 +45,6 @@ const routes = [
     path: '/users',
     name: 'Users',
     component: Users
-  },
-  {
-    path: '/missionary',
-    name: 'Missionary',
-    component: Missionary
   },
   {
     path: '/donate',

@@ -30,7 +30,7 @@
     </div>
 
     <!-- Services Section -->
-    <div class="bg-gray-100 py-32 md:py-40 mb-12">
+    <div class="bg-gray-200 py-32 md:py-40">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Please join us for:</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -72,13 +72,18 @@
             </p>
           </div>
         </div>
+        <div class="text-center mt-8">
+          <router-link to="/contact" class="inline-block px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg">
+            Join Now
+          </router-link>
+        </div>
       </div>
     </div>
 
     <!-- Picture Gallery Section -->
-    <div class="bg-gray-100 py-12 mb-12">
+    <div class="bg-gray-100 py-12">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Picture Gallery</h2>
+        <h2 class="text-3xl font-bold text-center text-gray-900">Picture Gallery</h2>
         <p class="text-lg text-gray-700 text-center mb-8 max-w-2xl mx-auto">
           Glimpses of our community, worship services, and ministry events
         </p>
@@ -204,75 +209,10 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 mt-16">
+    <footer class="bg-gray-900 text-white py-12">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Church Info -->
-          <div>
-            <h3 class="text-xl font-bold mb-4">Calvary Chapel Phnom Penh</h3>
-            <p class="text-gray-300 mb-4">
-              A community of believers dedicated to worship, fellowship, and spreading the Gospel of Jesus Christ.
-            </p>
-            <div class="text-gray-300">
-              <p class="mb-2">📍 Phnom Penh, Cambodia</p>
-              <p class="mb-2">📞 Contact us for service times</p>
-              <p>✉️ Get in touch through our contact page</p>
-            </div>
-          </div>
-          
-          <!-- Services -->
-          <div>
-            <h3 class="text-xl font-bold mb-4">Our Services</h3>
-            <ul class="space-y-2 text-gray-300">
-              <li>⛪ Sunday Worship - 9:00 AM</li>
-              <li>📚 Wednesday Bible Study - 7:00 PM</li>
-              <li>👶 Children's Sunday School</li>
-              <li>🤝 Community Fellowship</li>
-            </ul>
-          </div>
-          
-          <!-- Quick Links -->
-          <div>
-            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
-            <ul class="space-y-2">
-              <li>
-                <router-link to="/about" class="text-gray-300 hover:text-white transition-colors">
-                  About Us
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/news" class="text-gray-300 hover:text-white transition-colors">
-                  News
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/missionary" class="text-gray-300 hover:text-white transition-colors">
-                  Missionary Work
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/contact" class="text-gray-300 hover:text-white transition-colors">
-                  Contact Us
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/donate" class="text-gray-300 hover:text-white transition-colors">
-                  Donate
-                </router-link>
-              </li>
-              <li>
-                <router-link to="/how-to-help" class="text-gray-300 hover:text-white transition-colors">
-                  How to Help
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-        <!-- Bottom Bar -->
-        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {{ currentYear }} Calvary Chapel Phnom Penh. All rights reserved.</p>
-          <p class="mt-2 text-sm">Built with love for our community</p>
+        <div class="text-center text-gray-400">
+          <p>&copy; calvary chapel phnom penh</p>
         </div>
       </div>
     </footer>
@@ -373,9 +313,6 @@ export default {
       return startIndex.value + paginatedIndex
     }
 
-    // Current year for footer
-    const currentYear = computed(() => new Date().getFullYear())
-
     const openLightbox = (index) => {
       currentImageIndex.value = index
       lightboxOpen.value = true
@@ -425,8 +362,7 @@ export default {
       goToPage,
       nextPage,
       previousPage,
-      getActualImageIndex,
-      currentYear
+      getActualImageIndex
     }
   }
 }

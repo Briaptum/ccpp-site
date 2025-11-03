@@ -4,7 +4,10 @@
 
 @layer base {
   html {
-    font-family: 'Lato', system-ui, sans-serif;
+    font-family: Lato, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
   }
   
   p {
@@ -39,5 +42,32 @@
   
   .paragraph {
     @apply text-light leading-relaxed;
+  }
+
+  .nav-link {
+    font-family: Lato, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    @apply text-white hover:text-gray-200 px-3 py-2 rounded-md font-medium transition-colors;
+  }
+
+  .nav-link.router-link-exact-active {
+    @apply text-secondary-300 !important;
+    font-weight: 600;
+  }
+
+  .nav-link-mobile {
+    font-family: Lato, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    @apply block px-3 py-3 rounded-md font-medium text-white hover:text-gray-200 hover:bg-opacity-20 transition-colors;
+  }
+
+  .nav-link-mobile.router-link-exact-active {
+    @apply text-secondary-300 !important;
+    font-weight: 600;
+    @apply bg-opacity-20;
   }
 }
