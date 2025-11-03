@@ -22,24 +22,151 @@
             >
               Home
             </router-link>
-            <router-link
-              to="/about"
-              class="nav-link"
+            <!-- About Us Dropdown -->
+            <div 
+              class="relative"
+              @mouseenter="aboutDropdownOpen = true"
+              @mouseleave="aboutDropdownOpen = false"
             >
-              About Us
-            </router-link>
-            <router-link
-              to="/ministries"
-              class="nav-link"
+              <router-link
+                to="/about"
+                class="nav-link flex items-center"
+                :class="{ 'text-white': aboutDropdownOpen }"
+              >
+                About Us
+                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </router-link>
+              <!-- Dropdown Menu -->
+              <div 
+                v-show="aboutDropdownOpen"
+                class="absolute top-full left-0 pt-1 w-48 z-50"
+              >
+                <div class="bg-white rounded-md shadow-lg py-2 border border-gray-200">
+                <router-link
+                  to="/about/who-we-are"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
+                  @click="aboutDropdownOpen = false"
+                >
+                  Who We Are
+                </router-link>
+                <router-link
+                  to="/about/leadership"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
+                  @click="aboutDropdownOpen = false"
+                >
+                  Leadership
+                </router-link>
+                <router-link
+                  to="/about/what-we-believe"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
+                  @click="aboutDropdownOpen = false"
+                >
+                  What We Believe
+                </router-link>
+                <router-link
+                  to="/about/calvary-chapel"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
+                  @click="aboutDropdownOpen = false"
+                >
+                  Calvary Chapel
+                </router-link>
+                <router-link
+                  to="/about/cambodia"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
+                  @click="aboutDropdownOpen = false"
+                >
+                  Cambodia
+                </router-link>
+                </div>
+              </div>
+            </div>
+            <!-- Ministries Dropdown -->
+            <div 
+              class="relative"
+              @mouseenter="ministriesDropdownOpen = true"
+              @mouseleave="ministriesDropdownOpen = false"
             >
-              Ministries
-            </router-link>
-            <router-link
-              to="/events"
-              class="nav-link"
+              <router-link
+                to="/ministries"
+                class="nav-link flex items-center"
+                :class="{ 'text-white': ministriesDropdownOpen }"
+              >
+                Ministries
+                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </router-link>
+              <!-- Dropdown Menu -->
+              <div 
+                v-show="ministriesDropdownOpen"
+                class="absolute top-full left-0 pt-1 w-48 z-50"
+              >
+                <div class="bg-white rounded-md shadow-lg py-2 border border-gray-200">
+                <router-link
+                  to="/ministries/youth-ministry"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
+                  @click="ministriesDropdownOpen = false"
+                >
+                  Youth Ministry
+                </router-link>
+                <router-link
+                  to="/ministries/grace-church"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
+                  @click="ministriesDropdownOpen = false"
+                >
+                  Grace Church
+                </router-link>
+                <router-link
+                  to="/ministries/outreaches"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
+                  @click="ministriesDropdownOpen = false"
+                >
+                  Outreaches
+                </router-link>
+                </div>
+              </div>
+            </div>
+            <!-- Events Dropdown -->
+            <div 
+              class="relative"
+              @mouseenter="eventsDropdownOpen = true"
+              @mouseleave="eventsDropdownOpen = false"
             >
-              Events
-            </router-link>
+              <router-link
+                to="/events"
+                class="nav-link flex items-center"
+                :class="{ 'text-white': eventsDropdownOpen }"
+              >
+                Events
+                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </router-link>
+              <!-- Dropdown Menu -->
+              <div 
+                v-show="eventsDropdownOpen"
+                class="absolute top-full left-0 pt-1 w-48 z-50"
+              >
+                <div class="bg-white rounded-md shadow-lg py-2 border border-gray-200">
+                <router-link
+                  to="/events/calendar"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
+                  @click="eventsDropdownOpen = false"
+                >
+                  Calendar
+                </router-link>
+                <router-link
+                  to="/events/upcoming-events"
+                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
+                  @click="eventsDropdownOpen = false"
+                >
+                  Upcoming Events
+                </router-link>
+                </div>
+              </div>
+            </div>
             <router-link
               to="/resources"
               class="nav-link"
@@ -99,27 +226,145 @@
           >
             Home
           </router-link>
-          <router-link
-            to="/about"
-            @click="mobileMenuOpen = false"
-            class="nav-link-mobile"
-          >
-            About Us
-          </router-link>
-          <router-link
-            to="/ministries"
-            @click="mobileMenuOpen = false"
-            class="nav-link-mobile"
-          >
-            Ministries
-          </router-link>
-          <router-link
-            to="/events"
-            @click="mobileMenuOpen = false"
-            class="nav-link-mobile"
-          >
-            Events
-          </router-link>
+          <!-- About Us Dropdown Mobile -->
+          <div>
+            <button
+              @click="aboutDropdownMobileOpen = !aboutDropdownMobileOpen"
+              class="nav-link-mobile w-full text-left flex items-center justify-between"
+            >
+              About Us
+              <svg 
+                class="h-4 w-4 transition-transform"
+                :class="{ 'rotate-180': aboutDropdownMobileOpen }"
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div 
+              v-show="aboutDropdownMobileOpen"
+              class="pl-4 mt-1 space-y-1"
+            >
+              <router-link
+                to="/about/who-we-are"
+                @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
+                class="nav-link-mobile block"
+              >
+                Who We Are
+              </router-link>
+              <router-link
+                to="/about/leadership"
+                @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
+                class="nav-link-mobile block"
+              >
+                Leadership
+              </router-link>
+              <router-link
+                to="/about/what-we-believe"
+                @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
+                class="nav-link-mobile block"
+              >
+                What We Believe
+              </router-link>
+              <router-link
+                to="/about/calvary-chapel"
+                @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
+                class="nav-link-mobile block"
+              >
+                Calvary Chapel
+              </router-link>
+              <router-link
+                to="/about/cambodia"
+                @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
+                class="nav-link-mobile block"
+              >
+                Cambodia
+              </router-link>
+            </div>
+          </div>
+          <!-- Ministries Dropdown Mobile -->
+          <div>
+            <button
+              @click="ministriesDropdownMobileOpen = !ministriesDropdownMobileOpen"
+              class="nav-link-mobile w-full text-left flex items-center justify-between"
+            >
+              Ministries
+              <svg 
+                class="h-4 w-4 transition-transform"
+                :class="{ 'rotate-180': ministriesDropdownMobileOpen }"
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div 
+              v-show="ministriesDropdownMobileOpen"
+              class="pl-4 mt-1 space-y-1"
+            >
+              <router-link
+                to="/ministries/youth-ministry"
+                @click="mobileMenuOpen = false; ministriesDropdownMobileOpen = false"
+                class="nav-link-mobile block"
+              >
+                Youth Ministry
+              </router-link>
+              <router-link
+                to="/ministries/grace-church"
+                @click="mobileMenuOpen = false; ministriesDropdownMobileOpen = false"
+                class="nav-link-mobile block"
+              >
+                Grace Church
+              </router-link>
+              <router-link
+                to="/ministries/outreaches"
+                @click="mobileMenuOpen = false; ministriesDropdownMobileOpen = false"
+                class="nav-link-mobile block"
+              >
+                Outreaches
+              </router-link>
+            </div>
+          </div>
+          <!-- Events Dropdown Mobile -->
+          <div>
+            <button
+              @click="eventsDropdownMobileOpen = !eventsDropdownMobileOpen"
+              class="nav-link-mobile w-full text-left flex items-center justify-between"
+            >
+              Events
+              <svg 
+                class="h-4 w-4 transition-transform"
+                :class="{ 'rotate-180': eventsDropdownMobileOpen }"
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div 
+              v-show="eventsDropdownMobileOpen"
+              class="pl-4 mt-1 space-y-1"
+            >
+              <router-link
+                to="/events/calendar"
+                @click="mobileMenuOpen = false; eventsDropdownMobileOpen = false"
+                class="nav-link-mobile block"
+              >
+                Calendar
+              </router-link>
+              <router-link
+                to="/events/upcoming-events"
+                @click="mobileMenuOpen = false; eventsDropdownMobileOpen = false"
+                class="nav-link-mobile block"
+              >
+                Upcoming Events
+              </router-link>
+            </div>
+          </div>
           <router-link
             to="/resources"
             @click="mobileMenuOpen = false"
@@ -156,13 +401,25 @@ export default {
   name: 'App',
   data() {
     return {
-      mobileMenuOpen: false
+      mobileMenuOpen: false,
+      aboutDropdownOpen: false,
+      aboutDropdownMobileOpen: false,
+      ministriesDropdownOpen: false,
+      ministriesDropdownMobileOpen: false,
+      eventsDropdownOpen: false,
+      eventsDropdownMobileOpen: false
     }
   },
   watch: {
     $route() {
-      // Close mobile menu when route changes
+      // Close mobile menu and dropdowns when route changes
       this.mobileMenuOpen = false
+      this.aboutDropdownOpen = false
+      this.aboutDropdownMobileOpen = false
+      this.ministriesDropdownOpen = false
+      this.ministriesDropdownMobileOpen = false
+      this.eventsDropdownOpen = false
+      this.eventsDropdownMobileOpen = false
     }
   }
 }
