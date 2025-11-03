@@ -5,7 +5,7 @@
     <div class="max-w-4xl mx-auto mb-12">
       <div class="card">
         <img 
-                src="/src/assets/images/ccpp-logo.png" 
+                src="/src/assets/images/logo3.png" 
                 alt="Calvary Chapel Phnom Penh Logo" 
                 class="h-20 md:h-20 w-auto object-contain"
               />

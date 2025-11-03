@@ -1,22 +1,22 @@
 <template>
-  <div class="px-4 sm:px-0">
+  <div>
     <!-- Hero Section with Background Image -->
-    <div class="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-24 mb-8 overflow-hidden">
+    <div class="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-40 md:py-48  overflow-hidden">
       <!-- Background Image -->
       <div 
         class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        :style="{ backgroundImage: `url(${backgroundImage})` }"
+        :style="{ backgroundImage: `url(${background2Image})` }"
       >
         <!-- Dark overlay for better text readability -->
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute inset-0 bg-black bg-opacity-70"></div>
       </div>
       
       <!-- Content -->
-      <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
+      <div class="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
         <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">Welcome to Calvary Chapel Phnom Penh</h1>
         <p class="text-xl md:text-2xl mb-8 drop-shadow-md">Statement of Faith</p>
-        <p class="text-lg mb-8 max-w-2xl mx-auto drop-shadow-md">    
-WE BELIEVE that there is one living and true God, eternally existing in three persons, the Father, the Son, and the Holy Spirit, equal in power and glory; that this triune God created all, upholds all, and governs all.
+        <p class="text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">    
+          Studying the Word verse by verse, chapter by chapter.
         </p>
         <div class="space-x-4">
           <router-link to="/about" class="btn-primary bg-white text-primary-600 hover:bg-gray-100 shadow-lg">
@@ -30,40 +30,46 @@ WE BELIEVE that there is one living and true God, eternally existing in three pe
     </div>
 
     <!-- Services Section -->
-    <div class="relative py-16 mb-12 overflow-hidden">
-      <!-- Background Image with Blur -->
-      <div 
-        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        :style="{ backgroundImage: `url(${servicesBackgroundImage})` }"
-      >
-        <!-- Blur overlay -->
-        <div class="absolute inset-0 backdrop-blur-sm bg-white bg-opacity-20"></div>
-      </div>
-      
-      <!-- Content -->
-      <div class="relative z-10 max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-white-300 mb-8">Please join us for:</h2>
+    <div class="bg-gray-100 py-32 md:py-40 mb-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Please join us for:</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="card text-center bg-white bg-opacity-90 backdrop-blur-sm">
-            <div class="text-4xl mb-4">⛪</div>
+          <div class="card text-center bg-white overflow-hidden">
+            <div class="w-full h-48 mb-4 overflow-hidden">
+              <img 
+                :src="sundayWorshipImage" 
+                alt="Sunday Worship" 
+                class="w-full h-full object-cover"
+              />
+            </div>
             <h3 class="text-xl font-semibold mb-3">Sunday Worship</h3>
             <p class="text-gray-600">Join us every Sunday at 9:00 AM for inspiring worship and fellowship.</p>
           </div>
           
-          <div class="card text-center bg-white bg-opacity-90 backdrop-blur-sm">
-            <div class="text-4xl mb-4">📚</div>
+          <div class="card text-center bg-white overflow-hidden">
+            <div class="w-full h-48 mb-4 overflow-hidden">
+              <img 
+                :src="bibleStudyImage" 
+                alt="Wednesday Bible Study" 
+                class="w-full h-full object-cover"
+              />
+            </div>
             <h3 class="text-xl font-semibold mb-3">Wednesday Bible Study</h3>
-            <p class="text-gray-600">Wednesday night Bible Study at 7:00 p.m. 
-
-</p>
+            <p class="text-gray-600">Wednesday night Bible Study at 7:00 p.m.</p>
           </div>
           
-          <div class="card text-center bg-white bg-opacity-90 backdrop-blur-sm">
-            <div class="text-4xl mb-4">🤝</div>
+          <div class="card text-center bg-white overflow-hidden">
+            <div class="w-full h-48 mb-4 overflow-hidden">
+              <img 
+                :src="childrenProgramImage" 
+                alt="Children Program" 
+                class="w-full h-full object-cover"
+              />
+            </div>
             <h3 class="text-xl font-semibold mb-3">Children Program</h3>
-            <p class="text-gray-600">​
-Sunday School is provided for children under the age of 12. <br>
-Don't forget to bring a friend!</p>
+            <p class="text-gray-600">
+              Sunday School is provided for children under the age of 12. <br>
+            </p>
           </div>
         </div>
       </div>
@@ -71,7 +77,7 @@ Don't forget to bring a friend!</p>
 
     <!-- Picture Gallery Section -->
     <div class="bg-gray-100 py-12 mb-12">
-      <div class="max-w-6xl mx-auto px-4">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Picture Gallery</h2>
         <p class="text-lg text-gray-700 text-center mb-8 max-w-2xl mx-auto">
           Glimpses of our community, worship services, and ministry events
@@ -199,7 +205,7 @@ Don't forget to bring a friend!</p>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12 mt-16">
-      <div class="max-w-6xl mx-auto px-4">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Church Info -->
           <div>
@@ -275,8 +281,10 @@ Don't forget to bring a friend!</p>
 
 <script>
 import { ref, onMounted, computed } from 'vue'
-import backgroundImage from '@/assets/images/background.jpg'
-import servicesBackgroundImage from '@/assets/gallery/547212625_1236675858494072_4425998334324483137_n.jpg'
+import background2Image from '@/assets/images/background2.jpg'
+import sundayWorshipImage from '@/assets/gallery/514246564_1275851177909873_6093560206728412070_n.jpg'
+import bibleStudyImage from '@/assets/gallery/547266955_1236675715160753_108576014740250024_n.jpg'
+import childrenProgramImage from '@/assets/gallery/547686117_1236675835160741_3886842454015531546_n.jpg'
 
 export default {
   name: 'Home',
@@ -395,8 +403,10 @@ export default {
     })
 
     return {
-      backgroundImage,
-      servicesBackgroundImage,
+      background2Image,
+      sundayWorshipImage,
+      bibleStudyImage,
+      childrenProgramImage,
       lightboxOpen,
       currentImageIndex,
       loading,
