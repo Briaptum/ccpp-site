@@ -1,15 +1,28 @@
 <template>
   <div id="app" class="min-h-screen bg-gray-50">
-    <nav class="sticky top-0 z-50 shadow-md border-b" style="background-color: #265267;">
+    <nav
+      :class="[
+        'sticky top-0 z-50 shadow-md border-b bg-main-400 transition-all duration-300',
+        isScrolled ? 'py-1' : 'py-2'
+      ]"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-24 md:h-32">
+        <div
+          :class="[
+            'flex justify-between transition-all duration-300',
+            isScrolled ? 'h-16 md:h-20' : 'h-20 md:h-24'
+          ]"
+        >
           <!-- Logo -->
           <div class="flex items-center">
             <router-link to="/" class="flex items-center">
               <img 
                 src="/src/assets/images/logo3.png" 
                 alt="Calvary Chapel Phnom Penh Logo" 
-                class="h-20 md:h-20 w-auto object-contain"
+                :class="[
+                  'w-auto object-contain transition-all duration-300',
+                  isScrolled ? 'h-12 md:h-12' : 'h-16 md:h-16'
+                ]"
               />
             </router-link>
           </div>
@@ -401,6 +414,7 @@ export default {
   name: 'App',
   data() {
     return {
+      isScrolled: false,
       mobileMenuOpen: false,
       aboutDropdownOpen: false,
       aboutDropdownMobileOpen: false,
@@ -408,6 +422,18 @@ export default {
       ministriesDropdownMobileOpen: false,
       eventsDropdownOpen: false,
       eventsDropdownMobileOpen: false
+    }
+  },
+  mounted() {
+    this.handleScroll()
+    window.addEventListener('scroll', this.handleScroll, { passive: true })
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll() {
+      this.isScrolled = window.scrollY > 50
     }
   },
   watch: {

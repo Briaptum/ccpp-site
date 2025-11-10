@@ -1,11 +1,14 @@
 <template>
   <div>
     <!-- Hero Section with Background Image -->
-    <div class="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-40 md:py-48  overflow-hidden">
+    <div
+      ref="heroSection"
+      class="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-40 md:py-48 overflow-hidden"
+    >
       <!-- Background Image -->
       <div 
-        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        :style="{ backgroundImage: `url(${background2Image})` }"
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
+        :style="parallaxBackgroundStyle"
       >
         <!-- Dark overlay for better text readability -->
         <div class="absolute inset-0 bg-black bg-opacity-70"></div>
@@ -220,7 +223,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import background2Image from '@/assets/images/background2.jpg'
 import sundayWorshipImage from '@/assets/gallery/514246564_1275851177909873_6093560206728412070_n.jpg'
 import bibleStudyImage from '@/assets/gallery/547266955_1236675715160753_108576014740250024_n.jpg'
@@ -235,6 +238,9 @@ export default {
     const error = ref('')
     const currentPage = ref(1)
     const imagesPerPage = 6
+    const heroSection = ref(null)
+    const parallaxOffset = ref(0)
+    let animationFrameId = null
     
     // Gallery images
     const galleryImages = ref([])
@@ -334,9 +340,43 @@ export default {
       }
     }
 
+    const updateParallax = () => {
+      if (!heroSection.value) {
+        return
+      }
+
+      const rect = heroSection.value.getBoundingClientRect()
+      parallaxOffset.value = rect.top * -0.3
+    }
+
+    const handleScroll = () => {
+      if (animationFrameId !== null) {
+        return
+      }
+
+      animationFrameId = requestAnimationFrame(() => {
+        updateParallax()
+        animationFrameId = null
+      })
+    }
+
+    const parallaxBackgroundStyle = computed(() => ({
+      backgroundImage: `url(${background2Image})`,
+      transform: `translateY(${parallaxOffset.value}px) scale(1.1)`
+    }))
+
     // Fetch images when component mounts
     onMounted(() => {
       fetchGalleryImages()
+      updateParallax()
+      window.addEventListener('scroll', handleScroll, { passive: true })
+    })
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('scroll', handleScroll)
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId)
+      }
     })
 
     return {
@@ -362,7 +402,9 @@ export default {
       goToPage,
       nextPage,
       previousPage,
-      getActualImageIndex
+      getActualImageIndex,
+      parallaxBackgroundStyle,
+      heroSection
     }
   }
 }

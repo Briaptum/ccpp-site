@@ -26,6 +26,39 @@
               Pastor Long brings energy and innovation to our youth and community outreach programs. He is passionate about discipleship and seeing lives transformed by the Gospel.
             </p>
           </div>
+
+          <div class="text-center">
+            <div class="w-32 h-32 bg-primary-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span class="text-4xl">👨‍💼</span>
+            </div>
+            <h3 class="text-xl text-light mb-2">Randy</h3>
+            <p class="text-primary-600 mb-3">Leadership Team</p>
+            <p class="text-gray-600">
+              Randy supports the church family through faithful service and a commitment to caring for every ministry area.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-32 h-32 bg-primary-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span class="text-4xl">👨‍💼</span>
+            </div>
+            <h3 class="text-xl text-light mb-2">Vutha</h3>
+            <p class="text-primary-600 mb-3">Leadership Team</p>
+            <p class="text-gray-600">
+              Vutha encourages meaningful worship and helps guide teams that cultivate fellowship and spiritual growth.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-32 h-32 bg-primary-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span class="text-4xl">👩‍💼</span>
+            </div>
+            <h3 class="text-xl text-light mb-2">Cheng</h3>
+            <p class="text-primary-600 mb-3">Leadership Team</p>
+            <p class="text-gray-600">
+              Cheng invests in discipleship and helps coordinate opportunities for members to grow together in faith.
+            </p>
+          </div>
         </div>
       </div>
     </div>
