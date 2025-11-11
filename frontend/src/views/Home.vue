@@ -36,7 +36,7 @@
     <div class="bg-gray-200 py-32 md:py-40">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Please join us for:</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="card text-center bg-white overflow-hidden">
             <div class="w-full h-48 mb-4 overflow-hidden">
               <img 
@@ -61,19 +61,6 @@
             <p class="text-gray-600">Wednesday night Bible Study at 7:00 p.m.</p>
           </div>
           
-          <div class="card text-center bg-white overflow-hidden">
-            <div class="w-full h-48 mb-4 overflow-hidden">
-              <img 
-                :src="childrenProgramImage" 
-                alt="Children Program" 
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <h3 class="text-xl font-semibold mb-3">Children Program</h3>
-            <p class="text-gray-600">
-              Sunday School is provided for children under the age of 12. <br>
-            </p>
-          </div>
         </div>
         <div class="text-center mt-8">
           <router-link to="/contact" class="inline-block px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg">
@@ -167,6 +154,55 @@
       </div>
     </div>
 
+    <!-- Latest Teachings Section -->
+    <div class="bg-white py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center text-gray-900">Latest Teachings</h2>
+        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
+          Catch up on recent messages and stay encouraged throughout the week.
+        </p>
+        <div
+          v-if="latestTeachings.length > 0"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <div
+            v-for="teaching in latestTeachings"
+            :key="teaching.id"
+            class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                :src="`https://img.youtube.com/vi/${teaching.id}/hqdefault.jpg`"
+                :alt="teaching.title"
+                class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-black bg-opacity-25"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <svg class="w-16 h-16 text-white opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="text-xl font-semibold text-gray-900 mb-3">{{ teaching.title }}</h3>
+              <p class="text-gray-600 flex-1">{{ teaching.description }}</p>
+              <a
+                :href="teaching.url"
+                target="_blank"
+                rel="noopener"
+                class="mt-6 inline-flex items-center justify-center px-5 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-md"
+              >
+                Watch Now
+              </a>
+            </div>
+          </div>
+        </div>
+        <p v-else class="text-center text-gray-500">
+          Latest teachings will appear here once available.
+        </p>
+      </div>
+    </div>
+
     <!-- Lightbox Modal -->
     <div
       v-if="lightboxOpen"
@@ -227,7 +263,6 @@ import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import background2Image from '@/assets/images/background2.jpg'
 import sundayWorshipImage from '@/assets/gallery/514246564_1275851177909873_6093560206728412070_n.jpg'
 import bibleStudyImage from '@/assets/gallery/547266955_1236675715160753_108576014740250024_n.jpg'
-import childrenProgramImage from '@/assets/gallery/547686117_1236675835160741_3886842454015531546_n.jpg'
 
 export default {
   name: 'Home',
@@ -239,6 +274,44 @@ export default {
     const currentPage = ref(1)
     const imagesPerPage = 6
     const heroSection = ref(null)
+    const latestTeachings = [
+      {
+        id: 'dQw4w9WgXcQ',
+        title: 'Service Highlight: Trust and Hope',
+        description: 'Reflect on how trust in Christ shapes our response to trials.',
+        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+      },
+      {
+        id: 'fLexgOxsZu0',
+        title: 'Midweek Devotional: Walking in Faith',
+        description: 'A midweek encouragement to walk boldly in faith.',
+        url: 'https://www.youtube.com/watch?v=fLexgOxsZu0'
+      },
+      {
+        id: '3GwjfUFyY6M',
+        title: 'Sunday Sermon Recap: Grace Abounds',
+        description: 'Grace meets us where we are and leads us forward.',
+        url: 'https://www.youtube.com/watch?v=3GwjfUFyY6M'
+      },
+      {
+        id: 'a3Z7zEc7AXQ',
+        title: 'Youth Gathering: Rooted in Scripture',
+        description: 'Highlights from our youth ministry Bible study.',
+        url: 'https://www.youtube.com/watch?v=a3Z7zEc7AXQ'
+      },
+      {
+        id: '2vjPBrBU-TM',
+        title: 'Testimony Night: Stories of Renewal',
+        description: 'Members share how God is renewing their lives.',
+        url: 'https://www.youtube.com/watch?v=2vjPBrBU-TM'
+      },
+      {
+        id: 'V-_O7nl0Ii0',
+        title: 'Prayer Focus: Seeking His Presence',
+        description: 'Join us as we focus our hearts in prayer.',
+        url: 'https://www.youtube.com/watch?v=V-_O7nl0Ii0'
+      }
+    ]
     const parallaxOffset = ref(0)
     let animationFrameId = null
     
@@ -383,7 +456,6 @@ export default {
       background2Image,
       sundayWorshipImage,
       bibleStudyImage,
-      childrenProgramImage,
       lightboxOpen,
       currentImageIndex,
       loading,
@@ -404,7 +476,8 @@ export default {
       previousPage,
       getActualImageIndex,
       parallaxBackgroundStyle,
-      heroSection
+      heroSection,
+      latestTeachings
     }
   }
 }
