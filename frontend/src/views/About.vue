@@ -5,13 +5,13 @@
       <div class="absolute bottom-[-10rem] right-[-6rem] h-[28rem] w-[28rem] rounded-full bg-primary-700/30 blur-3xl"></div>
     </div>
 
-    <section class="relative px-4 py-20 sm:px-8 lg:px-12">
+    <section class="relative flex min-h-screen items-center px-4 py-20 sm:px-8 lg:px-12">
       <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-slate-950 via-slate-900 to-primary-950"></div>
       <div class="pointer-events-none absolute inset-0 -z-10 opacity-60">
         <div class="absolute left-[-6rem] top-[-6rem] h-80 w-80 rounded-full bg-primary-500/40 blur-3xl"></div>
         <div class="absolute bottom-[-8rem] right-[-4rem] h-96 w-96 rounded-full bg-primary-400/20 blur-3xl"></div>
       </div>
-      <div class="mx-auto grid max-w-6xl gap-12 text-slate-100 lg:grid-cols-[1.1fr,0.9fr] lg:items-center">
+      <div class="grid w-full gap-12 text-slate-100 lg:grid-cols-[1.1fr,0.9fr] lg:items-center">
         <div class="relative">
           <div class="absolute -left-6 -top-6 hidden h-32 w-32 rounded-3xl bg-primary-500/30 blur-2xl sm:block"></div>
           <img src="/src/assets/images/logo3.png" alt="Calvary Chapel Phnom Penh Logo" class="relative mx-auto mb-10 h-24 w-auto drop-shadow-lg sm:mx-0 sm:h-28" />
@@ -81,42 +81,6 @@
             >
               {{ statement.reference }}
             </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-slate-100 px-4 py-20 text-slate-900 sm:px-8 lg:px-12">
-      <div class="mx-auto max-w-6xl">
-        <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-primary-500">Our Culture</p>
-            <h2 class="mt-4 text-3xl font-semibold text-slate-900 sm:text-4xl">Values we live by</h2>
-            <p class="mt-4 max-w-2xl text-base text-slate-600">
-              Our rhythms and relationships flow out of a devotion to Jesus and one another.
-            </p>
-          </div>
-          <router-link
-            to="/outreaches"
-            class="inline-flex items-center justify-center rounded-full border border-primary-500 px-6 py-3 text-sm font-semibold text-primary-600 transition hover:-translate-y-0.5 hover:bg-primary-500 hover:text-white"
-          >
-            See How We Serve
-          </router-link>
-        </div>
-        <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <article
-            v-for="value in values"
-            :key="value.title"
-            class="group flex flex-col gap-4 rounded-3xl border border-white bg-white p-8 shadow-lg transition hover:-translate-y-1 hover:border-primary-300 hover:shadow-xl"
-          >
-            <div class="text-4xl drop-shadow-sm">{{ value.icon }}</div>
-            <div>
-              <h3 class="text-xl font-semibold text-slate-900">{{ value.title }}</h3>
-              <p class="mt-2 text-sm text-slate-600">{{ value.description }}</p>
-            </div>
-            <span class="mt-auto text-xs font-semibold uppercase tracking-[0.3em] text-primary-400 transition group-hover:text-primary-600"
-              >Learn &amp; Live</span
-            >
           </article>
         </div>
       </div>
@@ -193,38 +157,6 @@ export default {
           title: 'The Word of God',
           body: 'The Bible is the inspired Word of God, complete and entire. Through the Holy Spirit we test all things to discern what is of God.',
           reference: '1 Corinthians 2:13',
-        },
-      ],
-      values: [
-        {
-          icon: '❤️',
-          title: 'Love',
-          description: 'We believe in the power of unconditional love as demonstrated by Christ.',
-        },
-        {
-          icon: '🤝',
-          title: 'Community',
-          description: 'We build strong relationships and support one another in faith.',
-        },
-        {
-          icon: '🙏',
-          title: 'Prayer',
-          description: 'Prayer anchors our relationship with God and with each other.',
-        },
-        {
-          icon: '📖',
-          title: 'Scripture',
-          description: 'God\'s Word guides every decision we make together.',
-        },
-        {
-          icon: '🎵',
-          title: 'Worship',
-          description: 'We worship God with our whole hearts in spirit and truth.',
-        },
-        {
-          icon: '🌱',
-          title: 'Growth',
-          description: 'We encourage spiritual maturity and personal development.',
         },
       ],
     };

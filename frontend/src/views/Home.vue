@@ -247,14 +247,6 @@
       </button>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center text-gray-400">
-          <p>&copy; calvary chapel phnom penh</p>
-        </div>
-      </div>
-    </footer>
   </div>
 </template>
 

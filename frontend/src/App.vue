@@ -241,21 +241,30 @@
           </router-link>
           <!-- About Us Dropdown Mobile -->
           <div>
-            <button
-              @click="aboutDropdownMobileOpen = !aboutDropdownMobileOpen"
-              class="nav-link-mobile w-full text-left flex items-center justify-between"
-            >
-              About Us
-              <svg 
-                class="h-4 w-4 transition-transform"
-                :class="{ 'rotate-180': aboutDropdownMobileOpen }"
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
+            <div class="flex items-center gap-2">
+              <router-link
+                to="/about"
+                @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
+                class="nav-link-mobile flex-1 text-left"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
+                About Us
+              </router-link>
+              <button
+                @click="aboutDropdownMobileOpen = !aboutDropdownMobileOpen"
+                class="p-2 text-white hover:text-gray-200 transition-colors"
+                aria-label="Toggle About Us menu"
+              >
+                <svg 
+                  class="h-5 w-5 transition-transform"
+                  :class="{ 'rotate-180': aboutDropdownMobileOpen }"
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+            </div>
             <div 
               v-show="aboutDropdownMobileOpen"
               class="pl-4 mt-1 space-y-1"
@@ -403,9 +412,16 @@
       </div>
     </nav>
     
-    <main :class="{ 'max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8': $route.name !== 'Home' }">
+    <main :class="{ 'max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8': !['Home', 'About'].includes($route.name) }">
       <router-view />
     </main>
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center text-gray-400">
+          <p>&copy; calvary chapel phnom penh</p>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
