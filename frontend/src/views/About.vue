@@ -59,8 +59,8 @@
     </section>
 
     <section class="bg-white px-4 py-20 text-slate-900 sm:px-8 lg:px-12">
-      <div class="mx-auto max-w-6xl">
-        <div class="mx-auto max-w-3xl text-center">
+      <div class="w-full">
+        <div class="text-center">
           <h2 class="text-3xl font-semibold text-slate-900 sm:text-4xl">What We Believe</h2>
           <p class="mt-4 text-lg text-slate-600">
             These statements anchor every ministry expression of Calvary Chapel Phnom Penh.

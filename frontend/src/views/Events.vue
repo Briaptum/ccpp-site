@@ -1,112 +1,117 @@
 <template>
-  <div class="px-4 sm:px-0">
-    <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16 mb-12">
-      <div class="max-w-4xl mx-auto text-center px-4">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Church Events</h1>
-        <p class="text-xl mb-8">Join us for worship, fellowship, and community</p>
-      </div>
+  <div class="relative isolate overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute left-1/2 top-[-8rem] h-96 w-96 -translate-x-1/2 rounded-full bg-primary-400/40 blur-3xl sm:h-[32rem] sm:w-[32rem]"></div>
+      <div class="absolute bottom-[-10rem] right-[-6rem] h-[28rem] w-[28rem] rounded-full bg-primary-700/30 blur-3xl"></div>
     </div>
 
-    <!-- Loading State -->
-    <div v-if="loading" class="max-w-4xl mx-auto py-12">
-      <div class="text-center">
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mb-4"></div>
-        <p class="text-gray-600">Loading events...</p>
+    <section class="relative flex min-h-screen flex-col px-4 py-20 sm:px-8 lg:px-12">
+      <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-slate-950 via-slate-900 to-primary-950"></div>
+      <div class="pointer-events-none absolute inset-0 -z-10 opacity-60">
+        <div class="absolute left-[-6rem] top-[-6rem] h-80 w-80 rounded-full bg-primary-500/40 blur-3xl"></div>
+        <div class="absolute bottom-[-8rem] right-[-4rem] h-96 w-96 rounded-full bg-primary-400/20 blur-3xl"></div>
       </div>
-    </div>
 
-    <!-- Error State -->
-    <div v-else-if="error" class="max-w-4xl mx-auto py-12">
-      <div class="card bg-red-50 border-red-200">
-        <p class="text-red-600 text-center">{{ error }}</p>
-      </div>
-    </div>
+      <div class="w-full text-slate-100">
+        <div class="w-full">
+          <div class="text-center">
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-primary-200/80">Gather Together</p>
+            <h1 class="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">Church Events</h1>
+            <p class="mt-6 text-base text-slate-100/80">
+              Join us for worship, fellowship, and community throughout the week.
+            </p>
+          </div>
 
-    <!-- Events List -->
-    <div v-else class="max-w-4xl mx-auto">
-      <!-- Events List -->
-      <div v-if="events.length > 0" class="space-y-8">
-        <div 
-          v-for="event in events" 
-          :key="event.id"
-          class="card hover:shadow-xl transition-shadow cursor-pointer"
-          @click="openModal(event)"
-        >
-          <div class="flex flex-col md:flex-row gap-6">
-            <!-- Date Badge -->
-            <div class="flex-shrink-0">
-              <div class="w-20 h-20 bg-primary-600 text-white rounded-lg flex flex-col items-center justify-center">
-                <span class="text-2xl font-bold">{{ formatDay(event.date) }}</span>
-                <span class="text-xs uppercase">{{ formatMonth(event.date) }}</span>
-              </div>
+          <div v-if="loading" class="mt-16 flex flex-col items-center justify-center">
+            <div class="mb-4 inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-primary-300"></div>
+            <p class="text-sm text-slate-100/70">Loading events...</p>
+          </div>
+
+          <div v-else-if="error" class="mt-16 rounded-3xl border border-red-300/40 bg-red-900/30 p-8 text-center shadow-xl backdrop-blur">
+            <p class="text-sm font-semibold text-red-200">{{ error }}</p>
+          </div>
+
+          <div v-else class="mt-16">
+            <div v-if="events.length > 0" class="space-y-8">
+              <article
+                v-for="event in events"
+                :key="event.id"
+                @click="openModal(event)"
+                class="group cursor-pointer rounded-3xl border border-white/10 bg-slate-900/70 p-6 shadow-xl backdrop-blur transition hover:-translate-y-1 hover:border-primary-200/60"
+              >
+                <div class="flex flex-col gap-6 md:flex-row">
+                  <div class="flex-shrink-0">
+                    <div class="flex h-24 w-24 flex-col items-center justify-center rounded-3xl bg-primary-500/30 text-white shadow-lg shadow-primary-500/40">
+                      <span class="text-3xl font-bold">{{ formatDay(event.date) }}</span>
+                      <span class="text-xs font-semibold uppercase tracking-[0.4em] text-primary-100">{{ formatMonth(event.date) }}</span>
+                    </div>
+                  </div>
+                  <div class="flex-1 text-left">
+                    <h2 class="text-2xl font-semibold text-white">{{ event.title }}</h2>
+                    <p class="mt-3 text-sm text-slate-100/80">{{ event.summary }}</p>
+                    <div class="mt-4 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-slate-100/60">
+                      <span>{{ formatFullDate(event.date) }}</span>
+                      <span v-if="event.time" class="rounded-full border border-primary-200/50 px-3 py-1 text-primary-100">
+                        {{ event.time }}
+                      </span>
+                      <span v-if="event.location" class="rounded-full border border-white/20 px-3 py-1 text-slate-100">
+                        {{ event.location }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </article>
             </div>
-            
-            <!-- Content -->
-            <div class="flex-1">
-              <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ event.title }}</h2>
-              <p class="text-gray-600 mb-3">{{ event.summary }}</p>
-              <div class="flex items-center text-sm text-gray-500">
-                <span>{{ formatFullDate(event.date) }}</span>
-                <span v-if="event.time" class="ml-4">
-                  <span class="px-2 py-1 bg-primary-100 text-primary-700 rounded-full">{{ event.time }}</span>
-                </span>
-                <span v-if="event.location" class="ml-4">
-                  <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full">{{ event.location }}</span>
-                </span>
-              </div>
+
+            <div
+              v-else
+              class="rounded-3xl border border-white/10 bg-slate-900/70 p-12 text-center shadow-xl backdrop-blur"
+            >
+              <div class="text-6xl drop-shadow-lg">📅</div>
+              <h3 class="mt-6 text-2xl font-semibold text-white">No Upcoming Events</h3>
+              <p class="mt-4 text-sm text-slate-100/70">Check back soon for upcoming church events and activities.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Empty State -->
-      <div v-else class="card text-center py-12">
-        <div class="text-6xl mb-4">📅</div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-2">No Upcoming Events</h3>
-        <p class="text-gray-600">Check back soon for upcoming church events and activities.</p>
-      </div>
-
-      <!-- Event Modal -->
       <div
         v-if="selectedEvent"
         @click="closeModal"
-        class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
       >
-        <div 
+        <div
           @click.stop
-          class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+          class="w-full max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-slate-950/90 shadow-2xl backdrop-blur"
         >
-          <div class="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-center">
-            <h2 class="text-2xl font-bold text-gray-900">{{ selectedEvent.title }}</h2>
+          <div class="flex items-center justify-between border-b border-white/10 px-6 py-4">
+            <h2 class="text-2xl font-semibold text-white">{{ selectedEvent.title }}</h2>
             <button
               @click="closeModal"
-              class="text-gray-500 hover:text-gray-700 transition-colors"
+              class="text-slate-200 transition hover:text-white"
             >
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>
           </div>
-          
           <div class="px-6 py-6">
-            <div class="flex items-center text-sm text-gray-500 mb-4 flex-wrap gap-2">
+            <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-slate-100/60">
               <span>{{ formatFullDate(selectedEvent.date) }}</span>
-              <span v-if="selectedEvent.time" class="px-2 py-1 bg-primary-100 text-primary-700 rounded-full">
+              <span v-if="selectedEvent.time" class="rounded-full border border-primary-200/40 px-3 py-1 text-primary-100">
                 {{ selectedEvent.time }}
               </span>
-              <span v-if="selectedEvent.location" class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full">
+              <span v-if="selectedEvent.location" class="rounded-full border border-white/20 px-3 py-1 text-slate-100">
                 {{ selectedEvent.location }}
               </span>
             </div>
-            
-            <div class="prose prose-lg max-w-none">
-              <p class="text-gray-700 whitespace-pre-line">{{ selectedEvent.content }}</p>
+            <div class="mt-6 text-sm leading-relaxed text-slate-100/80">
+              <p class="whitespace-pre-line">{{ selectedEvent.content }}</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
