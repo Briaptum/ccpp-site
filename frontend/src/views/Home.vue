@@ -10,6 +10,11 @@
         class="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
         :style="parallaxBackgroundStyle"
       >
+        <!-- Cardboard texture overlay -->
+        <div 
+          class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-70 mix-blend-soft-light"
+          :style="{ backgroundImage: `url(${cardboardTextureImage})` }"
+        ></div>
         <!-- Dark overlay for better text readability -->
         <div class="absolute inset-0 bg-black bg-opacity-70"></div>
       </div>
@@ -33,12 +38,21 @@
     </div>
 
     <!-- Services Section -->
-    <div class="bg-gray-200 py-32 md:py-40">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Please join us for:</h2>
+    <div class="relative py-16 md:py-20 overflow-hidden">
+      <!-- Blurred Background Image -->
+      <div 
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        :style="{ backgroundImage: `url(${background2Image})` }"
+      >
+        <div class="absolute inset-0 backdrop-blur-md bg-background/60"></div>
+      </div>
+      
+      <!-- Content -->
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-center text-gray-900 mb-6">Please join us for:</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="card text-center bg-white overflow-hidden">
-            <div class="w-full h-48 mb-4 overflow-hidden">
+          <div class="card text-center bg-white overflow-hidden p-6">
+            <div class="w-full h-64 mb-4 overflow-hidden">
               <img 
                 :src="sundayWorshipImage" 
                 alt="Sunday Worship" 
@@ -49,8 +63,8 @@
             <p class="text-gray-600">Join us every Sunday at 9:00 AM for inspiring worship and fellowship.</p>
           </div>
           
-          <div class="card text-center bg-white overflow-hidden">
-            <div class="w-full h-48 mb-4 overflow-hidden">
+          <div class="card text-center bg-white overflow-hidden p-6">
+            <div class="w-full h-64 mb-4 overflow-hidden">
               <img 
                 :src="bibleStudyImage" 
                 alt="Wednesday Bible Study" 
@@ -62,8 +76,8 @@
           </div>
           
         </div>
-        <div class="text-center mt-8">
-          <router-link to="/contact" class="inline-block px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg">
+        <div class="text-center mt-6">
+          <router-link to="/contact" class="inline-block px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-500 transition-colors shadow-lg">
             Join Now
           </router-link>
         </div>
@@ -71,7 +85,7 @@
     </div>
 
     <!-- Picture Gallery Section -->
-    <div class="bg-gray-100 py-12">
+    <div class="bg-background-100 py-12">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-bold text-center text-gray-900">Picture Gallery</h2>
         <p class="text-lg text-gray-700 text-center mb-8 max-w-2xl mx-auto">
@@ -155,49 +169,85 @@
     </div>
 
     <!-- Latest Teachings Section -->
-    <div class="bg-white py-16">
+    <div class="bg-primary-800 py-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center text-gray-900">Latest Teachings</h2>
-        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-white">Latest Teachings</h2>
+        <p class="text-lg text-white text-center mb-12 max-w-2xl mx-auto">
           Catch up on recent messages and stay encouraged throughout the week.
         </p>
         <div
           v-if="latestTeachings.length > 0"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <div
-            v-for="teaching in latestTeachings"
+            v-for="teaching in paginatedTeachings"
             :key="teaching.id"
-            class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col"
+            class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col"
           >
             <div class="relative overflow-hidden">
               <img
                 :src="`https://img.youtube.com/vi/${teaching.id}/hqdefault.jpg`"
                 :alt="teaching.title"
-                class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
+                class="w-full h-40 object-cover transition-transform duration-300 hover:scale-105"
               />
               <div class="absolute inset-0 bg-black bg-opacity-25"></div>
               <div class="absolute inset-0 flex items-center justify-center">
-                <svg class="w-16 h-16 text-white opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                <svg class="w-12 h-12 text-white opacity-80" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </div>
             </div>
-            <div class="p-6 flex flex-col flex-1">
-              <h3 class="text-xl font-semibold text-gray-900 mb-3">{{ teaching.title }}</h3>
-              <p class="text-gray-600 flex-1">{{ teaching.description }}</p>
+            <div class="p-4 flex flex-col flex-1">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ teaching.title }}</h3>
+              <p class="text-sm text-gray-600 flex-1 mb-4">{{ teaching.description }}</p>
               <a
                 :href="teaching.url"
                 target="_blank"
                 rel="noopener"
-                class="mt-6 inline-flex items-center justify-center px-5 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-md"
+                class="inline-flex items-center justify-center px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-md text-sm"
               >
                 Watch Now
               </a>
             </div>
           </div>
         </div>
-        <p v-else class="text-center text-gray-500">
+        
+        <!-- Video Pagination Controls -->
+        <div v-if="totalVideoPages > 1" class="flex justify-center items-center space-x-4 mt-8">
+          <button
+            @click="previousVideoPage"
+            :disabled="currentVideoPage === 1"
+            class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:text-gray-500 transition-colors"
+          >
+            Previous
+          </button>
+          
+          <div class="flex space-x-2">
+            <button
+              v-for="page in visibleVideoPages"
+              :key="page"
+              @click="goToVideoPage(page)"
+              :class="[
+                'px-3 py-2 rounded-lg transition-colors',
+                page === currentVideoPage 
+                  ? 'bg-primary-600 text-white' 
+                  : 'bg-white text-primary-600 hover:bg-gray-100'
+              ]"
+            >
+              {{ page }}
+            </button>
+          </div>
+          
+          <button
+            @click="nextVideoPage"
+            :disabled="currentVideoPage === totalVideoPages"
+            class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:text-gray-500 transition-colors"
+          >
+            Next
+          </button>
+        </div>
+        
+        <p v-else class="text-center text-white">
           Latest teachings will appear here once available.
         </p>
       </div>
@@ -253,6 +303,7 @@
 <script>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import background2Image from '@/assets/images/background2.jpg'
+import cardboardTextureImage from '@/assets/images/cardboard-texture.jpg'
 import sundayWorshipImage from '@/assets/gallery/514246564_1275851177909873_6093560206728412070_n.jpg'
 import bibleStudyImage from '@/assets/gallery/547266955_1236675715160753_108576014740250024_n.jpg'
 
@@ -265,6 +316,8 @@ export default {
     const error = ref('')
     const currentPage = ref(1)
     const imagesPerPage = 6
+    const currentVideoPage = ref(1)
+    const videosPerPage = 3
     const heroSection = ref(null)
     const latestTeachings = [
       {
@@ -384,6 +437,46 @@ export default {
       return startIndex.value + paginatedIndex
     }
 
+    // Video pagination computed properties
+    const totalVideoPages = computed(() => Math.ceil(latestTeachings.length / videosPerPage))
+    
+    const videoStartIndex = computed(() => (currentVideoPage.value - 1) * videosPerPage)
+    const videoEndIndex = computed(() => Math.min(videoStartIndex.value + videosPerPage, latestTeachings.length))
+    
+    const paginatedTeachings = computed(() => {
+      return latestTeachings.slice(videoStartIndex.value, videoEndIndex.value)
+    })
+    
+    const visibleVideoPages = computed(() => {
+      const pages = []
+      const start = Math.max(1, currentVideoPage.value - 2)
+      const end = Math.min(totalVideoPages.value, start + 4)
+      
+      for (let i = start; i <= end; i++) {
+        pages.push(i)
+      }
+      return pages
+    })
+
+    // Video pagination methods
+    const goToVideoPage = (page) => {
+      if (page >= 1 && page <= totalVideoPages.value) {
+        currentVideoPage.value = page
+      }
+    }
+    
+    const nextVideoPage = () => {
+      if (currentVideoPage.value < totalVideoPages.value) {
+        currentVideoPage.value++
+      }
+    }
+    
+    const previousVideoPage = () => {
+      if (currentVideoPage.value > 1) {
+        currentVideoPage.value--
+      }
+    }
+
     const openLightbox = (index) => {
       currentImageIndex.value = index
       lightboxOpen.value = true
@@ -446,6 +539,7 @@ export default {
 
     return {
       background2Image,
+      cardboardTextureImage,
       sundayWorshipImage,
       bibleStudyImage,
       lightboxOpen,
@@ -469,7 +563,14 @@ export default {
       getActualImageIndex,
       parallaxBackgroundStyle,
       heroSection,
-      latestTeachings
+      latestTeachings,
+      currentVideoPage,
+      totalVideoPages,
+      paginatedTeachings,
+      visibleVideoPages,
+      goToVideoPage,
+      nextVideoPage,
+      previousVideoPage
     }
   }
 }

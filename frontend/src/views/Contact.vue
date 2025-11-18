@@ -1,14 +1,10 @@
 <template>
   <div class="px-4 sm:px-0">
-    <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16 mb-12">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4">Contact Us</h1>
-        <p class="text-xl md:text-2xl">We'd Love to Hear from You</p>
+    <div class="max-w-6xl mx-auto py-12">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-gray-900">Contact Us</h1>
+        <p class="text-xl text-gray-700">We'd Love to Hear from You</p>
       </div>
-    </div>
-
-    <div class="max-w-6xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
         <!-- Contact Information -->
         <div>

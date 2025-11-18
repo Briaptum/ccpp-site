@@ -1,65 +1,44 @@
 <template>
-  <FullPageShell>
-    <div class="w-full">
-      <div class="text-center">
-        <img
-          src="/src/assets/images/logo3.png"
-          alt="Calvary Chapel Phnom Penh Logo"
-          class="mx-auto h-24 w-auto drop-shadow-lg sm:h-28"
-        />
-        <p class="mt-6 text-xs font-semibold uppercase tracking-[0.35em] text-primary-200/80">Statement of Faith</p>
-        <h1 class="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">What We Believe</h1>
-        <p class="mt-6 text-base text-slate-100/80">
+  <div>
+    <!-- Content Section -->
+    <div class="bg-background py-32 md:py-40">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-center text-gray-900">What We Believe</h1>
+        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
           These convictions anchor every ministry expression of Calvary Chapel Phnom Penh.
         </p>
-      </div>
 
-      <div class="mt-12 grid gap-6 lg:grid-cols-2">
-        <article
-          v-for="(statement, index) in statements"
-          :key="index"
-          class="rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-xl backdrop-blur transition hover:-translate-y-1 hover:border-primary-200/60"
-        >
-          <h2 class="text-lg font-semibold uppercase tracking-[0.35em] text-primary-200">We Believe</h2>
-          <p class="mt-4 text-base text-slate-100/85">{{ statement.body }}</p>
-          <p v-if="statement.reference" class="mt-4 text-xs font-semibold uppercase tracking-[0.25em] text-primary-300">
-            {{ statement.reference }}
-          </p>
-        </article>
-      </div>
+        <div class="grid gap-6 lg:grid-cols-2 mb-12">
+          <article
+            v-for="(statement, index) in statements"
+            :key="index"
+            class="bg-background-50 rounded-lg p-6 shadow-md"
+          >
+            <h2 class="text-lg font-semibold text-primary-600 mb-3">We Believe</h2>
+            <p class="text-base text-gray-700">{{ statement.body }}</p>
+            <p v-if="statement.reference" class="mt-4 text-sm font-semibold text-primary-500">
+              {{ statement.reference }}
+            </p>
+          </article>
+        </div>
 
-      <div class="mt-14 rounded-3xl border border-white/10 bg-primary-500/20 p-10 text-center shadow-xl backdrop-blur">
-        <h2 class="text-2xl font-semibold text-white">Join Our Family</h2>
-        <p class="mt-4 text-base text-slate-100/80">
-          We'd love to welcome you into our community of faith and fellowship.
-        </p>
-        <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <div class="flex flex-wrap justify-center gap-4">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center rounded-full border border-primary-200 px-6 py-3 text-sm font-semibold text-primary-100 transition hover:-translate-y-0.5 hover:bg-primary-500 hover:text-white"
+            class="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg"
           >
             Contact Us
-          </router-link>
-          <router-link
-            to="/about"
-            class="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:-translate-y-0.5 hover:bg-white hover:text-primary-600"
-          >
-            Learn More
           </router-link>
         </div>
       </div>
     </div>
-  </FullPageShell>
+
+  </div>
 </template>
 
 <script>
-import FullPageShell from '@/components/FullPageShell.vue'
-
 export default {
   name: 'WhatWeBelieve',
-  components: {
-    FullPageShell,
-  },
   data() {
     return {
       statements: [
@@ -117,4 +96,5 @@ export default {
   },
 };
 </script>
+
 

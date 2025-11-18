@@ -203,7 +203,7 @@
     </div>
 
     <!-- Other Giving Methods -->
-    <div class="bg-gray-100 py-12 mb-12">
+    <div class="bg-background-100 py-12 mb-12">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Other Ways to Give</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">

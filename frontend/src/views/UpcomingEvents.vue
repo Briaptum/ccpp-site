@@ -1,15 +1,13 @@
 <template>
   <div class="px-4 sm:px-0">
-    <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16 mb-12">
-      <div class="max-w-4xl mx-auto text-center px-4">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Upcoming Events</h1>
-        <p class="text-xl mb-8">Join us for worship, fellowship, and community</p>
+    <div class="max-w-4xl mx-auto py-12">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-gray-900">Upcoming Events</h1>
+        <p class="text-xl text-gray-700">Join us for worship, fellowship, and community</p>
       </div>
-    </div>
 
     <!-- Loading State -->
-    <div v-if="loading" class="max-w-4xl mx-auto py-12">
+    <div v-if="loading" class="py-12">
       <div class="text-center">
         <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mb-4"></div>
         <p class="text-gray-600">Loading events...</p>
@@ -17,15 +15,14 @@
     </div>
 
     <!-- Error State -->
-    <div v-else-if="error" class="max-w-4xl mx-auto py-12">
+    <div v-else-if="error" class="py-12">
       <div class="card bg-red-50 border-red-200">
         <p class="text-red-600 text-center">{{ error }}</p>
       </div>
     </div>
 
     <!-- Events List -->
-    <div v-else class="max-w-4xl mx-auto">
-      <!-- Events List -->
+    <div v-else>
       <div v-if="events.length > 0" class="space-y-8">
         <div 
           v-for="event in events" 
@@ -106,6 +103,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>

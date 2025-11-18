@@ -1,165 +1,113 @@
 <template>
-  <div class="relative isolate overflow-hidden">
-    <div class="pointer-events-none absolute inset-0 -z-10">
-      <div class="absolute left-1/2 top-[-8rem] h-96 w-96 -translate-x-1/2 rounded-full bg-primary-400/40 blur-3xl sm:h-[32rem] sm:w-[32rem]"></div>
-      <div class="absolute bottom-[-10rem] right-[-6rem] h-[28rem] w-[28rem] rounded-full bg-primary-700/30 blur-3xl"></div>
+  <div>
+    <!-- Hero Section with Background Image -->
+    <div
+      ref="heroSection"
+      class="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-40 md:py-48 overflow-hidden"
+    >
+      <!-- Background Image -->
+      <div 
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
+        :style="parallaxBackgroundStyle"
+      >
+        <!-- Dark overlay for better text readability -->
+        <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+      </div>
+      
+      <!-- Content -->
+      <div class="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">About Us</h1>
+      </div>
     </div>
 
-    <section class="relative flex min-h-screen items-center px-4 py-20 sm:px-8 lg:px-12">
-      <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-slate-950 via-slate-900 to-primary-950"></div>
-      <div class="pointer-events-none absolute inset-0 -z-10 opacity-60">
-        <div class="absolute left-[-6rem] top-[-6rem] h-80 w-80 rounded-full bg-primary-500/40 blur-3xl"></div>
-        <div class="absolute bottom-[-8rem] right-[-4rem] h-96 w-96 rounded-full bg-primary-400/20 blur-3xl"></div>
-      </div>
-      <div class="grid w-full gap-12 text-slate-100 lg:grid-cols-[1.1fr,0.9fr] lg:items-center">
-        <div class="relative">
-          <div class="absolute -left-6 -top-6 hidden h-32 w-32 rounded-3xl bg-primary-500/30 blur-2xl sm:block"></div>
-          <img src="/src/assets/images/logo3.png" alt="Calvary Chapel Phnom Penh Logo" class="relative mx-auto mb-10 h-24 w-auto drop-shadow-lg sm:mx-0 sm:h-28" />
-          <p class="relative text-xs font-semibold uppercase tracking-[0.35em] text-primary-200/80">Calvary Chapel Phnom Penh</p>
-          <h1 class="relative mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">Walking in Scripture, empowered by the Spirit, united in love.</h1>
-          <p class="relative mt-6 text-lg text-slate-100/85">
-            Our church family gathers around the living Word of God, welcomes the transforming work of the Holy Spirit, and walks side by side as disciples of Jesus in Phnom Penh.
+    <!-- Content Section -->
+    <div class="bg-background py-32 md:py-40">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="prose prose-lg max-w-none">
+          <p class="text-lg text-gray-700 mb-6">
+            Calvary Chapel Phnom Penh is a community of believers dedicated to serving God and sharing His love with the people of Cambodia. We are a part of the Calvary Chapel movement, which emphasizes verse-by-verse, chapter-by-chapter teaching through the Bible.
           </p>
-          <div class="relative mt-10 grid gap-5 sm:grid-cols-2">
-            <article
-              v-for="highlight in heroHighlights"
-              :key="highlight.title"
-              class="rounded-2xl border border-white/10 bg-slate-900/60 p-6 shadow-xl backdrop-blur transition hover:-translate-y-1 hover:border-primary-200/60 hover:bg-slate-800/70"
-            >
-              <h2 class="text-lg font-semibold text-white">{{ highlight.title }}</h2>
-              <p class="mt-2 text-sm text-slate-100/85">{{ highlight.description }}</p>
-            </article>
-          </div>
-        </div>
-        <div class="relative">
-          <div class="absolute inset-0 -z-10 rounded-3xl bg-primary-500/25 blur-3xl"></div>
-          <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/70 p-10 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.9)] backdrop-blur-md">
-            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-primary-200">Scripture Focus</p>
-            <blockquote class="mt-6 text-2xl font-semibold text-white">
-              &ldquo;These things we also speak, not in words taught by human wisdom, but in words taught by the Spirit.&rdquo;
-            </blockquote>
-            <p class="mt-6 text-sm font-medium text-primary-100">1 Corinthians 2:13</p>
-            <div class="mt-10 space-y-4 text-sm text-slate-100/85">
-              <div class="flex items-start gap-3">
-                <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-primary-200/90"></span>
-                <span>Teaching verse by verse through Scripture to know God deeply.</span>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-primary-200/90"></span>
-                <span>Creating space for the Holy Spirit to renew minds and hearts.</span>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-primary-200/90"></span>
-                <span>Living out the gospel together in authentic community.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-white px-4 py-20 text-slate-900 sm:px-8 lg:px-12">
-      <div class="w-full">
-        <div class="text-center">
-          <h2 class="text-3xl font-semibold text-slate-900 sm:text-4xl">What We Believe</h2>
-          <p class="mt-4 text-lg text-slate-600">
-            These statements anchor every ministry expression of Calvary Chapel Phnom Penh.
+          <p class="text-lg text-gray-700 mb-6">
+            Our church family is diverse, welcoming people from all walks of life. We believe in creating a warm, loving environment where everyone can grow in their relationship with Jesus Christ.
+          </p>
+          <p class="text-lg text-gray-700 mb-8">
+            Whether you're new to faith or have been walking with Christ for years, you're welcome here. We'd love to get to know you and have you join us as we seek to follow Jesus together.
           </p>
         </div>
-        <div class="mt-12 grid gap-6 lg:grid-cols-2">
-          <article
-            v-for="statement in beliefStatements"
-            :key="statement.title"
-            class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-lg transition hover:-translate-y-1 hover:border-primary-400 hover:shadow-2xl"
+        
+        <div class="flex flex-wrap justify-center gap-4 mt-12">
+          <router-link
+            to="/contact"
+            class="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg"
           >
-            <div class="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-primary-200/30 blur-3xl transition group-hover:scale-125"></div>
-            <h3 class="relative text-xl font-semibold text-slate-900">{{ statement.title }}</h3>
-            <p class="relative mt-4 text-sm leading-relaxed text-slate-600">{{ statement.body }}</p>
-            <p
-              v-if="statement.reference"
-              class="relative mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary-500"
-            >
-              {{ statement.reference }}
-            </p>
-          </article>
+            Contact Us
+          </router-link>
+          <router-link
+            to="/contact"
+            class="inline-flex items-center justify-center px-8 py-3 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-50 transition-colors"
+          >
+            Get Involved
+          </router-link>
         </div>
       </div>
-    </section>
+    </div>
 
   </div>
 </template>
 
 <script>
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import background2Image from '@/assets/images/background2.jpg'
+
 export default {
   name: 'About',
-  data() {
+  setup() {
+    const heroSection = ref(null)
+    const parallaxOffset = ref(0)
+    let animationFrameId = null
+
+    const updateParallax = () => {
+      if (!heroSection.value) {
+        return
+      }
+
+      const rect = heroSection.value.getBoundingClientRect()
+      parallaxOffset.value = rect.top * -0.3
+    }
+
+    const handleScroll = () => {
+      if (animationFrameId !== null) {
+        return
+      }
+
+      animationFrameId = requestAnimationFrame(() => {
+        updateParallax()
+        animationFrameId = null
+      })
+    }
+
+    const parallaxBackgroundStyle = computed(() => ({
+      backgroundImage: `url(${background2Image})`,
+      transform: `translateY(${parallaxOffset.value}px) scale(1.1)`
+    }))
+
+    onMounted(() => {
+      updateParallax()
+      window.addEventListener('scroll', handleScroll, { passive: true })
+    })
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('scroll', handleScroll)
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId)
+      }
+    })
+
     return {
-      heroHighlights: [
-        {
-          title: 'Rooted in Scripture',
-          description: 'We treasure the Bible as our infallible guide for faith and life.',
-        },
-        {
-          title: 'Empowered by the Spirit',
-          description: 'We depend on the Holy Spirit to regenerate, sanctify, and equip every believer for ministry.',
-        },
-        {
-          title: 'Centered on Jesus',
-          description: 'We proclaim Jesus Christ - His life, death, resurrection, and promised return.',
-        },
-      ],
-      beliefStatements: [
-        {
-          title: 'The Trinity',
-          body: 'There is one living and true God, eternally existing in three persons, the Father, the Son, and the Holy Spirit, equal in power and glory who created, upholds, and governs all.',
-        },
-        {
-          title: 'The Scriptures',
-          body: 'The Scriptures of the Old and New Testaments are the Word of God, fully inspired without error in the original manuscripts, and the infallible rule of faith and practice.',
-        },
-        {
-          title: 'God the Father',
-          body: 'God the Father is an infinite, personal Spirit, perfect in holiness, wisdom, power, and love. He hears and answers prayer and saves from sin and death all who come to Him through Jesus Christ.',
-        },
-        {
-          title: 'Jesus Christ',
-          body: 'Jesus Christ is God\'s only begotten Son, conceived by the Holy Spirit. We affirm His virgin birth, sinless life, miracles, teachings, substitutionary death, bodily resurrection, ascension, intercession, and personal, visible return to earth.',
-        },
-        {
-          title: 'The Blessed Hope',
-          body: 'We look for the Blessed Hope, the personal, visible, pre-tribulation return of our Lord and Savior, Jesus Christ.',
-        },
-        {
-          title: 'Resurrection and Eternity',
-          body: 'We believe in the bodily resurrection of the just and the unjust, the everlasting blessedness of the saved, and the everlasting conscious punishment of the lost.',
-        },
-        {
-          title: 'The Holy Spirit',
-          body: 'The Holy Spirit convicts the world of sin, righteousness, and judgment and regenerates, sanctifies, and empowers for ministry all who believe in Christ. He indwells every believer as Helper, Teacher, and Guide.',
-        },
-        {
-          title: 'Salvation',
-          body: 'All people are sinners by nature and choice and therefore under condemnation. God regenerates by the Holy Spirit those who repent of their sins and confess Jesus Christ as Lord. Jesus baptizes the seeking believer with the Holy Spirit and power for service, often subsequent to regeneration.',
-        },
-        {
-          title: 'The Church',
-          body: 'We believe in the universal Church, the living spiritual body of which Christ is the Head and all regenerated persons are members.',
-        },
-        {
-          title: 'Ordinances',
-          body: 'The Lord Jesus Christ committed two ordinances to the Church: baptism and the Lord\'s Supper. We practice baptism by immersion and celebrate communion open to all believers.',
-        },
-        {
-          title: 'Christ\'s Return',
-          body: 'Jesus Christ will personally and visibly return to earth to establish His Kingdom. There will be a final judgment, eternal blessing for the righteous, and endless separation for the wicked.',
-        },
-        {
-          title: 'The Word of God',
-          body: 'The Bible is the inspired Word of God, complete and entire. Through the Holy Spirit we test all things to discern what is of God.',
-          reference: '1 Corinthians 2:13',
-        },
-      ],
-    };
-  },
-};
+      background2Image,
+      parallaxBackgroundStyle,
+      heroSection
+    }
+  }
+}
 </script>

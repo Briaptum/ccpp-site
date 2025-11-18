@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="min-h-screen bg-gray-50">
+  <div id="app" class="min-h-screen bg-background">
     <nav
       :class="[
-        'sticky top-0 z-50 shadow-md border-b bg-main-400 transition-all duration-300',
+        'sticky top-0 z-50 shadow-md border-b-4 border-primary-500 bg-main-700 transition-all duration-300',
         isScrolled ? 'py-1' : 'py-2'
       ]"
     >
@@ -431,6 +431,8 @@ export default {
   data() {
     return {
       isScrolled: false,
+      lastScrollY: 0,
+      scrollBreakpoint: 100,
       mobileMenuOpen: false,
       aboutDropdownOpen: false,
       aboutDropdownMobileOpen: false,
@@ -441,6 +443,7 @@ export default {
     }
   },
   mounted() {
+    this.lastScrollY = window.scrollY
     this.handleScroll()
     window.addEventListener('scroll', this.handleScroll, { passive: true })
   },
@@ -449,7 +452,17 @@ export default {
   },
   methods: {
     handleScroll() {
-      this.isScrolled = window.scrollY > 50
+      const currentScrollY = window.scrollY
+      const scrollDirection = currentScrollY > this.lastScrollY ? 'down' : 'up'
+      
+      // Use hysteresis: shrink at 100px when scrolling down, expand at 50px when scrolling up
+      if (scrollDirection === 'down') {
+        this.isScrolled = currentScrollY > this.scrollBreakpoint
+      } else {
+        this.isScrolled = currentScrollY > 50
+      }
+      
+      this.lastScrollY = currentScrollY
     }
   },
   watch: {
