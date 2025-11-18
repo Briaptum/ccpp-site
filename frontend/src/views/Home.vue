@@ -10,11 +10,6 @@
         class="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
         :style="parallaxBackgroundStyle"
       >
-        <!-- Cardboard texture overlay -->
-        <div 
-          class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-70 mix-blend-soft-light"
-          :style="{ backgroundImage: `url(${cardboardTextureImage})` }"
-        ></div>
         <!-- Dark overlay for better text readability -->
         <div class="absolute inset-0 bg-black bg-opacity-70"></div>
       </div>
@@ -77,7 +72,7 @@
           
         </div>
         <div class="text-center mt-6">
-          <router-link to="/contact" class="inline-block px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-500 transition-colors shadow-lg">
+          <router-link to="/contact" class="inline-block px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg">
             Join Now
           </router-link>
         </div>
@@ -131,7 +126,7 @@
           <button
             @click="previousPage"
             :disabled="currentPage === 1"
-            class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+            class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-secondary-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
             Previous
           </button>
@@ -155,7 +150,7 @@
           <button
             @click="nextPage"
             :disabled="currentPage === totalPages"
-            class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+            class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-secondary-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
             Next
           </button>
@@ -204,7 +199,7 @@
                 :href="teaching.url"
                 target="_blank"
                 rel="noopener"
-                class="inline-flex items-center justify-center px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-md text-sm"
+                class="inline-flex items-center justify-center px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-md text-sm"
               >
                 Watch Now
               </a>
@@ -302,8 +297,7 @@
 
 <script>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import background2Image from '@/assets/images/background2.jpg'
-import cardboardTextureImage from '@/assets/images/cardboard-texture.jpg'
+import background2Image from '@/assets/background/background2.jpg'
 import sundayWorshipImage from '@/assets/gallery/514246564_1275851177909873_6093560206728412070_n.jpg'
 import bibleStudyImage from '@/assets/gallery/547266955_1236675715160753_108576014740250024_n.jpg'
 
@@ -539,7 +533,6 @@ export default {
 
     return {
       background2Image,
-      cardboardTextureImage,
       sundayWorshipImage,
       bibleStudyImage,
       lightboxOpen,

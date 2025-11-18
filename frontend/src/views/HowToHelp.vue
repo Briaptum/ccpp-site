@@ -1,9 +1,15 @@
 <template>
   <div>
+    <!-- Hero Section -->
+    <div class="py-6 md:py-8">
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">How to Help</h1>
+      </div>
+    </div>
+
     <!-- Content Section -->
-    <div class="bg-background py-32 md:py-40">
+    <div class="bg-background py-12 md:py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-center text-gray-900">How to Help</h1>
         <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
           Join us in serving God's Kingdom through prayer, giving, and service.
         </p>
@@ -45,13 +51,13 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg"
           >
             Contact Us
           </router-link>
           <router-link
             to="/donate"
-            class="inline-flex items-center justify-center px-8 py-3 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-50 transition-colors"
+            class="inline-flex items-center justify-center px-6 py-3 text-base border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-main-400 transition-colors"
           >
             Donate Now
           </router-link>

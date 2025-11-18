@@ -17,7 +17,7 @@
           <div class="flex items-center">
             <router-link to="/" class="flex items-center">
               <img 
-                src="/src/assets/images/logo3.png" 
+                src="/src/assets/background/logo3.png" 
                 alt="Calvary Chapel Phnom Penh Logo" 
                 :class="[
                   'w-auto object-contain transition-all duration-300',
@@ -57,13 +57,6 @@
                 class="absolute top-full left-0 pt-1 w-48 z-50"
               >
                 <div class="bg-white rounded-md shadow-lg py-2 border border-gray-200">
-                <router-link
-                  to="/about/who-we-are"
-                  class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
-                  @click="aboutDropdownOpen = false"
-                >
-                  Who We Are
-                </router-link>
                 <router-link
                   to="/about/leadership"
                   class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-colors"
@@ -269,13 +262,6 @@
               v-show="aboutDropdownMobileOpen"
               class="pl-4 mt-1 space-y-1"
             >
-              <router-link
-                to="/about/who-we-are"
-                @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
-                class="nav-link-mobile block"
-              >
-                Who We Are
-              </router-link>
               <router-link
                 to="/about/leadership"
                 @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"

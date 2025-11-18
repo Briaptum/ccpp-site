@@ -1,9 +1,15 @@
 <template>
   <div>
+    <!-- Hero Section -->
+    <div class="py-6 md:py-8">
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">Grace Church</h1>
+      </div>
+    </div>
+
     <!-- Content Section -->
-    <div class="bg-background py-32 md:py-40">
+    <div class="bg-background py-12 md:py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-center text-gray-900">Grace Church</h1>
         <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
           We spread the message of God's amazing grace throughout Cambodia, gathering communities to worship, grow, and extend grace to others.
         </p>
@@ -35,7 +41,7 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg"
           >
             Contact Us
           </router-link>

@@ -2,11 +2,20 @@
   <div>
 
 
+    <!-- Hero Section -->
+    <div class="py-6 md:py-8">
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">Leadership</h1>
+        <p class="text-base md:text-lg text-gray-700 mt-4 max-w-2xl mx-auto">
+          Our leadership team is committed to serving God and shepherding our church family with wisdom, compassion, and faithful teaching of God's Word. Each leader brings unique gifts and a heart for ministry, working together to guide Calvary Chapel Phnom Penh in fulfilling our mission to share the Gospel and make disciples in Cambodia.
+        </p>
+      </div>
+    </div>
+
     <!-- Leaders Section -->
-    <div class="bg-background py-32 md:py-40">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg text-center">Leadership</h1>
+    <div class="bg-background py-12 md:py-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12 justify-items-center">
           <article
             v-for="leader in leaders"
             :key="leader.name"
@@ -30,7 +39,7 @@
         <div class="flex flex-wrap justify-center gap-4">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg"
           >
             Contact Us
           </router-link>
@@ -42,98 +51,50 @@
 </template>
 
 <script>
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import background2Image from '@/assets/images/background2.jpg'
-import pastorRithPhoto from '@/assets/gallery/547212625_1236675858494072_4425998334324483137_n.jpg'
-import pastorLongPhoto from '@/assets/gallery/547266955_1236675715160753_108576014740250024_n.jpg'
-import randyPhoto from '@/assets/gallery/547491825_1236675745160750_5981939151572103357_n.jpg'
-import vuthaPhoto from '@/assets/gallery/547541557_1236675618494096_195308602630672666_n.jpg'
-import chengPhoto from '@/assets/gallery/547588178_1236675705160754_8393862384233332823_n.jpg'
+import pastorRithPhoto from '@/assets/leadership/rith.jpg'
+import pastorLongPhoto from '@/assets/leadership/Paster Long.jpg'
+import randyPhoto from '@/assets/leadership/randy.jpg'
+import vuthaPhoto from '@/assets/leadership/longdee.jpg'
+import chengPhoto from '@/assets/leadership/Paster Borin.jpg'
 
 export default {
   name: 'Leadership',
-  setup() {
-    const heroSection = ref(null)
-    const parallaxOffset = ref(0)
-    let animationFrameId = null
-
-    const leaders = [
-      {
-        name: 'Pastor Rith',
-        role: 'Senior Pastor',
-        photo: pastorRithPhoto,
-        bio: "With over 15 years of pastoral experience, Pastor Rith leads our congregation with wisdom and compassion. He faithfully teaches God's Word and shepherds our church family.",
-      },
-      {
-        name: 'Pastor Long',
-        role: 'Associate Pastor',
-        photo: pastorLongPhoto,
-        bio: 'Pastor Long brings energy to youth and community outreach. He is passionate about discipleship and seeing lives transformed by the Gospel.',
-      },
-      {
-        name: 'Randy',
-        role: 'Leadership Team',
-        photo: randyPhoto,
-        bio: 'Randy supports the church family through faithful service and a commitment to caring for every ministry area.',
-      },
-      {
-        name: 'Vutha',
-        role: 'Leadership Team',
-        photo: vuthaPhoto,
-        bio: 'Vutha encourages meaningful worship and helps guide teams that cultivate fellowship and spiritual growth.',
-      },
-      {
-        name: 'Cheng',
-        role: 'Leadership Team',
-        photo: chengPhoto,
-        bio: 'Cheng invests in discipleship and helps coordinate opportunities for members to grow together in faith.',
-      },
-    ]
-
-    const updateParallax = () => {
-      if (!heroSection.value) {
-        return
-      }
-
-      const rect = heroSection.value.getBoundingClientRect()
-      parallaxOffset.value = rect.top * -0.3
-    }
-
-    const handleScroll = () => {
-      if (animationFrameId !== null) {
-        return
-      }
-
-      animationFrameId = requestAnimationFrame(() => {
-        updateParallax()
-        animationFrameId = null
-      })
-    }
-
-    const parallaxBackgroundStyle = computed(() => ({
-      backgroundImage: `url(${background2Image})`,
-      transform: `translateY(${parallaxOffset.value}px) scale(1.1)`
-    }))
-
-    onMounted(() => {
-      updateParallax()
-      window.addEventListener('scroll', handleScroll, { passive: true })
-    })
-
-    onBeforeUnmount(() => {
-      window.removeEventListener('scroll', handleScroll)
-      if (animationFrameId !== null) {
-        cancelAnimationFrame(animationFrameId)
-      }
-    })
-
+  data() {
     return {
-      background2Image,
-      leaders,
-      parallaxBackgroundStyle,
-      heroSection
+      leaders: [
+        {
+          name: 'Pastor Rith',
+          role: 'Senior Pastor',
+          photo: pastorRithPhoto,
+          bio: "With over 15 years of pastoral experience, Pastor Rith leads our congregation with wisdom and compassion. He faithfully teaches God's Word and shepherds our church family.",
+        },
+        {
+          name: 'Pastor Long',
+          role: 'Associate Pastor',
+          photo: pastorLongPhoto,
+          bio: 'Pastor Long brings energy to youth and community outreach. He is passionate about discipleship and seeing lives transformed by the Gospel.',
+        },
+        {
+          name: 'Randy',
+          role: 'Leadership Team',
+          photo: randyPhoto,
+          bio: 'Randy supports the church family through faithful service and a commitment to caring for every ministry area.',
+        },
+        {
+          name: 'Vutha',
+          role: 'Leadership Team',
+          photo: vuthaPhoto,
+          bio: 'Vutha encourages meaningful worship and helps guide teams that cultivate fellowship and spiritual growth.',
+        },
+        {
+          name: 'Cheng',
+          role: 'Leadership Team',
+          photo: chengPhoto,
+          bio: 'Cheng invests in discipleship and helps coordinate opportunities for members to grow together in faith.',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
 
