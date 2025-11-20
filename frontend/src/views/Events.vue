@@ -8,7 +8,7 @@
     </div>
 
     <!-- Content Section -->
-    <div class="bg-background py-12 md:py-16">
+    <div class="bg-primary py-12 md:py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
           Join us for worship, fellowship, and community throughout the week.
@@ -20,23 +20,23 @@
           </p>
           <ul class="space-y-3 text-gray-700 mb-6">
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>Sunday Worship Service:</strong> Every Sunday at 9:00 AM - Join us for worship, prayer, and teaching from God's Word</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>Wednesday Bible Study:</strong> Every Wednesday at 7:00 PM - Deep dive into God's Word together</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>Prayer Meetings:</strong> Regular gatherings for prayer and intercession</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>Community Outreach:</strong> Monthly events to serve our community and share God's love</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>Youth Group:</strong> Regular meetings for teens and young adults</span>
             </li>
           </ul>
@@ -48,7 +48,7 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-main text-white font-semibold rounded-lg hover:opacity-90 transition-colors shadow-lg"
           >
             Contact Us
           </router-link>

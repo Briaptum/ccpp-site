@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="min-h-screen bg-background">
+  <div id="app" class="min-h-screen bg-primary">
     <nav
       :class="[
-        'sticky top-0 z-50 shadow-md border-b-4 border-primary-500 bg-main-700 transition-all duration-300',
+        'sticky top-0 z-50 shadow-md border-b-4 border-white bg-secondary transition-all duration-300',
         isScrolled ? 'py-1' : 'py-2'
       ]"
     >
@@ -17,7 +17,7 @@
           <div class="flex items-center">
             <router-link to="/" class="flex items-center">
               <img 
-                src="/src/assets/background/logo3.png" 
+                src="/src/assets/background/ccpp-logo.png" 
                 alt="Calvary Chapel Phnom Penh Logo" 
                 :class="[
                   'w-auto object-contain transition-all duration-300',
@@ -401,7 +401,7 @@
     <main class="flex-1">
       <router-view />
     </main>
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-main text-white py-6">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center text-gray-400">
           <p>&copy; calvary chapel phnom penh</p>

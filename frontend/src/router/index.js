@@ -17,6 +17,13 @@ import Contact from '@/views/Contact.vue'
 import Users from '@/views/Users.vue'
 import Donate from '@/views/Donate.vue'
 import HowToHelp from '@/views/HowToHelp.vue'
+import AdminLogin from '@/views/admin/Login.vue'
+import AdminDashboard from '@/views/admin/Dashboard.vue'
+import GalleryManagement from '@/views/admin/GalleryManagement.vue'
+import EventManagement from '@/views/admin/EventManagement.vue'
+import ContentManagement from '@/views/admin/ContentManagement.vue'
+import ContactMessages from '@/views/admin/ContactMessages.vue'
+import Settings from '@/views/admin/Settings.vue'
 
 const routes = [
   {
@@ -108,6 +115,41 @@ const routes = [
     path: '/how-to-help',
     name: 'HowToHelp',
     component: HowToHelp
+  },
+  {
+    path: '/admin/login',
+    name: 'AdminLogin',
+    component: AdminLogin
+  },
+  {
+    path: '/admin/dashboard',
+    name: 'AdminDashboard',
+    component: AdminDashboard
+  },
+  {
+    path: '/admin/gallery',
+    name: 'GalleryManagement',
+    component: GalleryManagement
+  },
+  {
+    path: '/admin/events',
+    name: 'EventManagement',
+    component: EventManagement
+  },
+  {
+    path: '/admin/content',
+    name: 'ContentManagement',
+    component: ContentManagement
+  },
+  {
+    path: '/admin/contacts',
+    name: 'ContactMessages',
+    component: ContactMessages
+  },
+  {
+    path: '/admin/settings',
+    name: 'Settings',
+    component: Settings
   }
 ]
 

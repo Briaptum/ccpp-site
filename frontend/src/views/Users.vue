@@ -19,7 +19,7 @@
 
       <!-- Loading State -->
       <div v-if="loading" class="text-center py-8">
-        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-main"></div>
         <p class="mt-2 text-gray-600">Loading users...</p>
       </div>
 
@@ -67,7 +67,7 @@
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
                   <button
                     @click="editUser(user)"
-                    class="text-primary-600 hover:text-primary-900"
+                    class="text-main hover:opacity-80"
                   >
                     Edit
                   </button>

@@ -8,7 +8,7 @@
     </div>
 
     <!-- Content Section -->
-    <div class="bg-background py-12 md:py-16">
+    <div class="bg-primary py-12 md:py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
           Tools and materials for your spiritual journey.
@@ -21,27 +21,27 @@
           <p class="text-lg text-gray-700 mb-4">Our available resources include:</p>
           <ul class="space-y-3 text-gray-700 mb-6">
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>Bible Study Materials:</strong> Study guides, commentaries, weekly study guides, Bible reading plans, and devotional materials</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>Sermon Recordings:</strong> Audio recordings, video messages, and message transcripts of our weekly teachings</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>Prayer Resources:</strong> Prayer guides, intercession lists, and prayer request forms</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>Library Resources:</strong> Christian books, reference materials, and educational resources available in our church library</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>Family Resources:</strong> Family devotionals, parenting resources, and children's materials</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span><strong>New Believer Resources:</strong> Getting started guides, foundation classes, and discipleship materials for those new to the faith</span>
             </li>
           </ul>
@@ -92,7 +92,7 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-main text-white font-semibold rounded-lg hover:opacity-90 transition-colors shadow-lg"
           >
             Contact Us
           </router-link>

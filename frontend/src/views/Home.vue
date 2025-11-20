@@ -3,29 +3,29 @@
     <!-- Hero Section with Background Image -->
     <div
       ref="heroSection"
-      class="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white py-40 md:py-48 overflow-hidden"
+      class="relative bg-main text-white py-40 md:py-48 overflow-hidden"
     >
       <!-- Background Image -->
       <div 
         class="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
         :style="parallaxBackgroundStyle"
       >
-        <!-- Dark overlay for better text readability -->
-        <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+        <!-- Gradient overlay for better text readability and visual appeal -->
+        <div class="absolute inset-0 bg-gradient-to-br from-main/85 via-main/75 to-secondary/90"></div>
       </div>
       
       <!-- Content -->
       <div class="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">Welcome to Calvary Chapel Phnom Penh</h1>
-        <p class="text-xl md:text-2xl mb-8 drop-shadow-md">Statement of Faith</p>
-        <p class="text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">    
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-2xl text-white">Welcome to Calvary Chapel Phnom Penh</h1>
+        <p class="text-xl md:text-2xl mb-8 drop-shadow-lg text-primary">Statement of Faith</p>
+        <p class="text-xl mb-8 max-w-2xl mx-auto drop-shadow-md text-gray-100">    
           Studying the Word verse by verse, chapter by chapter.
         </p>
-        <div class="space-x-4">
-          <router-link to="/about" class="btn-primary bg-white text-primary-600 hover:bg-gray-100 shadow-lg">
+        <div class="space-x-4 flex flex-wrap justify-center gap-4">
+          <router-link to="/about" class="px-8 py-3 bg-white text-main font-semibold rounded-lg hover:bg-primary hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg">
             Learn More
           </router-link>
-          <router-link to="/contact" class="btn-primary border-2 border-white text-white hover:bg-white hover:text-primary-600 shadow-lg">
+          <router-link to="/contact" class="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-main hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg">
             Get Involved
           </router-link>
         </div>
@@ -34,45 +34,48 @@
 
     <!-- Services Section -->
     <div class="relative py-16 md:py-20 overflow-hidden">
-      <!-- Blurred Background Image -->
+      <!-- Background Image -->
       <div 
         class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        :style="{ backgroundImage: `url(${background2Image})` }"
+        :style="{ backgroundImage: `url(${joinUsBgImage})` }"
       >
-        <div class="absolute inset-0 backdrop-blur-md bg-background/60"></div>
       </div>
       
       <!-- Content -->
       <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl font-bold text-center text-gray-900 mb-6">Please join us for:</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="card text-center bg-white overflow-hidden p-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-main mb-4">Please join us for:</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+          <div class="card text-center bg-white overflow-hidden p-0 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 rounded-xl">
             <div class="w-full h-64 mb-4 overflow-hidden">
               <img 
                 :src="sundayWorshipImage" 
                 alt="Sunday Worship" 
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
               />
             </div>
-            <h3 class="text-xl font-semibold mb-3">Sunday Worship</h3>
-            <p class="text-gray-600">Join us every Sunday at 9:00 AM for inspiring worship and fellowship.</p>
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold mb-3 text-main">Sunday Worship</h3>
+              <p class="text-gray-700 leading-relaxed">Join us every Sunday at 9:00 AM for inspiring worship and fellowship.</p>
+            </div>
           </div>
           
-          <div class="card text-center bg-white overflow-hidden p-6">
+          <div class="card text-center bg-white overflow-hidden p-0 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 rounded-xl">
             <div class="w-full h-64 mb-4 overflow-hidden">
               <img 
                 :src="bibleStudyImage" 
                 alt="Wednesday Bible Study" 
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
               />
             </div>
-            <h3 class="text-xl font-semibold mb-3">Wednesday Bible Study</h3>
-            <p class="text-gray-600">Wednesday night Bible Study at 7:00 p.m.</p>
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold mb-3 text-main">Wednesday Bible Study</h3>
+              <p class="text-gray-700 leading-relaxed">Wednesday night Bible Study at 7:00 p.m.</p>
+            </div>
           </div>
           
         </div>
-        <div class="text-center mt-6">
-          <router-link to="/contact" class="inline-block px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg">
+        <div class="text-center mt-10">
+          <router-link to="/contact" class="inline-block px-10 py-4 bg-main text-white font-semibold rounded-lg hover:bg-secondary hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg text-lg">
             Join Now
           </router-link>
         </div>
@@ -80,17 +83,17 @@
     </div>
 
     <!-- Picture Gallery Section -->
-    <div class="bg-background-100 py-12">
+    <div class="bg-gradient-to-b from-primary via-white to-primary py-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center text-gray-900">Picture Gallery</h2>
-        <p class="text-lg text-gray-700 text-center mb-8 max-w-2xl mx-auto">
+        <h2 class="text-4xl font-bold text-center text-main mb-4">Picture Gallery</h2>
+        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
           Glimpses of our community, worship services, and ministry events
         </p>
         
         <!-- Loading State -->
         <div v-if="loading" class="text-center py-12">
-          <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mb-4"></div>
-          <p class="text-gray-600">Loading gallery...</p>
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-main border-t-transparent mb-4"></div>
+          <p class="text-gray-700 font-medium">Loading gallery...</p>
         </div>
 
         <!-- Error Message -->
@@ -99,22 +102,22 @@
         </div>
 
         <!-- Gallery Grid -->
-        <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <div 
             v-for="(image, index) in paginatedImages" 
             :key="index"
             @click="openLightbox(getActualImageIndex(index))"
-            class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer group"
+            class="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group transform hover:-translate-y-1"
           >
-            <div class="aspect-w-16 aspect-h-12 bg-gray-200">
+            <div class="aspect-w-16 aspect-h-12 bg-gradient-to-br from-gray-200 to-gray-300">
               <img
                 :src="image.src"
                 :alt="image.alt"
-                class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
               />
             </div>
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity flex items-center justify-center">
-              <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="absolute inset-0 bg-gradient-to-t from-main/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+              <svg class="w-12 h-12 text-white opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
               </svg>
             </div>
@@ -122,11 +125,11 @@
         </div>
 
         <!-- Pagination Controls -->
-        <div v-if="totalPages > 1" class="flex justify-center items-center space-x-4 mt-8">
+        <div v-if="totalPages > 1" class="flex justify-center items-center space-x-4 mt-10">
           <button
             @click="previousPage"
             :disabled="currentPage === 1"
-            class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-secondary-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+            class="px-5 py-2 bg-main text-white rounded-lg hover:bg-secondary hover:shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed disabled:hover:bg-gray-300 transition-all duration-200 font-medium"
           >
             Previous
           </button>
@@ -137,10 +140,10 @@
               :key="page"
               @click="goToPage(page)"
               :class="[
-                'px-3 py-2 rounded-lg transition-colors',
+                'px-4 py-2 rounded-lg transition-all duration-200 font-medium',
                 page === currentPage 
-                  ? 'bg-primary-600 text-white' 
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-main text-white shadow-lg scale-110' 
+                  : 'bg-white text-main border-2 border-main hover:bg-main hover:text-white hover:shadow-md'
               ]"
             >
               {{ page }}
@@ -150,24 +153,24 @@
           <button
             @click="nextPage"
             :disabled="currentPage === totalPages"
-            class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-secondary-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+            class="px-5 py-2 bg-main text-white rounded-lg hover:bg-secondary hover:shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed disabled:hover:bg-gray-300 transition-all duration-200 font-medium"
           >
             Next
           </button>
         </div>
         
         <!-- Page Info -->
-        <div v-if="totalPages > 1" class="text-center mt-4 text-gray-600">
+        <div v-if="totalPages > 1" class="text-center mt-6 text-gray-600 font-medium">
           Showing {{ startIndex + 1 }}-{{ endIndex }} of {{ galleryImages.length }} images
         </div>
       </div>
     </div>
 
     <!-- Latest Teachings Section -->
-    <div class="bg-primary-800 py-16">
+    <div class="bg-gradient-to-b from-custom-orange via-custom-orange/95 to-custom-orange/90 py-20">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center text-white">Latest Teachings</h2>
-        <p class="text-lg text-white text-center mb-12 max-w-2xl mx-auto">
+        <h2 class="text-4xl font-bold text-center text-white mb-4">Latest Teachings</h2>
+        <p class="text-lg text-white/90 text-center mb-16 max-w-2xl mx-auto">
           Catch up on recent messages and stay encouraged throughout the week.
         </p>
         <div
@@ -177,29 +180,31 @@
           <div
             v-for="teaching in paginatedTeachings"
             :key="teaching.id"
-            class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col"
+            class="bg-white rounded-xl shadow-xl overflow-hidden flex flex-col hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
           >
             <div class="relative overflow-hidden">
               <img
                 :src="`https://img.youtube.com/vi/${teaching.id}/hqdefault.jpg`"
                 :alt="teaching.title"
-                class="w-full h-40 object-cover transition-transform duration-300 hover:scale-105"
+                class="w-full h-40 object-cover transition-transform duration-500 hover:scale-110"
               />
-              <div class="absolute inset-0 bg-black bg-opacity-25"></div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <svg class="w-12 h-12 text-white opacity-80" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+              <div class="absolute inset-0 bg-gradient-to-t from-custom-orange/60 to-transparent"></div>
+              <div class="absolute inset-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div class="bg-white/20 backdrop-blur-sm rounded-full p-4 hover:bg-white/30 transition-colors">
+                  <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
               </div>
             </div>
-            <div class="p-4 flex flex-col flex-1">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ teaching.title }}</h3>
-              <p class="text-sm text-gray-600 flex-1 mb-4">{{ teaching.description }}</p>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="text-lg font-semibold text-main mb-3">{{ teaching.title }}</h3>
+              <p class="text-sm text-gray-700 flex-1 mb-5 leading-relaxed">{{ teaching.description }}</p>
               <a
                 :href="teaching.url"
                 target="_blank"
                 rel="noopener"
-                class="inline-flex items-center justify-center px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-md text-sm"
+                class="inline-flex items-center justify-center px-5 py-2.5 bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 text-sm"
               >
                 Watch Now
               </a>
@@ -208,11 +213,11 @@
         </div>
         
         <!-- Video Pagination Controls -->
-        <div v-if="totalVideoPages > 1" class="flex justify-center items-center space-x-4 mt-8">
+        <div v-if="totalVideoPages > 1" class="flex justify-center items-center space-x-4 mt-12">
           <button
             @click="previousVideoPage"
             :disabled="currentVideoPage === 1"
-            class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:text-gray-500 transition-colors"
+            class="px-5 py-2 bg-white text-custom-orange rounded-lg hover:bg-primary hover:shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-gray-600 transition-all duration-200 font-medium"
           >
             Previous
           </button>
@@ -223,10 +228,10 @@
               :key="page"
               @click="goToVideoPage(page)"
               :class="[
-                'px-3 py-2 rounded-lg transition-colors',
+                'px-4 py-2 rounded-lg transition-all duration-200 font-medium',
                 page === currentVideoPage 
-                  ? 'bg-primary-600 text-white' 
-                  : 'bg-white text-primary-600 hover:bg-gray-100'
+                  ? 'bg-white text-custom-orange shadow-lg scale-110'
+                  : 'bg-white/20 text-white border-2 border-white/50 hover:bg-white/30 hover:shadow-md'
               ]"
             >
               {{ page }}
@@ -236,13 +241,13 @@
           <button
             @click="nextVideoPage"
             :disabled="currentVideoPage === totalVideoPages"
-            class="px-4 py-2 bg-white text-primary-600 rounded-lg hover:bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:text-gray-500 transition-colors"
+            class="px-5 py-2 bg-white text-custom-orange rounded-lg hover:bg-primary hover:shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed disabled:text-gray-600 transition-all duration-200 font-medium"
           >
             Next
           </button>
         </div>
         
-        <p v-else class="text-center text-white">
+        <p v-else class="text-center text-white/90 text-lg">
           Latest teachings will appear here once available.
         </p>
       </div>
@@ -298,6 +303,7 @@
 <script>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import background2Image from '@/assets/background/background2.jpg'
+import joinUsBgImage from '@/assets/background/join-us-bg.jpg'
 import sundayWorshipImage from '@/assets/gallery/514246564_1275851177909873_6093560206728412070_n.jpg'
 import bibleStudyImage from '@/assets/gallery/547266955_1236675715160753_108576014740250024_n.jpg'
 
@@ -533,6 +539,7 @@ export default {
 
     return {
       background2Image,
+      joinUsBgImage,
       sundayWorshipImage,
       bibleStudyImage,
       lightboxOpen,

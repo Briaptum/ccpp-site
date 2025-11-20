@@ -8,7 +8,7 @@
     </div>
 
     <!-- Content Section -->
-    <div class="bg-background py-12 md:py-16">
+    <div class="bg-primary py-12 md:py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
           An international association of charismatic evangelical churches committed to faithful Bible teaching and Spirit-led ministry.
@@ -32,7 +32,7 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-main text-white font-semibold rounded-lg hover:opacity-90 transition-colors shadow-lg"
           >
             Contact Us
           </router-link>

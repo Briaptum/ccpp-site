@@ -9,7 +9,7 @@
     <!-- Loading State -->
     <div v-if="loading" class="py-12">
       <div class="text-center">
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mb-4"></div>
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-main mb-4"></div>
         <p class="text-gray-600">Loading events...</p>
       </div>
     </div>
@@ -33,7 +33,7 @@
           <div class="flex flex-col md:flex-row gap-6">
             <!-- Date Badge -->
             <div class="flex-shrink-0">
-              <div class="w-20 h-20 bg-primary-600 text-white rounded-lg flex flex-col items-center justify-center">
+              <div class="w-20 h-20 bg-main text-white rounded-lg flex flex-col items-center justify-center">
                 <span class="text-2xl font-bold">{{ formatDay(event.date) }}</span>
                 <span class="text-xs uppercase">{{ formatMonth(event.date) }}</span>
               </div>
@@ -46,7 +46,7 @@
               <div class="flex items-center text-sm text-gray-500">
                 <span>{{ formatFullDate(event.date) }}</span>
                 <span v-if="event.time" class="ml-4">
-                  <span class="px-2 py-1 bg-primary-100 text-primary-700 rounded-full">{{ event.time }}</span>
+                  <span class="px-2 py-1 bg-secondary text-main rounded-full">{{ event.time }}</span>
                 </span>
                 <span v-if="event.location" class="ml-4">
                   <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full">{{ event.location }}</span>

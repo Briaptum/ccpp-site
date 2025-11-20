@@ -13,15 +13,15 @@
     </div>
 
     <!-- Leaders Section -->
-    <div class="bg-background py-12 md:py-16">
+    <div class="bg-primary py-12 md:py-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12 justify-items-center">
           <article
             v-for="leader in leaders"
             :key="leader.name"
-            class="bg-background-50 rounded-lg p-6 text-center shadow-md"
+            class="bg-primary rounded-lg p-6 text-center shadow-md"
           >
-            <div class="mx-auto h-28 w-28 overflow-hidden rounded-full border-4 border-primary-200 shadow-lg mb-4">
+            <div class="mx-auto h-28 w-28 overflow-hidden rounded-full border-4 border-secondary shadow-lg mb-4">
               <img
                 :src="leader.photo"
                 :alt="`${leader.name} portrait`"
@@ -29,7 +29,7 @@
               />
             </div>
             <h3 class="text-xl font-semibold text-gray-900">{{ leader.name }}</h3>
-            <p class="mt-2 text-primary-600 font-medium">{{ leader.role }}</p>
+            <p class="mt-2 text-main font-medium">{{ leader.role }}</p>
             <p class="mt-4 text-sm text-gray-600">
               {{ leader.bio }}
             </p>
@@ -39,7 +39,7 @@
         <div class="flex flex-wrap justify-center gap-4">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-main text-white font-semibold rounded-lg hover:opacity-90 transition-colors shadow-lg"
           >
             Contact Us
           </router-link>

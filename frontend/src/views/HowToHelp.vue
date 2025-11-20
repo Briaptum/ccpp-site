@@ -8,7 +8,7 @@
     </div>
 
     <!-- Content Section -->
-    <div class="bg-background py-12 md:py-16">
+    <div class="bg-primary py-12 md:py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
           Join us in serving God's Kingdom through prayer, giving, and service.
@@ -34,15 +34,15 @@
           <p class="text-lg text-gray-700 mb-4">We are grateful for the support of our community. Current ministry needs include:</p>
           <ul class="space-y-3 text-gray-700 mb-8">
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span>Audio/Visual equipment, musical instruments, chairs and tables, Bibles and study materials, office supplies</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span>Food and hygiene items, children's ministry supplies, school supplies, transportation support, volunteers</span>
             </li>
             <li class="flex items-start">
-              <span class="text-primary-600 mr-2">•</span>
+              <span class="text-main mr-2">•</span>
               <span>Monthly financial support for missionaries, care packages, technology for communication, translation services</span>
             </li>
           </ul>
@@ -51,13 +51,13 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-main text-white font-semibold rounded-lg hover:opacity-90 transition-colors shadow-lg"
           >
             Contact Us
           </router-link>
           <router-link
             to="/donate"
-            class="inline-flex items-center justify-center px-6 py-3 text-base border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-main-400 transition-colors"
+            class="inline-flex items-center justify-center px-6 py-3 text-base border-2 border-main text-main font-semibold rounded-lg hover:bg-secondary transition-colors"
           >
             Donate Now
           </router-link>

@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 sm:px-0">
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16 mb-12">
+    <div class="bg-main text-white py-16 mb-12">
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-4xl md:text-6xl font-bold mb-4">Support Our Mission</h1>
         <p class="text-xl md:text-2xl">Your Generosity Makes a Difference</p>
@@ -118,7 +118,7 @@
                   type="button"
                   @click="donationForm.amount = amount"
                   class="btn-secondary text-sm"
-                  :class="{ 'bg-primary-600 text-white': donationForm.amount === amount }"
+                  :class="{ 'bg-main text-white': donationForm.amount === amount }"
                 >
                   ${{ amount }}
                 </button>
@@ -174,7 +174,7 @@
                 <input
                   v-model="donationForm.isAnonymous"
                   type="checkbox"
-                  class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
+                  class="rounded border-gray-300 text-main shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50"
                 />
                 <span class="ml-2 text-sm text-gray-600">Make this donation anonymous</span>
               </label>
@@ -203,7 +203,7 @@
     </div>
 
     <!-- Other Giving Methods -->
-    <div class="bg-background-100 py-12 mb-12">
+    <div class="bg-primary py-12 mb-12">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Other Ways to Give</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -262,14 +262,14 @@
     </div>
 
     <!-- Contact for Large Donations -->
-    <div class="bg-primary-600 text-white py-12">
+    <div class="bg-main text-white py-12">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-3xl font-bold mb-4">Planning a Major Gift?</h2>
         <p class="text-xl mb-8">
           For large donations, estate planning, or to discuss special giving opportunities, 
           we'd love to speak with you personally.
         </p>
-        <router-link to="/contact" class="btn-primary bg-white text-primary-600 hover:bg-gray-100">
+        <router-link to="/contact" class="btn-primary bg-white text-main hover:bg-gray-100">
           Contact Our Finance Team
         </router-link>
       </div>

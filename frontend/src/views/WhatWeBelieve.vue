@@ -8,7 +8,7 @@
     </div>
 
     <!-- Content Section -->
-    <div class="bg-background py-12 md:py-16">
+    <div class="bg-primary py-12 md:py-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
           These convictions anchor every ministry expression of Calvary Chapel Phnom Penh.
@@ -18,11 +18,11 @@
           <article
             v-for="(statement, index) in statements"
             :key="index"
-            class="bg-background-50 rounded-lg p-6 shadow-md"
+            class="bg-primary rounded-lg p-6 shadow-md"
           >
-            <h2 class="text-lg font-semibold text-primary-600 mb-3">We Believe</h2>
+            <h2 class="text-lg font-semibold text-main mb-3">We Believe</h2>
             <p class="text-base text-gray-700">{{ statement.body }}</p>
-            <p v-if="statement.reference" class="mt-4 text-sm font-semibold text-primary-500">
+            <p v-if="statement.reference" class="mt-4 text-sm font-semibold text-main">
               {{ statement.reference }}
             </p>
           </article>
@@ -31,7 +31,7 @@
         <div class="flex flex-wrap justify-center gap-4">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-primary-600 text-white font-semibold rounded-lg hover:bg-secondary-700 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-main text-white font-semibold rounded-lg hover:opacity-90 transition-colors shadow-lg"
           >
             Contact Us
           </router-link>

@@ -9,7 +9,7 @@
     <!-- Loading State -->
     <div v-if="loading" class="py-12">
       <div class="text-center">
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mb-4"></div>
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-main mb-4"></div>
         <p class="text-gray-600">Loading calendar...</p>
       </div>
     </div>
@@ -29,7 +29,7 @@
           <div class="flex justify-between items-center mb-4">
             <button 
               @click="previousMonth"
-              class="text-primary-600 hover:text-primary-800 transition-colors"
+              class="text-main hover:opacity-80 transition-colors"
             >
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -43,7 +43,7 @@
             </button>
             <button 
               @click="nextMonth"
-              class="text-primary-600 hover:text-primary-800 transition-colors"
+              class="text-main hover:opacity-80 transition-colors"
             >
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -67,8 +67,8 @@
             :class="[
               'min-h-20 p-2 border rounded cursor-pointer transition-colors',
               day.isCurrentMonth ? 'bg-white hover:bg-gray-50' : 'bg-gray-100 text-gray-400',
-              day.isToday ? 'ring-2 ring-primary-600' : '',
-              day.hasEvents ? 'border-primary-300' : 'border-gray-200'
+              day.isToday ? 'ring-2 ring-main' : '',
+              day.hasEvents ? 'border-secondary' : 'border-gray-200'
             ]"
             @click="selectDate(day)"
           >
@@ -77,7 +77,7 @@
               <div 
                 v-for="event in day.events.slice(0, 2)" 
                 :key="event.id"
-                class="text-xs bg-primary-100 text-primary-700 rounded px-1 py-0.5 truncate"
+                class="text-xs bg-secondary text-main rounded px-1 py-0.5 truncate"
               >
                 {{ event.title }}
               </div>
@@ -98,7 +98,7 @@
           <div 
             v-for="event in selectedDateEvents" 
             :key="event.id"
-            class="border-l-4 border-primary-600 pl-4 py-2 hover:bg-gray-50 transition-colors"
+            class="border-l-4 border-main pl-4 py-2 hover:bg-gray-50 transition-colors"
             @click="openModal(event)"
           >
             <h4 class="font-semibold text-gray-900">{{ event.title }}</h4>
