@@ -17,7 +17,7 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-main hover:opacity-90 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-custom-orange hover:bg-custom-orange/90 text-white font-medium py-2 px-4 rounded-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg;
   }
   
   .btn-secondary {
@@ -49,11 +49,11 @@
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    @apply text-white hover:text-gray-200 px-3 py-2 rounded-md font-medium transition-colors;
+    @apply text-white hover:text-custom-orange px-3 py-2 rounded-md font-medium transition-colors;
   }
 
   .nav-link.router-link-exact-active {
-    @apply text-secondary !important;
+    @apply text-custom-orange !important;
     font-weight: 600;
   }
 
@@ -62,11 +62,11 @@
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    @apply block px-3 py-3 rounded-md font-medium text-white hover:text-gray-200 hover:bg-opacity-20 transition-colors;
+    @apply block px-3 py-3 rounded-md font-medium text-white hover:text-custom-orange hover:bg-opacity-20 transition-colors;
   }
 
   .nav-link-mobile.router-link-exact-active {
-    @apply text-secondary !important;
+    @apply text-custom-orange !important;
     font-weight: 600;
     @apply bg-opacity-20;
   }

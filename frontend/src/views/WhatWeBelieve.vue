@@ -18,7 +18,7 @@
           <article
             v-for="(statement, index) in statements"
             :key="index"
-            class="bg-primary rounded-lg p-6 shadow-md"
+            class="bg-primary rounded-lg p-6 shadow-md border-b-2 border-r-2 border-custom-orange"
           >
             <h2 class="text-lg font-semibold text-main mb-3">We Believe</h2>
             <p class="text-base text-gray-700">{{ statement.body }}</p>
@@ -31,7 +31,7 @@
         <div class="flex flex-wrap justify-center gap-4">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-main text-white font-semibold rounded-lg hover:opacity-90 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
           >
             Contact Us
           </router-link>

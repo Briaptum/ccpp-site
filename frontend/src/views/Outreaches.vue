@@ -73,26 +73,39 @@
           </div>
         </div>
 
-        <!-- Gallery Section -->
-        <div class="mt-12">
-          <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Gallery</h2>
-          
-          <!-- Gallery Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div class="flex flex-wrap justify-center gap-4 mt-12">
+          <router-link
+            to="/contact"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+          >
+            Contact Us
+          </router-link>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="py-20 bg-gray-200">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-center text-main mb-4">Gallery</h2>
+        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
+          Glimpses of our outreach programs and community service
+        </p>
+        
+        <div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <div 
               v-for="(image, index) in paginatedImages" 
-              :key="index"
-              @click="openLightbox(getActualImageIndex(index))"
-              class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer group"
+              :key="image.src"
+              @click="openLightbox(getFullImageIndex(index))"
+              class="relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group bg-gray-200"
             >
-              <div class="aspect-w-16 aspect-h-12 bg-gray-200">
-                <img
-                  :src="image.src"
-                  :alt="image.alt"
-                  class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity flex items-center justify-center">
+              <img
+                :src="image.src"
+                :alt="image.alt"
+                class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
                 <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
                 </svg>
@@ -101,24 +114,24 @@
           </div>
 
           <!-- Pagination Controls -->
-          <div v-if="totalPages > 1" class="flex justify-center items-center space-x-4 mt-8">
+          <div v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-8">
             <button
-              @click="previousPage"
+              @click="goToPage(currentPage - 1)"
               :disabled="currentPage === 1"
-              class="px-4 py-2 bg-main text-white rounded-lg hover:opacity-90 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+              class="px-4 py-2 bg-main text-white rounded-lg hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Previous
             </button>
             
-            <div class="flex space-x-2">
+            <div class="flex gap-2">
               <button
-                v-for="page in visiblePages"
+                v-for="page in totalPages"
                 :key="page"
                 @click="goToPage(page)"
                 :class="[
-                  'px-3 py-2 rounded-lg transition-colors',
-                  page === currentPage 
-                    ? 'bg-main text-white' 
+                  'px-4 py-2 rounded-lg transition-colors',
+                  currentPage === page
+                    ? 'bg-custom-orange text-white font-semibold'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 ]"
               >
@@ -127,73 +140,59 @@
             </div>
             
             <button
-              @click="nextPage"
+              @click="goToPage(currentPage + 1)"
               :disabled="currentPage === totalPages"
-              class="px-4 py-2 bg-main text-white rounded-lg hover:opacity-90 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+              class="px-4 py-2 bg-main text-white rounded-lg hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next
             </button>
           </div>
-          
-          <!-- Page Info -->
-          <div v-if="totalPages > 1" class="text-center mt-4 text-gray-600">
-            Showing {{ startIndex + 1 }}-{{ endIndex }} of {{ galleryImages.length }} images
-          </div>
-        </div>
-
-        <!-- Lightbox Modal -->
-        <div
-          v-if="lightboxOpen"
-          @click="closeLightbox"
-          class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
-        >
-          <button
-            @click="closeLightbox"
-            class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
-          >
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-          
-          <button
-            v-if="currentImageIndex > 0"
-            @click.stop="prevImage"
-            class="absolute left-4 text-white hover:text-gray-300 transition-colors"
-          >
-            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-            </svg>
-          </button>
-          
-          <div class="max-w-5xl w-full" @click.stop>
-            <img
-              :src="galleryImages[currentImageIndex].src"
-              :alt="galleryImages[currentImageIndex].alt"
-              class="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-            />
-          </div>
-          
-          <button
-            v-if="currentImageIndex < galleryImages.length - 1"
-            @click.stop="nextImage"
-            class="absolute right-4 text-white hover:text-gray-300 transition-colors"
-          >
-            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </button>
-        </div>
-
-        <div class="flex flex-wrap justify-center gap-4 mt-12">
-          <router-link
-            to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-main text-white font-semibold rounded-lg hover:opacity-90 transition-colors shadow-lg"
-          >
-            Contact Us
-          </router-link>
         </div>
       </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div
+      v-if="lightboxOpen"
+      @click="closeLightbox"
+      class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+    >
+      <button
+        @click="closeLightbox"
+        class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <button
+        v-if="currentImageIndex > 0"
+        @click.stop="prevImage"
+        class="absolute left-4 text-white hover:text-gray-300 transition-colors z-10"
+      >
+        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      
+      <div class="max-w-5xl w-full" @click.stop>
+        <img
+          :src="galleryImages[currentImageIndex]?.src"
+          :alt="galleryImages[currentImageIndex]?.alt"
+          class="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+        />
+      </div>
+
+      <button
+        v-if="currentImageIndex < galleryImages.length - 1"
+        @click.stop="nextImage"
+        class="absolute right-4 text-white hover:text-gray-300 transition-colors z-10"
+      >
+        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
     </div>
 
   </div>
@@ -216,7 +215,7 @@ export default {
     const lightboxOpen = ref(false)
     const currentImageIndex = ref(0)
     const currentPage = ref(1)
-    const imagesPerPage = 6
+    const itemsPerPage = 6
 
     const araksatImageData = araksatImage
     const steunmeancheyImageData = steunmeancheyImage
@@ -233,46 +232,25 @@ export default {
       { src: image8, alt: 'Outreach 8' },
     ])
 
-    const totalPages = computed(() => Math.ceil(galleryImages.value.length / imagesPerPage))
-    
-    const startIndex = computed(() => (currentPage.value - 1) * imagesPerPage)
-    const endIndex = computed(() => Math.min(startIndex.value + imagesPerPage, galleryImages.value.length))
-    
+    const totalPages = computed(() => {
+      return Math.ceil(galleryImages.value.length / itemsPerPage)
+    })
+
     const paginatedImages = computed(() => {
-      return galleryImages.value.slice(startIndex.value, endIndex.value)
+      const start = (currentPage.value - 1) * itemsPerPage
+      const end = start + itemsPerPage
+      return galleryImages.value.slice(start, end)
     })
-    
-    const visiblePages = computed(() => {
-      const pages = []
-      const start = Math.max(1, currentPage.value - 2)
-      const end = Math.min(totalPages.value, start + 4)
-      
-      for (let i = start; i <= end; i++) {
-        pages.push(i)
-      }
-      return pages
-    })
+
+    const getFullImageIndex = (paginatedIndex) => {
+      return (currentPage.value - 1) * itemsPerPage + paginatedIndex
+    }
 
     const goToPage = (page) => {
       if (page >= 1 && page <= totalPages.value) {
         currentPage.value = page
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }
-    }
-    
-    const nextPage = () => {
-      if (currentPage.value < totalPages.value) {
-        currentPage.value++
-      }
-    }
-    
-    const previousPage = () => {
-      if (currentPage.value > 1) {
-        currentPage.value--
-      }
-    }
-    
-    const getActualImageIndex = (paginatedIndex) => {
-      return startIndex.value + paginatedIndex
     }
 
     const openLightbox = (index) => {
@@ -303,20 +281,16 @@ export default {
       lightboxOpen,
       currentImageIndex,
       galleryImages,
-      currentPage,
-      totalPages,
-      startIndex,
-      endIndex,
-      paginatedImages,
-      visiblePages,
       openLightbox,
       closeLightbox,
       nextImage,
       prevImage,
-      goToPage,
-      nextPage,
-      previousPage,
-      getActualImageIndex,
+      currentPage,
+      itemsPerPage,
+      totalPages,
+      paginatedImages,
+      getFullImageIndex,
+      goToPage
     }
   },
 };

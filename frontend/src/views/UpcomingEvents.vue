@@ -1,109 +1,141 @@
 <template>
-  <div class="px-4 sm:px-0">
-    <div class="max-w-4xl mx-auto py-12">
-      <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-gray-900">Upcoming Events</h1>
-        <p class="text-xl text-gray-700">Join us for worship, fellowship, and community</p>
-      </div>
-
-    <!-- Loading State -->
-    <div v-if="loading" class="py-12">
-      <div class="text-center">
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-main mb-4"></div>
-        <p class="text-gray-600">Loading events...</p>
+  <div>
+    <!-- Hero Section -->
+    <div class="py-6 md:py-8">
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">Upcoming Events</h1>
+        <p class="text-lg text-gray-700 mt-2">Join us for worship, fellowship, and community</p>
       </div>
     </div>
 
-    <!-- Error State -->
-    <div v-else-if="error" class="py-12">
-      <div class="card bg-red-50 border-red-200">
-        <p class="text-red-600 text-center">{{ error }}</p>
-      </div>
-    </div>
-
-    <!-- Events List -->
-    <div v-else>
-      <div v-if="events.length > 0" class="space-y-8">
-        <div 
-          v-for="event in events" 
-          :key="event.id"
-          class="card hover:shadow-xl transition-shadow cursor-pointer"
-          @click="openModal(event)"
-        >
-          <div class="flex flex-col md:flex-row gap-6">
-            <!-- Date Badge -->
-            <div class="flex-shrink-0">
-              <div class="w-20 h-20 bg-main text-white rounded-lg flex flex-col items-center justify-center">
-                <span class="text-2xl font-bold">{{ formatDay(event.date) }}</span>
-                <span class="text-xs uppercase">{{ formatMonth(event.date) }}</span>
-              </div>
-            </div>
-            
-            <!-- Content -->
-            <div class="flex-1">
-              <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ event.title }}</h2>
-              <p class="text-gray-600 mb-3">{{ event.summary }}</p>
-              <div class="flex items-center text-sm text-gray-500">
-                <span>{{ formatFullDate(event.date) }}</span>
-                <span v-if="event.time" class="ml-4">
-                  <span class="px-2 py-1 bg-secondary text-main rounded-full">{{ event.time }}</span>
-                </span>
-                <span v-if="event.location" class="ml-4">
-                  <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full">{{ event.location }}</span>
-                </span>
-              </div>
-            </div>
+    <!-- Content Section -->
+    <div class="bg-primary py-12 md:py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Loading State -->
+        <div v-if="loading" class="py-12">
+          <div class="text-center">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-main mb-4"></div>
+            <p class="text-gray-600">Loading events...</p>
           </div>
         </div>
-      </div>
 
-      <!-- Empty State -->
-      <div v-else class="card text-center py-12">
-        <div class="text-6xl mb-4">📅</div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-2">No Upcoming Events</h3>
-        <p class="text-gray-600">Check back soon for upcoming church events and activities.</p>
-      </div>
+        <!-- Error State -->
+        <div v-else-if="error" class="py-12">
+          <div class="card bg-red-50 border-red-200">
+            <p class="text-red-600 text-center">{{ error }}</p>
+          </div>
+        </div>
 
-      <!-- Event Modal -->
-      <div
-        v-if="selectedEvent"
-        @click="closeModal"
-        class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
-      >
-        <div 
-          @click.stop
-          class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto"
-        >
-          <div class="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-center">
-            <h2 class="text-2xl font-bold text-gray-900">{{ selectedEvent.title }}</h2>
-            <button
-              @click="closeModal"
-              class="text-gray-500 hover:text-gray-700 transition-colors"
+        <!-- Events List -->
+        <div v-else>
+          <div v-if="events.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div 
+              v-for="event in events" 
+              :key="event.id"
+              class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-100 hover:border-main/20 transform hover:-translate-y-1 flex flex-col"
+              @click="openModal(event)"
             >
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            </button>
+              <!-- Date Badge -->
+              <div class="bg-gradient-to-br from-main to-secondary p-6 flex flex-col items-center justify-center">
+                <span class="text-4xl font-bold text-white mb-1">{{ formatDay(event.date) }}</span>
+                <span class="text-sm uppercase text-white/90 font-medium tracking-wider">{{ formatMonth(event.date) }}</span>
+                <span class="text-xs text-white/80 mt-1">{{ event.date.getFullYear() }}</span>
+              </div>
+              
+              <!-- Content -->
+              <div class="flex-1 p-6 flex flex-col">
+                <h2 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-main transition-colors line-clamp-2">
+                  {{ event.title }}
+                </h2>
+                <p class="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3 flex-grow">{{ event.summary }}</p>
+                <div class="flex flex-col gap-3 text-sm mt-auto">
+                  <div class="flex items-center text-gray-600">
+                    <svg class="w-4 h-4 mr-2 text-main flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span class="font-medium text-xs">{{ formatFullDate(event.date) }}</span>
+                  </div>
+                  <div v-if="event.time" class="flex items-center">
+                    <svg class="w-4 h-4 mr-2 text-custom-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="px-2 py-1 bg-custom-orange/10 text-custom-orange rounded-full font-medium text-xs">{{ event.time }}</span>
+                  </div>
+                  <div v-if="event.location" class="flex items-center">
+                    <svg class="w-4 h-4 mr-2 text-main flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full font-medium text-xs truncate">{{ event.location }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <div class="px-6 py-6">
-            <div class="flex items-center text-sm text-gray-500 mb-4 flex-wrap gap-2">
-              <span>{{ formatFullDate(selectedEvent.date) }}</span>
-              <span v-if="selectedEvent.time" class="px-2 py-1 bg-primary-100 text-primary-700 rounded-full">
-                {{ selectedEvent.time }}
-              </span>
-              <span v-if="selectedEvent.location" class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full">
-                {{ selectedEvent.location }}
-              </span>
-            </div>
-            
-            <div class="prose prose-lg max-w-none">
-              <p class="text-gray-700 whitespace-pre-line">{{ selectedEvent.content }}</p>
-            </div>
+
+          <!-- Empty State -->
+          <div v-else class="card text-center py-16">
+            <div class="text-6xl mb-6">📅</div>
+            <h3 class="text-3xl font-bold text-gray-900 mb-3">No Upcoming Events</h3>
+            <p class="text-gray-600 text-lg">Check back soon for upcoming church events and activities.</p>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Event Modal -->
+    <div
+      v-if="selectedEvent"
+      @click="closeModal"
+      class="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+    >
+      <div 
+        @click.stop
+        class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl transform transition-all"
+      >
+        <!-- Modal Header -->
+        <div class="sticky top-0 bg-gradient-to-r from-main to-secondary px-8 py-6 flex justify-between items-start z-10">
+          <div class="flex-1">
+            <h2 class="text-3xl font-bold text-white mb-4 pr-8">{{ selectedEvent.title }}</h2>
+            <div class="flex flex-wrap items-center gap-4 text-sm">
+              <div class="flex items-center text-white/90">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span class="font-medium">{{ formatFullDate(selectedEvent.date) }}</span>
+              </div>
+              <div v-if="selectedEvent.time" class="flex items-center text-white/90">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="font-medium">{{ selectedEvent.time }}</span>
+              </div>
+              <div v-if="selectedEvent.location" class="flex items-center text-white/90">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span class="font-medium">{{ selectedEvent.location }}</span>
+              </div>
+            </div>
+          </div>
+          <button
+            @click="closeModal"
+            class="text-white hover:text-gray-200 transition-colors p-2 hover:bg-white/10 rounded-lg"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Modal Content -->
+        <div class="px-8 py-8 overflow-y-auto max-h-[calc(90vh-180px)]">
+          <div class="prose prose-lg max-w-none">
+            <p class="text-gray-700 whitespace-pre-line leading-relaxed text-lg">{{ selectedEvent.content }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

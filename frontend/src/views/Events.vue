@@ -14,6 +14,22 @@
           Join us for worship, fellowship, and community throughout the week.
         </p>
 
+        <!-- Navigation Links -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <router-link
+            to="/events/upcoming-events"
+            class="inline-flex items-center justify-center px-8 py-4 text-base bg-main text-white font-semibold rounded-lg hover:bg-main/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+          >
+            Upcoming Events
+          </router-link>
+          <router-link
+            to="/events/calendar"
+            class="inline-flex items-center justify-center px-8 py-4 text-base bg-main text-white font-semibold rounded-lg hover:bg-main/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+          >
+            Calendar
+          </router-link>
+        </div>
+
         <div class="prose prose-lg max-w-none">
           <p class="text-lg text-gray-700 mb-6">
             We gather regularly for worship, Bible study, prayer, and fellowship. Our regular events include:
@@ -48,7 +64,7 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-main text-white font-semibold rounded-lg hover:opacity-90 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
           >
             Contact Us
           </router-link>

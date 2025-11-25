@@ -16,7 +16,7 @@
 
         <div class="prose prose-lg max-w-none">
           <p class="text-lg text-gray-700 mb-6">
-            Calvary Chapel is an international association of charismatic evangelical churches, with origins in Pentecostalism. It maintains a number of radio stations around the world and operates many local Calvary Chapel Bible College programs.
+            <span class="font-bold text-custom-orange">Calvary Chapel</span> is an international association of charismatic evangelical churches, with origins in Pentecostalism. It maintains a number of radio stations around the world and operates many local Calvary Chapel Bible College programs.
           </p>
           <p class="text-lg text-gray-700 mb-6">
             Beginning in 1965 in Southern California, this fellowship of churches grew out of Chuck Smith's Calvary Chapel Costa Mesa. It became a hub of the Jesus Movement in the late 1960s through connections with Lonnie Frisbee and John Higgins, attracting thousands of young converts and fostering contemporary Christian music through Maranatha! Music. Known for its verse-by-verse Bible teaching, casual style of worship, and emphasis on expository preaching, the movement expanded into a worldwide fellowship of independent churches.
@@ -32,7 +32,7 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-main text-white font-semibold rounded-lg hover:opacity-90 transition-colors shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
           >
             Contact Us
           </router-link>
