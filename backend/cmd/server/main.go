@@ -25,17 +25,21 @@ func main() {
 	db := database.GetDB()
 
 	// Auto migrate the schema
-	if err := db.AutoMigrate(&models.User{}, &models.Contact{}); err != nil {
+	if err := db.AutoMigrate(&models.User{}, &models.Contact{}, &models.Gallery{}, &models.Event{}); err != nil {
 		log.Fatal("Failed to migrate database:", err)
 	}
 
 	// Initialize repositories
 	userRepo := infraRepos.NewUserRepository(db)
 	contactRepo := infraRepos.NewContactRepository(db)
+	galleryRepo := infraRepos.NewGalleryRepository(db)
+	eventRepo := infraRepos.NewEventRepository(db)
 
 	// Initialize services
 	userService := infraServices.NewUserService(userRepo)
 	contactService := infraServices.NewContactService(contactRepo)
+	galleryService := infraServices.NewGalleryService(galleryRepo)
+	eventService := infraServices.NewEventService(eventRepo)
 
 	// Setup Gin router
 	router := gin.Default()
@@ -55,7 +59,7 @@ func main() {
 	})
 
 	// Setup routes
-	routes.SetupRoutes(router, userService, contactService)
+	routes.SetupRoutes(router, userService, contactService, galleryService, eventService)
 
 	// Get port from environment or use default
 	port := os.Getenv("PORT")

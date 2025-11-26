@@ -10,70 +10,93 @@
         class="absolute inset-0 bg-cover bg-center bg-no-repeat"
         :style="parallaxStyle"
       >
-        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70"></div>
       </div>
       
       <!-- Content -->
-      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-2xl">
-          <div class="text-white">Welcome to,</div>
-          <div class="text-custom-orange relative inline-block">
-            Calvary Chapel Phnom Penh
-            <span class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-custom-orange to-transparent transform -skew-x-12"></span>
-          </div>
-        </h1>
-        <p class="text-xl md:text-2xl mb-4 text-white font-semibold drop-shadow-lg">
-          Statement of Faith
-        </p>
-        <p class="text-lg md:text-xl mb-10 text-white drop-shadow-md max-w-2xl mx-auto">
-          Studying the Word verse by verse, chapter by chapter.
-        </p>
+      <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="mb-8">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 text-white leading-tight drop-shadow-2xl">
+            Calvary Chapel<br />
+            <span class="text-custom-orange">Phnom Penh</span>
+          </h1>
+        </div>
+        <div class="max-w-3xl mx-auto space-y-4">
+          <p class="text-xl md:text-2xl lg:text-3xl text-white font-light drop-shadow-lg tracking-wide">
+            Studying the Word verse by verse, chapter by chapter.
+          </p>
+          <div class="w-24 h-1 bg-custom-orange mx-auto mt-6"></div>
+          <p class="text-base md:text-lg text-white/90 drop-shadow-md max-w-2xl mx-auto font-light leading-relaxed pt-4">
+            A community of believers committed to teaching through the Bible systematically, 
+            verse by verse, chapter by chapter, book by book.
+          </p>
+        </div>
       </div>
     </div>
 
     <!-- Services Section -->
-    <div class="py-20 bg-primary">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center text-main mb-12">Join Us</h2>
+    <div class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-main mb-4">Join Us for Worship</h2>
+          <div class="w-20 h-1 bg-custom-orange mx-auto mb-4"></div>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light">
+            We welcome you to join our community for meaningful worship and Bible study
+          </p>
+        </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-            <div class="h-64 overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+            <div class="h-72 overflow-hidden bg-gray-100">
               <img 
                 :src="sundayWorshipImage" 
-                alt="Sunday Worship" 
-                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                alt="Sunday Worship Service" 
+                class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
-            <div class="p-6">
-              <h3 class="text-2xl font-semibold mb-3 text-main">Sunday Worship</h3>
-              <p class="text-gray-700 mb-4">Join us every Sunday at 9:00 AM for inspiring worship and fellowship.</p>
+            <div class="p-8">
+              <h3 class="text-2xl font-bold mb-4 text-main">Sunday Worship Service</h3>
+              <p class="text-gray-600 mb-2 font-medium">Every Sunday at 9:00 AM</p>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                Join us for our weekly worship service featuring verse-by-verse Bible teaching, 
+                heartfelt worship, and fellowship with our church family.
+              </p>
               <router-link
                 to="/contact"
-                class="inline-block px-6 py-2 bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-lg transition-all duration-300"
+                class="inline-flex items-center px-6 py-3 bg-custom-orange text-white font-medium rounded-md hover:bg-custom-orange/90 transition-colors duration-200 shadow-sm hover:shadow-md"
               >
-                Learn More
+                Get Directions
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
               </router-link>
             </div>
           </div>
           
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-            <div class="h-64 overflow-hidden">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+            <div class="h-72 overflow-hidden bg-gray-100">
               <img 
                 :src="bibleStudyImage" 
                 alt="Wednesday Bible Study" 
-                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
-            <div class="p-6">
-              <h3 class="text-2xl font-semibold mb-3 text-main">Wednesday Bible Study</h3>
-              <p class="text-gray-700 mb-4">Wednesday night Bible Study at 7:00 p.m.</p>
+            <div class="p-8">
+              <h3 class="text-2xl font-bold mb-4 text-main">Wednesday Bible Study</h3>
+              <p class="text-gray-600 mb-2 font-medium">Every Wednesday at 7:00 PM</p>
+              <p class="text-gray-700 mb-6 leading-relaxed">
+                Mid-week Bible study providing deeper exploration of Scripture through 
+                systematic teaching and discussion in a more intimate setting.
+              </p>
               <router-link
                 to="/contact"
-                class="inline-block px-6 py-2 bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-lg transition-all duration-300"
+                class="inline-flex items-center px-6 py-3 bg-custom-orange text-white font-medium rounded-md hover:bg-custom-orange/90 transition-colors duration-200 shadow-sm hover:shadow-md"
               >
-                Learn More
-          </router-link>
+                Get Directions
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </router-link>
             </div>
           </div>
         </div>
@@ -81,47 +104,49 @@
     </div>
 
     <!-- Latest Teachings Section -->
-    <div class="relative py-20 overflow-hidden">
-      <div 
-        class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        :style="{ backgroundImage: `url(${joinUsBgImage})` }"
-      >
-        <div class="absolute inset-0 bg-black/40"></div>
-      </div>
-      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center text-white mb-4">Latest Teachings</h2>
-        <p class="text-lg text-white/90 text-center mb-12 max-w-2xl mx-auto">
-          Catch up on recent messages and stay encouraged throughout the week.
-        </p>
+    <div class="relative py-24 overflow-hidden bg-gradient-to-b from-gray-900 via-gray-700 to-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Latest Teachings</h2>
+          <div class="w-20 h-1 bg-custom-orange mx-auto mb-4"></div>
+          <p class="text-lg text-white/90 max-w-2xl mx-auto font-light">
+            Watch our recent messages and stay connected with God's Word throughout the week
+          </p>
+        </div>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div
             v-for="teaching in latestTeachings"
             :key="teaching.id"
-            class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 group"
           >
-            <div class="relative h-40 overflow-hidden">
+            <div class="relative h-48 overflow-hidden bg-gray-900">
               <img
                 :src="`https://img.youtube.com/vi/${teaching.id}/hqdefault.jpg`"
                 :alt="teaching.title"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div class="absolute inset-0 flex items-center justify-center bg-black/20">
-                <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+              <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-colors duration-300">
+                <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:bg-white transition-colors duration-300">
+                  <svg class="w-6 h-6 text-main ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
               </div>
             </div>
-            <div class="p-6 text-center">
-              <h3 class="text-lg font-semibold text-main mb-2">{{ teaching.title }}</h3>
-              <p class="text-sm text-gray-700 mb-4">{{ teaching.description }}</p>
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-main mb-3 leading-tight">{{ teaching.title }}</h3>
+              <p class="text-sm text-gray-600 mb-5 leading-relaxed">{{ teaching.description }}</p>
               <a
                 :href="teaching.url"
                 target="_blank"
-                rel="noopener"
-                class="inline-block px-5 py-2 bg-main text-white font-semibold rounded-lg hover:bg-secondary transition-colors text-sm"
+                rel="noopener noreferrer"
+                class="inline-flex items-center px-5 py-2.5 bg-main text-white font-medium rounded-md hover:bg-secondary transition-colors duration-200 text-sm shadow-sm hover:shadow-md"
               >
                 Watch Now
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
               </a>
             </div>
           </div>

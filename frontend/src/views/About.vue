@@ -29,31 +29,28 @@
           >
             Contact Us
           </router-link>
-          <router-link
-            to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-white text-main font-semibold rounded-lg hover:bg-primary hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
-          >
-            Get Involved
-          </router-link>
         </div>
       </div>
     </div>
 
     <!-- Gallery Section -->
-    <div class="py-20 bg-gray-200">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center text-main mb-4">Gallery</h2>
-        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
-          Glimpses of our community, worship services, and ministry events
-        </p>
+    <div class="py-20 bg-gradient-to-r from-black via-gray-800 to-gray-400">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Gallery</h2>
+          <div class="w-20 h-1 bg-custom-orange mx-auto mb-4"></div>
+          <p class="text-lg text-white/90 max-w-2xl mx-auto font-light">
+            Glimpses of our community, worship services, and ministry events
+          </p>
+        </div>
         
         <div v-if="loading" class="text-center py-12">
-          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-main border-t-transparent mb-4"></div>
-          <p class="text-gray-700">Loading gallery...</p>
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-white border-t-transparent mb-4"></div>
+          <p class="text-white/90">Loading gallery...</p>
         </div>
 
         <div v-else-if="error" class="text-center py-8">
-          <p class="text-red-600">{{ error }}</p>
+          <p class="text-red-300">{{ error }}</p>
         </div>
 
         <div v-else>
@@ -78,11 +75,11 @@
           </div>
 
           <!-- Pagination Controls -->
-          <div v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-8">
+          <div v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-12">
             <button
               @click="goToPage(currentPage - 1)"
               :disabled="currentPage === 1"
-              class="px-4 py-2 bg-main text-white rounded-lg hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              class="px-5 py-2.5 bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-md hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
             >
               Previous
             </button>
@@ -93,10 +90,10 @@
                 :key="page"
                 @click="goToPage(page)"
                 :class="[
-                  'px-4 py-2 rounded-lg transition-colors',
+                  'px-4 py-2.5 rounded-md transition-colors font-medium',
                   currentPage === page
-                    ? 'bg-custom-orange text-white font-semibold'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-custom-orange text-white'
+                    : 'bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20'
                 ]"
               >
                 {{ page }}
@@ -106,7 +103,7 @@
             <button
               @click="goToPage(currentPage + 1)"
               :disabled="currentPage === totalPages"
-              class="px-4 py-2 bg-main text-white rounded-lg hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              class="px-5 py-2.5 bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-md hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
             >
               Next
             </button>

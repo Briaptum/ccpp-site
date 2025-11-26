@@ -1,78 +1,336 @@
 <template>
   <AdminLayout>
-      <!-- Filters -->
-      <div class="bg-white rounded-lg shadow p-6 mb-6">
-        <div class="flex flex-wrap items-center gap-4">
-          <select class="px-4 py-2 border border-gray-300 rounded-lg text-sm">
-            <option value="all">All Messages</option>
-            <option value="unread">Unread</option>
-            <option value="read">Read</option>
-            <option value="replied">Replied</option>
-          </select>
-          <input
-            type="text"
-            placeholder="Search messages..."
-            class="px-4 py-2 border border-gray-300 rounded-lg text-sm flex-1 min-w-64"
-          />
-          <button class="px-4 py-2 bg-main text-white rounded-lg hover:opacity-90 transition-colors text-sm">
-            Search
-          </button>
-        </div>
+    <!-- Filters -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+      <div class="flex flex-wrap items-center gap-4">
+        <select 
+          v-model="statusFilter"
+          @change="loadContacts"
+          class="px-4 py-2 border border-gray-300 rounded-lg text-sm"
+        >
+          <option value="all">All Messages</option>
+          <option value="unread">Unread</option>
+          <option value="read">Read</option>
+        </select>
+        <input
+          v-model="searchQuery"
+          @input="filterContacts"
+          type="text"
+          placeholder="Search messages..."
+          class="px-4 py-2 border border-gray-300 rounded-lg text-sm flex-1 min-w-64"
+        />
+        <button 
+          @click="loadContacts"
+          class="px-4 py-2 bg-main text-white rounded-lg hover:opacity-90 transition-colors text-sm"
+        >
+          Refresh
+        </button>
+      </div>
+    </div>
+
+    <!-- Messages List -->
+    <div class="bg-white rounded-lg shadow">
+      <!-- Loading State -->
+      <div v-if="loading" class="text-center py-12">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-main border-t-transparent mb-4"></div>
+        <p class="text-gray-600">Loading messages...</p>
       </div>
 
-      <!-- Messages List -->
-      <div class="bg-white rounded-lg shadow">
-        <!-- Empty State -->
-        <div class="text-center py-12">
-          <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-          </svg>
-          <p class="text-gray-600 mb-2">No messages yet</p>
-          <p class="text-sm text-gray-500">Contact form submissions will appear here</p>
-        </div>
-
-        <!-- Messages Table (will show when messages exist) -->
-        <!--
-        <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subject</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-              </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              <tr>
-                <td class="px-6 py-4">John Doe</td>
-                <td class="px-6 py-4">john@example.com</td>
-                <td class="px-6 py-4">Question about services</td>
-                <td class="px-6 py-4">2024-01-15</td>
-                <td class="px-6 py-4"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">Unread</span></td>
-                <td class="px-6 py-4">
-                  <button class="text-blue-600 hover:text-blue-800">View</button>
-                  <button class="text-red-600 hover:text-red-800 ml-4">Delete</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        -->
+      <!-- Error State -->
+      <div v-else-if="error" class="text-center py-12">
+        <p class="text-red-600 mb-4">{{ error }}</p>
+        <button 
+          @click="loadContacts"
+          class="px-4 py-2 bg-main text-white rounded-lg hover:opacity-90 transition-colors"
+        >
+          Retry
+        </button>
       </div>
-    </AdminLayout>
-  </template>
+
+      <!-- Empty State -->
+      <div v-else-if="filteredContacts.length === 0" class="text-center py-12">
+        <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+        <p class="text-gray-600 mb-2">No messages found</p>
+        <p class="text-sm text-gray-500">{{ searchQuery ? 'Try a different search term' : 'Contact form submissions will appear here' }}</p>
+      </div>
+
+      <!-- Messages Table -->
+      <div v-else class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr 
+              v-for="contact in filteredContacts" 
+              :key="contact.id"
+              class="hover:bg-gray-50 transition-colors"
+            >
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900">
+                  {{ contact.firstName }} {{ contact.lastName }}
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">{{ contact.email }}</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">{{ contact.phone || 'N/A' }}</div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-sm text-gray-900 max-w-xs truncate" :title="contact.subject">
+                  {{ contact.subject }}
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-500">{{ formatDate(contact.createdAt) }}</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <button 
+                  @click="viewContact(contact)"
+                  class="text-blue-600 hover:text-blue-800 mr-4"
+                >
+                  View
+                </button>
+                <button 
+                  @click="deleteContact(contact.id)"
+                  class="text-red-600 hover:text-red-800"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- View Contact Modal -->
+    <div 
+      v-if="selectedContact"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      @click.self="selectedContact = null"
+    >
+      <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="p-6">
+          <!-- Modal Header -->
+          <div class="flex justify-between items-start mb-6">
+            <h2 class="text-2xl font-bold text-gray-900">Contact Message Details</h2>
+            <button 
+              @click="selectedContact = null"
+              class="text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <p class="text-gray-900">{{ selectedContact.firstName }}</p>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <p class="text-gray-900">{{ selectedContact.lastName }}</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <p class="text-gray-900">
+                  <a 
+                    :href="`mailto:${selectedContact.email}`"
+                    class="text-blue-600 hover:text-blue-800"
+                  >
+                    {{ selectedContact.email }}
+                  </a>
+                </p>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <p class="text-gray-900">
+                  <a 
+                    v-if="selectedContact.phone"
+                    :href="`tel:${selectedContact.phone}`"
+                    class="text-blue-600 hover:text-blue-800"
+                  >
+                    {{ selectedContact.phone }}
+                  </a>
+                  <span v-else class="text-gray-400">N/A</span>
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+              <p class="text-gray-900">{{ selectedContact.subject }}</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+              <div class="mt-2 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <p class="text-gray-900 whitespace-pre-wrap">{{ selectedContact.message }}</p>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Submitted</label>
+              <p class="text-gray-500 text-sm">{{ formatDate(selectedContact.createdAt) }}</p>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="mt-6 flex justify-end space-x-4">
+            <button 
+              @click="selectedContact = null"
+              class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              Close
+            </button>
+            <a 
+              :href="`mailto:${selectedContact.email}?subject=Re: ${selectedContact.subject}`"
+              class="px-4 py-2 bg-main text-white rounded-lg hover:opacity-90 transition-colors"
+            >
+              Reply via Email
+            </a>
+            <button 
+              @click="deleteContact(selectedContact.id)"
+              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </AdminLayout>
+</template>
 
 <script>
+import { ref, computed, onMounted } from 'vue'
 import AdminLayout from '@/components/admin/AdminLayout.vue'
+import { contactService } from '@/services/contactService'
 
 export default {
   name: 'ContactMessages',
   components: {
     AdminLayout
+  },
+  setup() {
+    const contacts = ref([])
+    const selectedContact = ref(null)
+    const loading = ref(false)
+    const error = ref('')
+    const statusFilter = ref('all')
+    const searchQuery = ref('')
+
+    const formatDate = (dateString) => {
+      const date = new Date(dateString)
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+    }
+
+    const loadContacts = async () => {
+      loading.value = true
+      error.value = ''
+      try {
+        const response = await contactService.getContacts()
+        contacts.value = response.contacts || []
+      } catch (err) {
+        console.error('Error loading contacts:', err)
+        error.value = err.message || 'Failed to load contact messages'
+      } finally {
+        loading.value = false
+      }
+    }
+
+    const filterContacts = () => {
+      // Filtering is handled by computed property
+    }
+
+    const filteredContacts = computed(() => {
+      let filtered = [...contacts.value]
+
+      // Apply status filter (currently just shows all since we don't have read/unread status)
+      if (statusFilter.value !== 'all') {
+        // This can be implemented when read/unread status is added
+      }
+
+      // Apply search filter
+      if (searchQuery.value) {
+        const query = searchQuery.value.toLowerCase()
+        filtered = filtered.filter(contact => 
+          contact.firstName.toLowerCase().includes(query) ||
+          contact.lastName.toLowerCase().includes(query) ||
+          contact.email.toLowerCase().includes(query) ||
+          (contact.phone && contact.phone.toLowerCase().includes(query)) ||
+          contact.subject.toLowerCase().includes(query) ||
+          contact.message.toLowerCase().includes(query)
+        )
+      }
+
+      // Sort by date (newest first)
+      return filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    })
+
+    const viewContact = (contact) => {
+      selectedContact.value = contact
+    }
+
+    const deleteContact = async (id) => {
+      if (!confirm('Are you sure you want to delete this contact message?')) {
+        return
+      }
+
+      try {
+        await contactService.deleteContact(id)
+        await loadContacts()
+        if (selectedContact.value && selectedContact.value.id === id) {
+          selectedContact.value = null
+        }
+      } catch (err) {
+        console.error('Error deleting contact:', err)
+        alert(`Failed to delete contact: ${err.message}`)
+      }
+    }
+
+    onMounted(() => {
+      loadContacts()
+    })
+
+    return {
+      contacts,
+      selectedContact,
+      loading,
+      error,
+      statusFilter,
+      searchQuery,
+      filteredContacts,
+      formatDate,
+      loadContacts,
+      filterContacts,
+      viewContact,
+      deleteContact
+    }
   }
 }
 </script>
-

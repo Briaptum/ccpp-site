@@ -57,17 +57,27 @@
           Glimpses of our youth gatherings, events, and community
         </p>
         
-        <div>
+        <div v-if="loading" class="text-center py-12">
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-main border-t-transparent mb-4"></div>
+          <p class="text-gray-700">Loading gallery...</p>
+        </div>
+
+        <div v-else-if="error" class="text-center py-8">
+          <p class="text-red-600">{{ error }}</p>
+        </div>
+
+        <div v-else>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <div 
               v-for="(image, index) in paginatedImages" 
-              :key="image.src"
+              :key="image.id || image.src"
               @click="openLightbox(getFullImageIndex(index))"
               class="relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group bg-gray-200"
             >
               <img
                 :src="image.src"
                 :alt="image.alt"
+                @error="handleImageError"
                 class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
@@ -164,15 +174,8 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
-import image1 from '@/assets/gallery/571314951_1275851217909869_307313164703676157_n.jpg'
-import image2 from '@/assets/gallery/571323032_1275851334576524_3846026136297630090_n.jpg'
-import image3 from '@/assets/gallery/572406336_1275851351243189_5572256207364945942_n.jpg'
-import image4 from '@/assets/gallery/573067084_1275851234576534_1576992884320795404_n.jpg'
-import image5 from '@/assets/gallery/560041125_1275851251243199_3196792532920309856_n.jpg'
-import image6 from '@/assets/gallery/548625714_1236675678494090_1776087346866151382_n.jpg'
-import image7 from '@/assets/gallery/548273506_1236675898494068_1283754074671780680_n.jpg'
-import image8 from '@/assets/gallery/548222744_1236675851827406_3818316444684279685_n.jpg'
+import { ref, computed, onMounted } from 'vue'
+import { galleryService } from '@/services/galleryService'
 
 export default {
   name: 'YouthMinistry',
@@ -181,17 +184,39 @@ export default {
     const currentImageIndex = ref(0)
     const currentPage = ref(1)
     const itemsPerPage = 6
+    const loading = ref(true)
+    const error = ref('')
+    const galleryImages = ref([])
 
-    const galleryImages = ref([
-      { src: image1, alt: 'Youth Ministry 1' },
-      { src: image2, alt: 'Youth Ministry 2' },
-      { src: image3, alt: 'Youth Ministry 3' },
-      { src: image4, alt: 'Youth Ministry 4' },
-      { src: image5, alt: 'Youth Ministry 5' },
-      { src: image6, alt: 'Youth Ministry 6' },
-      { src: image7, alt: 'Youth Ministry 7' },
-      { src: image8, alt: 'Youth Ministry 8' },
-    ])
+    const getImageUrl = (path) => {
+      if (path.startsWith('http')) {
+        return path
+      }
+      return path.startsWith('/') ? path : `/${path}`
+    }
+
+    const fetchGalleryImages = async () => {
+      loading.value = true
+      error.value = ''
+      try {
+        const response = await galleryService.getGalleries('youth')
+        const galleries = response.galleries || []
+        galleryImages.value = galleries.map(gallery => ({
+          id: gallery.id,
+          src: getImageUrl(gallery.path),
+          alt: gallery.filename || `Youth Ministry Image ${gallery.id}`
+        }))
+        loading.value = false
+      } catch (err) {
+        console.error('Error loading gallery images:', err)
+        error.value = 'Failed to load gallery images'
+        loading.value = false
+      }
+    }
+
+    const handleImageError = (event) => {
+      event.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%23ddd" width="200" height="200"/%3E%3Ctext fill="%23999" font-family="sans-serif" font-size="14" dy="10.5" font-weight="bold" x="50%25" y="50%25" text-anchor="middle"%3EImage not found%3C/text%3E%3C/svg%3E'
+    }
 
     const totalPages = computed(() => {
       return Math.ceil(galleryImages.value.length / itemsPerPage)
@@ -235,10 +260,16 @@ export default {
       }
     }
 
+    onMounted(() => {
+      fetchGalleryImages()
+    })
+
     return {
       lightboxOpen,
       currentImageIndex,
       galleryImages,
+      loading,
+      error,
       openLightbox,
       closeLightbox,
       nextImage,
@@ -248,7 +279,8 @@ export default {
       totalPages,
       paginatedImages,
       getFullImageIndex,
-      goToPage
+      goToPage,
+      handleImageError
     }
   },
 };

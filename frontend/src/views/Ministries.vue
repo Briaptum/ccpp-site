@@ -44,7 +44,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <!-- Youth Ministry Box -->
-          <div class="bg-primary rounded-lg overflow-hidden shadow-md">
+          <div class="bg-primary rounded-lg overflow-hidden shadow-md border-2 border-custom-orange">
             <div class="w-full h-48 overflow-hidden">
               <img 
                 :src="youthMinistryImage" 
@@ -59,7 +59,7 @@
               </p>
               <router-link
                 to="/ministries/youth-ministry"
-                class="inline-flex items-center text-main font-semibold hover:opacity-80 transition-colors"
+                class="inline-flex items-center justify-center px-4 py-2 text-base bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 shadow-md"
               >
                 Learn More →
               </router-link>
@@ -67,7 +67,7 @@
           </div>
           
           <!-- Grace Church Box -->
-          <div class="bg-primary rounded-lg overflow-hidden shadow-md">
+          <div class="bg-primary rounded-lg overflow-hidden shadow-md border-2 border-custom-orange">
             <div class="w-full h-48 overflow-hidden">
               <img 
                 :src="graceChurchImage" 
@@ -82,7 +82,7 @@
               </p>
               <router-link
                 to="/ministries/grace-church"
-                class="inline-flex items-center text-main font-semibold hover:opacity-80 transition-colors"
+                class="inline-flex items-center justify-center px-4 py-2 text-base bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 shadow-md"
               >
                 Learn More →
               </router-link>
@@ -90,7 +90,7 @@
           </div>
           
           <!-- Outreaches Box -->
-          <div class="bg-primary rounded-lg overflow-hidden shadow-md">
+          <div class="bg-primary rounded-lg overflow-hidden shadow-md border-2 border-custom-orange">
             <div class="w-full h-48 overflow-hidden">
               <img 
                 :src="outreachesImage" 
@@ -105,7 +105,7 @@
               </p>
               <router-link
                 to="/ministries/outreaches"
-                class="inline-flex items-center text-main font-semibold hover:opacity-80 transition-colors"
+                class="inline-flex items-center justify-center px-4 py-2 text-base bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 shadow-md"
               >
                 Learn More →
               </router-link>

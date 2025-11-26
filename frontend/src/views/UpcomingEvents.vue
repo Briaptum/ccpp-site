@@ -142,6 +142,7 @@
 
 <script>
 import { ref, onMounted } from 'vue'
+import { eventService } from '@/services/eventService'
 
 export default {
   name: 'UpcomingEvents',
@@ -151,96 +152,6 @@ export default {
     const events = ref([])
     const selectedEvent = ref(null)
 
-    // Helper function to get events for current month
-    const generateEvents = () => {
-      const today = new Date()
-      const currentYear = today.getFullYear()
-      const currentMonth = today.getMonth()
-      
-      const monthEvents = []
-      let id = 1
-
-      // Get all days in the current month
-      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
-      
-      for (let day = 1; day <= daysInMonth; day++) {
-        const date = new Date(currentYear, currentMonth, day)
-        const dayOfWeek = date.getDay()
-        const todayDate = new Date()
-        
-        // Only include today and future dates in current month
-        if (date.toDateString() < todayDate.toDateString()) {
-          continue
-        }
-        
-        // Sunday Worship Service (every Sunday)
-        if (dayOfWeek === 0) {
-          monthEvents.push({
-            id: id++,
-            title: 'Sunday Worship Service',
-            summary: 'Join us every Sunday for worship, prayer, and fellowship.',
-            content: `We gather every Sunday morning for worship and teaching from God's Word.\n\nService Schedule:\n- Praise and Worship: 9:00 AM\n- Prayer: 9:30 AM\n- Message: 10:00 AM\n- Fellowship: 11:30 AM\n\nAll are welcome! We look forward to worshipping with you.`,
-            date: date,
-            time: '9:00 AM',
-            location: 'Main Sanctuary'
-          })
-          
-          // Sunday School (every Sunday)
-          monthEvents.push({
-            id: id++,
-            title: 'Sunday School',
-            summary: 'Bible study classes for all ages.',
-            content: `Join us for Sunday School classes for children, youth, and adults.\n\nAll classes run from 10:30 AM to 11:30 AM\nLocation: Various Classrooms\n\nCome grow in God's Word with fellow believers!`,
-            date: date,
-            time: '10:30 AM',
-            location: 'Various Classrooms'
-          })
-        }
-        
-        // Youth Group (every Saturday)
-        if (dayOfWeek === 6) {
-          monthEvents.push({
-            id: id++,
-            title: 'Youth Group Meeting',
-            summary: 'Fellowship and fun for teens and young adults.',
-            content: `Our youth group meets every Saturday for games, discussion, and growing together in faith.\n\nAges: 13-25\nActivities include:\n- Group games\n- Bible discussion\n- Prayer time\n- Snacks and fellowship\n\nCome join us for an evening of fun and spiritual growth!`,
-            date: date,
-            time: '6:00 PM',
-            location: 'Youth Center'
-          })
-        }
-        
-        // Prayer Night (first Saturday of month)
-        if (dayOfWeek === 6 && day <= 7) {
-          monthEvents.push({
-            id: id++,
-            title: 'Prayer Night',
-            summary: 'Corporate prayer and intercession.',
-            content: `Join us for our monthly prayer night where we lift up the needs of our church, community, and world.\n\nWe will pray for:\n- Our church family\n- Community needs\n- Mission work\n- Personal requests\n\nAll are welcome to join us in prayer.`,
-            date: date,
-            time: '7:00 PM',
-            location: 'Main Sanctuary'
-          })
-        }
-        
-        // Baptism Service (third Sunday of month)
-        if (dayOfWeek === 0 && day >= 15 && day <= 21) {
-          monthEvents.push({
-            id: id++,
-            title: 'Baptism Service',
-            summary: 'Public baptism and celebration of new life in Christ.',
-            content: `Join us as we celebrate baptisms of new believers publicly professing their faith in Christ.\n\nThis is a special time of worship and celebration as we witness these powerful testimonies of God's grace.\n\nAfter the service, we'll have a fellowship celebration with refreshments.`,
-            date: date,
-            time: 'After Service',
-            location: 'Main Sanctuary'
-          })
-        }
-      }
-
-      return monthEvents
-    }
-
-    const sampleEvents = generateEvents()
 
     const formatDay = (date) => {
       return date.getDate()
@@ -258,18 +169,28 @@ export default {
 
     const fetchEvents = async () => {
       loading.value = true
+      error.value = ''
       
       try {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 500))
+        const response = await eventService.getEvents(true) // Get upcoming events
+        const apiEvents = response.events || []
         
-        // In production, you would fetch from an API here
-        events.value = sampleEvents.sort((a, b) => a.date - b.date)
+        // Convert API events to the format expected by the component
+        events.value = apiEvents.map(event => ({
+          id: event.id,
+          title: event.title,
+          summary: event.summary || event.description || '',
+          content: event.description || event.summary || '',
+          description: event.description || '',
+          date: new Date(event.date),
+          time: event.time || '',
+          location: event.location || ''
+        })).sort((a, b) => a.date - b.date)
         
         loading.value = false
       } catch (err) {
         console.error('Error loading events:', err)
-        error.value = 'Failed to load events'
+        error.value = err.message || 'Failed to load events'
         loading.value = false
       }
     }

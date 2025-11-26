@@ -92,17 +92,27 @@
           Glimpses of our outreach programs and community service
         </p>
         
-        <div>
+        <div v-if="loading" class="text-center py-12">
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-main border-t-transparent mb-4"></div>
+          <p class="text-gray-700">Loading gallery...</p>
+        </div>
+
+        <div v-else-if="error" class="text-center py-8">
+          <p class="text-red-600">{{ error }}</p>
+        </div>
+
+        <div v-else>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             <div 
               v-for="(image, index) in paginatedImages" 
-              :key="image.src"
+              :key="image.id || image.src"
               @click="openLightbox(getFullImageIndex(index))"
               class="relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group bg-gray-200"
             >
               <img
                 :src="image.src"
                 :alt="image.alt"
+                @error="handleImageError"
                 class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
@@ -199,15 +209,8 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
-import araksatImage from '@/assets/gallery/514246564_1275851177909873_6093560206728412070_n.jpg'
-import steunmeancheyImage from '@/assets/gallery/547266955_1236675715160753_108576014740250024_n.jpg'
-import preyVengImage from '@/assets/gallery/547491825_1236675745160750_5981939151572103357_n.jpg'
-import image4 from '@/assets/gallery/548188348_1236675751827416_5183731636046995004_n.jpg'
-import image5 from '@/assets/gallery/548044046_1236675671827424_5262319447121551375_n.jpg'
-import image6 from '@/assets/gallery/547686117_1236675835160741_3886842454015531546_n.jpg'
-import image7 from '@/assets/gallery/547653470_1236675908494067_1828648105188893790_n.jpg'
-import image8 from '@/assets/gallery/547588178_1236675705160754_8393862384233332823_n.jpg'
+import { ref, computed, onMounted } from 'vue'
+import { galleryService } from '@/services/galleryService'
 
 export default {
   name: 'Outreaches',
@@ -216,21 +219,39 @@ export default {
     const currentImageIndex = ref(0)
     const currentPage = ref(1)
     const itemsPerPage = 6
+    const loading = ref(true)
+    const error = ref('')
+    const galleryImages = ref([])
 
-    const araksatImageData = araksatImage
-    const steunmeancheyImageData = steunmeancheyImage
-    const preyVengImageData = preyVengImage
+    const getImageUrl = (path) => {
+      if (path.startsWith('http')) {
+        return path
+      }
+      return path.startsWith('/') ? path : `/${path}`
+    }
 
-    const galleryImages = ref([
-      { src: araksatImage, alt: 'Outreach 1' },
-      { src: steunmeancheyImage, alt: 'Outreach 2' },
-      { src: preyVengImage, alt: 'Outreach 3' },
-      { src: image4, alt: 'Outreach 4' },
-      { src: image5, alt: 'Outreach 5' },
-      { src: image6, alt: 'Outreach 6' },
-      { src: image7, alt: 'Outreach 7' },
-      { src: image8, alt: 'Outreach 8' },
-    ])
+    const fetchGalleryImages = async () => {
+      loading.value = true
+      error.value = ''
+      try {
+        const response = await galleryService.getGalleries('outreaches')
+        const galleries = response.galleries || []
+        galleryImages.value = galleries.map(gallery => ({
+          id: gallery.id,
+          src: getImageUrl(gallery.path),
+          alt: gallery.filename || `Outreach Image ${gallery.id}`
+        }))
+        loading.value = false
+      } catch (err) {
+        console.error('Error loading gallery images:', err)
+        error.value = 'Failed to load gallery images'
+        loading.value = false
+      }
+    }
+
+    const handleImageError = (event) => {
+      event.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%23ddd" width="200" height="200"/%3E%3Ctext fill="%23999" font-family="sans-serif" font-size="14" dy="10.5" font-weight="bold" x="50%25" y="50%25" text-anchor="middle"%3EImage not found%3C/text%3E%3C/svg%3E'
+    }
 
     const totalPages = computed(() => {
       return Math.ceil(galleryImages.value.length / itemsPerPage)
@@ -274,13 +295,16 @@ export default {
       }
     }
 
+    onMounted(() => {
+      fetchGalleryImages()
+    })
+
     return {
-      araksatImage: araksatImageData,
-      steunmeancheyImage: steunmeancheyImageData,
-      preyVengImage: preyVengImageData,
       lightboxOpen,
       currentImageIndex,
       galleryImages,
+      loading,
+      error,
       openLightbox,
       closeLightbox,
       nextImage,
@@ -290,7 +314,8 @@ export default {
       totalPages,
       paginatedImages,
       getFullImageIndex,
-      goToPage
+      goToPage,
+      handleImageError
     }
   },
 };
