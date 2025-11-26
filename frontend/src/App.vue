@@ -3,7 +3,10 @@
     <!-- Navigation Bar -->
     <nav
       v-if="!isAdminRoute"
-      class="fixed top-0 left-0 right-0 z-50 shadow-md bg-brand-blue"
+      :class="[
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        isScrolled ? 'bg-brand-blue shadow-md backdrop-blur-md' : 'bg-transparent'
+      ]"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
@@ -174,7 +177,13 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div v-show="mobileMenuOpen" class="md:hidden pb-4 bg-brand-blue">
+        <div
+          v-show="mobileMenuOpen"
+          :class="[
+            'md:hidden pb-4 transition-all duration-300',
+            isScrolled ? 'bg-brand-blue' : 'bg-brand-blue/90 backdrop-blur-md'
+          ]"
+        >
           <div class="flex flex-col space-y-2">
             <!-- About Dropdown Mobile -->
             <div>
@@ -321,7 +330,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main :class="isAdminRoute ? '' : 'pt-20'">
+    <main :class="isAdminRoute ? '' : (isHomeRoute ? '' : 'pt-20')">
       <router-view />
     </main>
 
@@ -469,12 +478,23 @@ export default {
       ministriesDropdownOpen: false,
       ministriesDropdownMobileOpen: false,
       eventsDropdownOpen: false,
-      eventsDropdownMobileOpen: false
+      eventsDropdownMobileOpen: false,
+      isScrolled: false
     }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll, { passive: true })
+    this.handleScroll()
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
   },
   computed: {
     isAdminRoute() {
       return this.$route.path.startsWith('/admin')
+    },
+    isHomeRoute() {
+      return this.$route.path === '/'
     }
   },
   watch: {
@@ -486,6 +506,11 @@ export default {
       this.ministriesDropdownMobileOpen = false
       this.eventsDropdownOpen = false
       this.eventsDropdownMobileOpen = false
+    }
+  },
+  methods: {
+    handleScroll() {
+      this.isScrolled = window.scrollY > 20
     }
   }
 }

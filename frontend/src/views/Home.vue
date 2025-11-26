@@ -12,53 +12,85 @@
       >
         <!-- Multiple gradient overlays for professional look and text readability -->
         <!-- Navbar blue radial gradient from center -->
-        <div class="absolute inset-0" style="background-image: radial-gradient(circle at center, rgba(34, 112, 130, 0.35), rgba(34, 112, 130, 0.20), transparent);"></div>
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at center, rgba(34, 112, 130, 0.30), rgba(34, 112, 130, 0.18), transparent);"></div>
         <!-- Navbar blue overlay from center spreading outward -->
-        <div class="absolute inset-0 bg-gradient-to-br from-brand-blue/25 via-brand-blue/10 to-transparent"></div>
-        <div class="absolute inset-0 bg-gradient-to-tl from-brand-blue/25 via-brand-blue/10 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-blue/20 via-brand-blue/8 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-tl from-brand-blue/20 via-brand-blue/8 to-transparent"></div>
         <!-- Additional navbar blue accent from bottom center -->
-        <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/20 via-transparent to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/15 via-transparent to-transparent"></div>
         <!-- Center radial effect using multiple layers -->
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/15 to-black/50"></div>
         <!-- Bottom gradient for text area readability -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/45 to-black/15"></div>
         <!-- Top gradient for balance -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent"></div>
         <!-- Diagonal accent with brand orange from top-left -->
-        <div class="absolute inset-0 bg-gradient-to-br from-brand-orange/15 via-brand-orange/5 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-orange/12 via-brand-orange/4 to-transparent"></div>
         <!-- Side gradients for framing and depth -->
-        <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/25"></div>
         <!-- Additional center focus gradient -->
-        <div class="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-black/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-black/20"></div>
       </div>
       
       <!-- Content -->
-      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <!-- Main Heading -->
-        <div class="mb-10">
-          <h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 text-white leading-tight">
-            <span class="block drop-shadow-2xl">Calvary Chapel</span>
-            <span class="block text-brand-orange drop-shadow-2xl mt-2">Phnom Penh</span>
-          </h1>
-        </div>
-        
-        <!-- Tagline -->
-        <div class="mb-8">
-          <div class="w-32 h-1 bg-brand-orange mx-auto mb-6 shadow-lg"></div>
-          <p class="text-2xl md:text-3xl lg:text-4xl text-white font-light drop-shadow-xl tracking-wide mb-4">
-            Studying the Word
-          </p>
-          <p class="text-xl md:text-2xl text-white/95 font-light drop-shadow-lg">
-            Verse by verse, chapter by chapter
-          </p>
-        </div>
-        
-        <!-- Description -->
-        <div class="max-w-3xl mx-auto mt-12">
-          <p class="text-lg md:text-xl text-white/90 drop-shadow-md leading-relaxed font-light">
-            A community of believers committed to teaching through the Bible systematically, 
-            verse by verse, chapter by chapter, book by book.
-          </p>
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] py-12">
+          <!-- Left Side: Mission Statement -->
+          <div class="text-center lg:text-left">
+            <div class="mb-6">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight drop-shadow-2xl">
+                <span class="text-brand-orange uppercase">CALVARY CHAPEL</span><br />
+                <span class="text-white text-2xl md:text-3xl lg:text-4xl uppercase font-light tracking-[0.3em]">PHNOM PENH</span>
+              </h1>
+              <div class="w-24 h-1 bg-brand-orange mx-auto lg:mx-0 mb-6 shadow-lg"></div>
+            </div>
+            
+            <p class="text-xl md:text-2xl text-white font-light drop-shadow-xl mb-4 leading-relaxed">
+              Studying the Word verse by verse, chapter by chapter
+            </p>
+            
+            <p class="text-base md:text-lg text-white/90 drop-shadow-md leading-relaxed font-light mb-8 max-w-2xl mx-auto lg:mx-0">
+              A community of believers committed to teaching through the Bible systematically, 
+              verse by verse, chapter by chapter, book by book.
+            </p>
+          </div>
+          
+          <!-- Right Side: Service Times -->
+          <div class="flex justify-center lg:justify-end">
+            <div class="p-0 md:p-2 text-white max-w-md w-full">
+              <h2 class="text-2xl font-semibold text-white mb-6 text-center">Gather With Us</h2>
+
+              <div class="space-y-8 mb-8">
+                <div>
+                  <p class="text-sm uppercase tracking-[0.4em] text-white/80 mb-2">
+                    Sunday Worship · <span class="font-semibold tracking-normal">9:00 AM</span>
+                  </p>
+                  <p class="text-base text-white/85 leading-relaxed">
+                    Verse-by-verse teaching, worship, and fellowship every Sunday morning.
+                  </p>
+                </div>
+
+                <div>
+                  <p class="text-sm uppercase tracking-[0.4em] text-white/80 mb-2">
+                    Wednesday Bible Study · <span class="font-semibold tracking-normal">7:00 PM</span>
+                  </p>
+                  <p class="text-base text-white/85 leading-relaxed">
+                    Mid-week Bible study, discussion, and community prayer.
+                  </p>
+                </div>
+              </div>
+
+              <router-link
+                to="/contact"
+                class="inline-flex items-center justify-center w-full text-sm font-semibold tracking-wide text-brand-orange hover:text-brand-blue transition-colors"
+              >
+                <span class="underline underline-offset-4 decoration-2">Get Directions</span>
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </router-link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -187,7 +219,7 @@
 
 <script>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import backgroundImage from '@/assets/background/hero-bg.jpg'
+import backgroundImage from '@/assets/background/bg-hero4.jpg'
 import joinUsBgImage from '@/assets/background/join-us-bg.jpg'
 import sundayWorshipImage from '@/assets/gallery/514246564_1275851177909873_6093560206728412070_n.jpg'
 import bibleStudyImage from '@/assets/gallery/547266955_1236675715160753_108576014740250024_n.jpg'
