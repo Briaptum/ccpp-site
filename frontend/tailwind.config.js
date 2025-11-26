@@ -7,10 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        main: '#122422',
-        secondary: '#111827',
-        primary: '##ffffff',
-        'custom-orange': '#E49D40',
+        'brand-orange': '#E49D40',
+        'brand-blue': '#227082',
       }
     },
   },

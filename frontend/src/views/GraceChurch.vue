@@ -41,7 +41,7 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-lg hover:bg-brand-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
           >
             Contact Us
           </router-link>
@@ -106,7 +106,7 @@
                 :class="[
                   'px-4 py-2 rounded-lg transition-colors',
                   currentPage === page
-                    ? 'bg-custom-orange text-white font-semibold'
+                    ? 'bg-brand-orange text-white font-semibold'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 ]"
               >

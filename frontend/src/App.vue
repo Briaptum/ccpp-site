@@ -1,10 +1,9 @@
 <template>
-  <div id="app" class="min-h-screen bg-primary">
+  <div id="app" class="min-h-screen bg-white">
     <!-- Navigation Bar -->
     <nav
       v-if="!isAdminRoute"
-      class="fixed top-0 left-0 right-0 z-50 shadow-md"
-      style="background-color: #227082;"
+      class="fixed top-0 left-0 right-0 z-50 shadow-md bg-brand-blue"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
@@ -27,7 +26,7 @@
             >
               <router-link
                 to="/about"
-                class="text-white hover:text-custom-orange transition-colors text-lg font-medium flex items-center"
+                class="text-white hover:text-brand-orange transition-colors text-lg font-medium flex items-center"
               >
                 About
                 <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +78,7 @@
             >
               <router-link
                 to="/ministries"
-                class="text-white hover:text-custom-orange transition-colors text-lg font-medium flex items-center"
+                class="text-white hover:text-brand-orange transition-colors text-lg font-medium flex items-center"
               >
                 Ministries
                 <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,7 +123,7 @@
             >
               <router-link
                 to="/events"
-                class="text-white hover:text-custom-orange transition-colors text-lg font-medium flex items-center"
+                class="text-white hover:text-brand-orange transition-colors text-lg font-medium flex items-center"
               >
                 Events
                 <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,7 +155,7 @@
             </div>
             <router-link
               to="/contact"
-              class="text-white hover:text-custom-orange transition-colors text-lg font-medium"
+              class="text-white hover:text-brand-orange transition-colors text-lg font-medium"
             >
               Contact
             </router-link>
@@ -165,7 +164,7 @@
           <!-- Mobile Menu Button -->
           <button
             @click="mobileMenuOpen = !mobileMenuOpen"
-            class="md:hidden text-white hover:text-custom-orange transition-colors"
+            class="md:hidden text-white hover:text-brand-orange transition-colors"
           >
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path v-if="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -175,13 +174,13 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div v-show="mobileMenuOpen" class="md:hidden pb-4" style="background-color: #227082;">
+        <div v-show="mobileMenuOpen" class="md:hidden pb-4 bg-brand-blue">
           <div class="flex flex-col space-y-2">
             <!-- About Dropdown Mobile -->
             <div>
               <button
                 @click="aboutDropdownMobileOpen = !aboutDropdownMobileOpen"
-                class="w-full text-left text-white hover:text-custom-orange transition-colors py-2 flex items-center justify-between"
+                class="w-full text-left text-white hover:text-brand-orange transition-colors py-2 flex items-center justify-between"
               >
                 About
                 <svg 
@@ -201,28 +200,28 @@
                 <router-link
                   to="/about/leadership"
                   @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
-                  class="block text-white hover:text-custom-orange transition-colors py-2"
+                  class="block text-white hover:text-brand-orange transition-colors py-2"
                 >
                   Leadership
                 </router-link>
                 <router-link
                   to="/about/what-we-believe"
                   @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
-                  class="block text-white hover:text-custom-orange transition-colors py-2"
+                  class="block text-white hover:text-brand-orange transition-colors py-2"
                 >
                   What we believe
                 </router-link>
                 <router-link
                   to="/about/calvary-chapel"
                   @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
-                  class="block text-white hover:text-custom-orange transition-colors py-2"
+                  class="block text-white hover:text-brand-orange transition-colors py-2"
                 >
                   About Calvary Chapel
                 </router-link>
                 <router-link
                   to="/about/cambodia"
                   @click="mobileMenuOpen = false; aboutDropdownMobileOpen = false"
-                  class="block text-white hover:text-custom-orange transition-colors py-2"
+                  class="block text-white hover:text-brand-orange transition-colors py-2"
                 >
                   Cambodia
                 </router-link>
@@ -232,7 +231,7 @@
             <div>
               <button
                 @click="ministriesDropdownMobileOpen = !ministriesDropdownMobileOpen"
-                class="w-full text-left text-white hover:text-custom-orange transition-colors py-2 flex items-center justify-between"
+                class="w-full text-left text-white hover:text-brand-orange transition-colors py-2 flex items-center justify-between"
               >
                 Ministries
                 <svg 
@@ -252,21 +251,21 @@
                 <router-link
                   to="/ministries/outreaches"
                   @click="mobileMenuOpen = false; ministriesDropdownMobileOpen = false"
-                  class="block text-white hover:text-custom-orange transition-colors py-2"
+                  class="block text-white hover:text-brand-orange transition-colors py-2"
                 >
                   Outreaches
                 </router-link>
                 <router-link
                   to="/ministries/grace-church"
                   @click="mobileMenuOpen = false; ministriesDropdownMobileOpen = false"
-                  class="block text-white hover:text-custom-orange transition-colors py-2"
+                  class="block text-white hover:text-brand-orange transition-colors py-2"
                 >
                   Grace Church
                 </router-link>
                 <router-link
                   to="/ministries/youth-ministry"
                   @click="mobileMenuOpen = false; ministriesDropdownMobileOpen = false"
-                  class="block text-white hover:text-custom-orange transition-colors py-2"
+                  class="block text-white hover:text-brand-orange transition-colors py-2"
                 >
                   Youth Ministry
                 </router-link>
@@ -276,7 +275,7 @@
             <div>
               <button
                 @click="eventsDropdownMobileOpen = !eventsDropdownMobileOpen"
-                class="w-full text-left text-white hover:text-custom-orange transition-colors py-2 flex items-center justify-between"
+                class="w-full text-left text-white hover:text-brand-orange transition-colors py-2 flex items-center justify-between"
               >
                 Events
                 <svg 
@@ -296,14 +295,14 @@
                 <router-link
                   to="/events/upcoming-events"
                   @click="mobileMenuOpen = false; eventsDropdownMobileOpen = false"
-                  class="block text-white hover:text-custom-orange transition-colors py-2"
+                  class="block text-white hover:text-brand-orange transition-colors py-2"
                 >
                   Upcoming Events
                 </router-link>
                 <router-link
                   to="/events/calendar"
                   @click="mobileMenuOpen = false; eventsDropdownMobileOpen = false"
-                  class="block text-white hover:text-custom-orange transition-colors py-2"
+                  class="block text-white hover:text-brand-orange transition-colors py-2"
                 >
                   Calendar
                 </router-link>
@@ -312,7 +311,7 @@
             <router-link
               to="/contact"
               @click="mobileMenuOpen = false"
-              class="text-white hover:text-custom-orange transition-colors py-2"
+              class="text-white hover:text-brand-orange transition-colors py-2"
             >
               Contact
             </router-link>

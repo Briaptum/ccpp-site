@@ -19,7 +19,7 @@
           <article
             v-for="leader in leaders"
             :key="leader.name"
-            class="bg-primary rounded-lg p-6 text-center shadow-md border-2 border-custom-orange"
+            class="bg-primary rounded-lg p-6 text-center shadow-md border-2 border-brand-orange"
           >
             <div class="mx-auto h-28 w-28 overflow-hidden rounded-full border-4 border-secondary shadow-lg mb-4">
               <img
@@ -39,7 +39,7 @@
         <div class="flex flex-wrap justify-center gap-4">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-lg hover:bg-brand-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
           >
             Contact Us
           </router-link>

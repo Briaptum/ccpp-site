@@ -11,14 +11,21 @@
         :style="parallaxStyle"
       >
         <!-- Multiple gradient overlays for professional look and text readability -->
+        <!-- Navbar blue radial gradient from center -->
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at center, rgba(34, 112, 130, 0.35), rgba(34, 112, 130, 0.20), transparent);"></div>
+        <!-- Navbar blue overlay from center spreading outward -->
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-blue/25 via-brand-blue/10 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-tl from-brand-blue/25 via-brand-blue/10 to-transparent"></div>
+        <!-- Additional navbar blue accent from bottom center -->
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/20 via-transparent to-transparent"></div>
         <!-- Center radial effect using multiple layers -->
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
         <!-- Bottom gradient for text area readability -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20"></div>
         <!-- Top gradient for balance -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent"></div>
-        <!-- Diagonal accent with brand color from top-left -->
-        <div class="absolute inset-0 bg-gradient-to-br from-custom-orange/20 via-custom-orange/5 to-transparent"></div>
+        <!-- Diagonal accent with brand orange from top-left -->
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-orange/15 via-brand-orange/5 to-transparent"></div>
         <!-- Side gradients for framing and depth -->
         <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
         <!-- Additional center focus gradient -->
@@ -31,13 +38,13 @@
         <div class="mb-10">
           <h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 text-white leading-tight">
             <span class="block drop-shadow-2xl">Calvary Chapel</span>
-            <span class="block text-custom-orange drop-shadow-2xl mt-2">Phnom Penh</span>
+            <span class="block text-brand-orange drop-shadow-2xl mt-2">Phnom Penh</span>
           </h1>
         </div>
         
         <!-- Tagline -->
         <div class="mb-8">
-          <div class="w-32 h-1 bg-custom-orange mx-auto mb-6 shadow-lg"></div>
+          <div class="w-32 h-1 bg-brand-orange mx-auto mb-6 shadow-lg"></div>
           <p class="text-2xl md:text-3xl lg:text-4xl text-white font-light drop-shadow-xl tracking-wide mb-4">
             Studying the Word
           </p>
@@ -60,8 +67,8 @@
     <div class="py-24 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-main mb-4">Join Us for Worship</h2>
-          <div class="w-20 h-1 bg-custom-orange mx-auto mb-4"></div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Join Us for Worship</h2>
+          <div class="w-20 h-1 bg-brand-orange mx-auto mb-4"></div>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light">
             We welcome you to join our community for meaningful worship and Bible study
           </p>
@@ -77,7 +84,7 @@
               />
             </div>
             <div class="p-8">
-              <h3 class="text-2xl font-bold mb-4 text-main">Sunday Worship Service</h3>
+              <h3 class="text-2xl font-bold mb-4 text-gray-900">Sunday Worship Service</h3>
               <p class="text-gray-600 mb-2 font-medium">Every Sunday at 9:00 AM</p>
               <p class="text-gray-700 mb-6 leading-relaxed">
                 Join us for our weekly worship service featuring verse-by-verse Bible teaching, 
@@ -85,7 +92,7 @@
               </p>
               <router-link
                 to="/contact"
-                class="inline-flex items-center px-6 py-3 bg-custom-orange text-white font-medium rounded-md hover:bg-custom-orange/90 transition-colors duration-200 shadow-sm hover:shadow-md"
+                class="inline-flex items-center px-6 py-3 bg-brand-orange text-white font-medium rounded-md hover:bg-brand-orange/90 transition-colors duration-200 shadow-sm hover:shadow-md"
               >
                 Get Directions
                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,7 +111,7 @@
               />
             </div>
             <div class="p-8">
-              <h3 class="text-2xl font-bold mb-4 text-main">Wednesday Bible Study</h3>
+              <h3 class="text-2xl font-bold mb-4 text-gray-900">Wednesday Bible Study</h3>
               <p class="text-gray-600 mb-2 font-medium">Every Wednesday at 7:00 PM</p>
               <p class="text-gray-700 mb-6 leading-relaxed">
                 Mid-week Bible study providing deeper exploration of Scripture through 
@@ -112,7 +119,7 @@
               </p>
               <router-link
                 to="/contact"
-                class="inline-flex items-center px-6 py-3 bg-custom-orange text-white font-medium rounded-md hover:bg-custom-orange/90 transition-colors duration-200 shadow-sm hover:shadow-md"
+                class="inline-flex items-center px-6 py-3 bg-brand-orange text-white font-medium rounded-md hover:bg-brand-orange/90 transition-colors duration-200 shadow-sm hover:shadow-md"
               >
                 Get Directions
                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -130,7 +137,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Latest Teachings</h2>
-          <div class="w-20 h-1 bg-custom-orange mx-auto mb-4"></div>
+          <div class="w-20 h-1 bg-brand-orange mx-auto mb-4"></div>
           <p class="text-lg text-white/90 max-w-2xl mx-auto font-light">
             Watch our recent messages and stay connected with God's Word throughout the week
           </p>
@@ -150,20 +157,20 @@
               />
               <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-colors duration-300">
                 <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:bg-white transition-colors duration-300">
-                  <svg class="w-6 h-6 text-main ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-6 h-6 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-lg font-bold text-main mb-3 leading-tight">{{ teaching.title }}</h3>
+              <h3 class="text-lg font-bold text-gray-900 mb-3 leading-tight">{{ teaching.title }}</h3>
               <p class="text-sm text-gray-600 mb-5 leading-relaxed">{{ teaching.description }}</p>
               <a
                 :href="teaching.url"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center px-5 py-2.5 bg-main text-white font-medium rounded-md hover:bg-secondary transition-colors duration-200 text-sm shadow-sm hover:shadow-md"
+                class="inline-flex items-center px-5 py-2.5 bg-gray-900 text-white font-medium rounded-md hover:bg-gray-800 transition-colors duration-200 text-sm shadow-sm hover:shadow-md"
               >
                 Watch Now
                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

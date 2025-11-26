@@ -81,7 +81,7 @@
                     ? 'bg-white hover:bg-gray-50 border-gray-200 hover:border-main/30' 
                     : 'bg-gray-50 text-gray-400 border-gray-100',
                   day.isToday ? 'ring-2 ring-main ring-offset-2 bg-main/5 border-main' : '',
-                  day.hasEvents ? 'border-custom-orange/50' : ''
+                  day.hasEvents ? 'border-brand-orange/50' : ''
                 ]"
                 @click="selectDate(day)"
               >
@@ -97,7 +97,7 @@
                   <div 
                     v-for="event in day.events.slice(0, 2)" 
                     :key="event.id"
-                    class="text-xs bg-custom-orange/20 text-custom-orange rounded px-2 py-1 truncate font-medium"
+                    class="text-xs bg-brand-orange/20 text-brand-orange rounded px-2 py-1 truncate font-medium"
                   >
                     {{ event.title }}
                   </div>
@@ -125,7 +125,7 @@
                 <p class="text-gray-600 mb-3">{{ event.summary }}</p>
                 <div class="flex flex-wrap items-center gap-4 text-sm">
                   <div v-if="event.time" class="flex items-center text-gray-600">
-                    <svg class="w-4 h-4 mr-2 text-custom-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 mr-2 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span class="font-medium">{{ event.time }}</span>

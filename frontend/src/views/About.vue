@@ -25,7 +25,7 @@
         <div class="flex flex-wrap justify-center gap-4 mt-12">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-custom-orange text-white font-semibold rounded-lg hover:bg-custom-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-lg hover:bg-brand-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
           >
             Contact Us
           </router-link>
@@ -38,7 +38,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Gallery</h2>
-          <div class="w-20 h-1 bg-custom-orange mx-auto mb-4"></div>
+          <div class="w-20 h-1 bg-brand-orange mx-auto mb-4"></div>
           <p class="text-lg text-white/90 max-w-2xl mx-auto font-light">
             Glimpses of our community, worship services, and ministry events
           </p>
@@ -92,7 +92,7 @@
                 :class="[
                   'px-4 py-2.5 rounded-md transition-colors font-medium',
                   currentPage === page
-                    ? 'bg-custom-orange text-white'
+                    ? 'bg-brand-orange text-white'
                     : 'bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20'
                 ]"
               >
