@@ -4,7 +4,7 @@
     <nav
       v-if="!isAdminRoute"
       class="fixed top-0 left-0 right-0 z-50 shadow-md"
-      style="background-color: #121010;"
+      style="background-color: #227082;"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
@@ -175,7 +175,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div v-show="mobileMenuOpen" class="md:hidden pb-4" style="background-color: #121010;">
+        <div v-show="mobileMenuOpen" class="md:hidden pb-4" style="background-color: #227082;">
           <div class="flex flex-col space-y-2">
             <!-- About Dropdown Mobile -->
             <div>
