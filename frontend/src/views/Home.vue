@@ -10,23 +10,45 @@
         class="absolute inset-0 bg-cover bg-center bg-no-repeat"
         :style="parallaxStyle"
       >
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70"></div>
+        <!-- Multiple gradient overlays for professional look and text readability -->
+        <!-- Center radial effect using multiple layers -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
+        <!-- Bottom gradient for text area readability -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20"></div>
+        <!-- Top gradient for balance -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent"></div>
+        <!-- Diagonal accent with brand color from top-left -->
+        <div class="absolute inset-0 bg-gradient-to-br from-custom-orange/20 via-custom-orange/5 to-transparent"></div>
+        <!-- Side gradients for framing and depth -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
+        <!-- Additional center focus gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-black/30"></div>
       </div>
       
       <!-- Content -->
-      <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="mb-8">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 text-white leading-tight drop-shadow-2xl">
-            Calvary Chapel<br />
-            <span class="text-custom-orange">Phnom Penh</span>
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Main Heading -->
+        <div class="mb-10">
+          <h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 text-white leading-tight">
+            <span class="block drop-shadow-2xl">Calvary Chapel</span>
+            <span class="block text-custom-orange drop-shadow-2xl mt-2">Phnom Penh</span>
           </h1>
         </div>
-        <div class="max-w-3xl mx-auto space-y-4">
-          <p class="text-xl md:text-2xl lg:text-3xl text-white font-light drop-shadow-lg tracking-wide">
-            Studying the Word verse by verse, chapter by chapter.
+        
+        <!-- Tagline -->
+        <div class="mb-8">
+          <div class="w-32 h-1 bg-custom-orange mx-auto mb-6 shadow-lg"></div>
+          <p class="text-2xl md:text-3xl lg:text-4xl text-white font-light drop-shadow-xl tracking-wide mb-4">
+            Studying the Word
           </p>
-          <div class="w-24 h-1 bg-custom-orange mx-auto mt-6"></div>
-          <p class="text-base md:text-lg text-white/90 drop-shadow-md max-w-2xl mx-auto font-light leading-relaxed pt-4">
+          <p class="text-xl md:text-2xl text-white/95 font-light drop-shadow-lg">
+            Verse by verse, chapter by chapter
+          </p>
+        </div>
+        
+        <!-- Description -->
+        <div class="max-w-3xl mx-auto mt-12">
+          <p class="text-lg md:text-xl text-white/90 drop-shadow-md leading-relaxed font-light">
             A community of believers committed to teaching through the Bible systematically, 
             verse by verse, chapter by chapter, book by book.
           </p>
@@ -158,7 +180,7 @@
 
 <script>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import backgroundImage from '@/assets/background/background2.jpg'
+import backgroundImage from '@/assets/background/hero-bg.jpg'
 import joinUsBgImage from '@/assets/background/join-us-bg.jpg'
 import sundayWorshipImage from '@/assets/gallery/514246564_1275851177909873_6093560206728412070_n.jpg'
 import bibleStudyImage from '@/assets/gallery/547266955_1236675715160753_108576014740250024_n.jpg'
