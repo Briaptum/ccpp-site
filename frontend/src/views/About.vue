@@ -1,73 +1,130 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="py-6 md:py-8">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl md:text-5xl font-bold mb-2">About Us</h1>
-      </div>
-    </div>
-
-    <!-- Content Section -->
-    <div class="bg-primary py-12 md:py-16">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose max-w-none">
-          <p class="text-base md:text-lg text-gray-900 mb-8 leading-relaxed">
-            <span class="font-bold text-main">Calvary Chapel Phnom Penh</span> is a community of believers dedicated to serving God and sharing His love with the people of Cambodia. We are a part of the Calvary Chapel movement, which emphasizes verse-by-verse, chapter-by-chapter teaching through the Bible.
-          </p>
-          <p class="text-base md:text-lg text-gray-900 mb-8 leading-relaxed">
-            Our church family is diverse, welcoming people from all walks of life. We believe in creating a warm, loving environment where everyone can grow in their relationship with Jesus Christ.
-          </p>
-          <p class="text-base md:text-lg text-gray-900 mb-8 leading-relaxed">
-            Whether you're new to faith or have been walking with Christ for years, you're welcome here. We'd love to get to know you and have you join us as we seek to follow Jesus together.
-          </p>
-        </div>
-        
-        <div class="flex flex-wrap justify-center gap-4 mt-12">
+    <div class="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden pt-16 md:pt-24">
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        :style="{ backgroundImage: `url(${aboutHeroImage})` }"
+      ></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+      <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-sm uppercase tracking-[0.4em] text-white/70 mb-4">About Calvary Chapel Phnom Penh</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+          A worshiping community rooted in Scripture and present for Phnom Penh.
+        </h1>
+        <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto font-light mb-10">
+          We gather to teach verse by verse through the Bible, cultivate authentic relationships,
+          and serve the city with the hope of Jesus.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <router-link
+            to="/what-we-believe"
+            class="inline-flex items-center px-6 py-3 bg-brand-orange text-white font-semibold rounded-md hover:bg-brand-orange/90 transition-colors"
+          >
+            What We Believe
+          </router-link>
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-lg hover:bg-brand-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+            class="inline-flex items-center px-6 py-3 bg-white/10 text-white font-semibold rounded-md border border-white/20 hover:bg-white/20 transition-colors backdrop-blur-sm"
           >
-            Contact Us
+            Plan a Visit
           </router-link>
         </div>
       </div>
     </div>
 
+    <!-- Story Section -->
+    <section class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="text-sm uppercase tracking-[0.3em] text-brand-blue mb-4">Our story</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Calvary Chapel Phnom Penh is a verse-by-verse church with an open Bible and open doors.
+          </h2>
+          <p class="text-lg text-gray-700 leading-relaxed mb-4">
+            Beginning with a handful of families studying Scripture together, the church has grown into a diverse
+            community anchored in the whole counsel of God. We value expository preaching, Spirit-led worship,
+            and discipleship for every generation.
+          </p>
+          <p class="text-lg text-gray-700 leading-relaxed">
+            From Sunday gatherings to mid-week studies, outreach projects, and leadership development, our aim is to
+            equip people to know Jesus, love one another, and serve Phnom Penh with humility and hope.
+          </p>
+        </div>
+        <div class="bg-gray-50 rounded-3xl border border-gray-100 p-8 space-y-6">
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-orange/15 text-brand-orange flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 0V4m0 8v8m4-6h4m-8 0H4" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-1">Scripture-centered</h3>
+              <p class="text-gray-600">Teaching verse by verse through books of the Bible so that the Word shapes everything.</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-blue/15 text-brand-blue flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-1">Authentic discipleship</h3>
+              <p class="text-gray-600">Smaller communities and mentors walking together in prayer, care, and mission.</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-900/10 text-gray-900 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 5v9" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-1">City presence</h3>
+              <p class="text-gray-600">Serving Phnom Penh through mercy initiatives, youth mentorship, and partnerships.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
     <!-- Gallery Section -->
-    <div class="py-20 bg-gradient-to-r from-black via-gray-800 to-gray-400">
+    <div class="py-24 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Gallery</h2>
-          <div class="w-20 h-1 bg-brand-orange mx-auto mb-4"></div>
-          <p class="text-lg text-white/90 max-w-2xl mx-auto font-light">
+          <p class="text-sm uppercase tracking-[0.3em] text-gray-500 mb-3">Gallery</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Life around Calvary Chapel Phnom Penh</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light">
             Glimpses of our community, worship services, and ministry events
           </p>
         </div>
         
         <div v-if="loading" class="text-center py-12">
-          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-white border-t-transparent mb-4"></div>
-          <p class="text-white/90">Loading gallery...</p>
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-brand-blue border-t-transparent mb-4"></div>
+          <p class="text-gray-600">Loading gallery...</p>
         </div>
 
         <div v-else-if="error" class="text-center py-8">
-          <p class="text-red-300">{{ error }}</p>
+          <p class="text-red-500">{{ error }}</p>
         </div>
 
         <div v-else>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             <div 
               v-for="(image, index) in paginatedImages" 
               :key="image.src"
               @click="openLightbox(getFullImageIndex(index))"
-              class="relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group bg-gray-200"
+              class="relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group bg-white"
             >
               <img
                 :src="image.src"
                 :alt="image.alt"
-                class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                <svg class="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
                 </svg>
               </div>
@@ -75,11 +132,11 @@
           </div>
 
           <!-- Pagination Controls -->
-          <div v-if="totalPages > 1" class="flex items-center justify-center gap-2 mt-12">
+          <div v-if="totalPages > 1" class="flex items-center justify-center gap-2">
             <button
               @click="goToPage(currentPage - 1)"
               :disabled="currentPage === 1"
-              class="px-5 py-2.5 bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-md hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+              class="px-5 py-2.5 bg-white text-gray-900 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-sm"
             >
               Previous
             </button>
@@ -90,10 +147,10 @@
                 :key="page"
                 @click="goToPage(page)"
                 :class="[
-                  'px-4 py-2.5 rounded-md transition-colors font-medium',
+                  'px-4 py-2.5 rounded-md transition-colors font-medium shadow-sm',
                   currentPage === page
                     ? 'bg-brand-orange text-white'
-                    : 'bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20'
+                    : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
                 ]"
               >
                 {{ page }}
@@ -103,7 +160,7 @@
             <button
               @click="goToPage(currentPage + 1)"
               :disabled="currentPage === totalPages"
-              class="px-5 py-2.5 bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-md hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+              class="px-5 py-2.5 bg-white text-gray-900 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-sm"
             >
               Next
             </button>
@@ -160,6 +217,7 @@
 
 <script>
 import { ref, onMounted, computed } from 'vue'
+import aboutHeroImage from '@/assets/background/bg-hero4.jpg'
 
 export default {
   name: 'About',
@@ -241,6 +299,7 @@ export default {
     })
 
     return {
+      aboutHeroImage,
       loading,
       error,
       galleryImages,

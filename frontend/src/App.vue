@@ -330,7 +330,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main :class="isAdminRoute ? '' : (isHomeRoute ? '' : 'pt-20')">
+    <main :class="isAdminRoute ? '' : (hasHeroOverlay ? '' : 'pt-20')">
       <router-view />
     </main>
 
@@ -493,8 +493,9 @@ export default {
     isAdminRoute() {
       return this.$route.path.startsWith('/admin')
     },
-    isHomeRoute() {
-      return this.$route.path === '/'
+    hasHeroOverlay() {
+      const overlayRoutes = ['/', '/about']
+      return overlayRoutes.includes(this.$route.path)
     }
   },
   watch: {
