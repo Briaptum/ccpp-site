@@ -91,23 +91,23 @@
 
 
     <!-- Gallery Section -->
-    <div class="py-24 bg-white">
+    <div class="py-24 bg-brand-blue text-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <p class="text-sm uppercase tracking-[0.3em] text-gray-500 mb-3">Gallery</p>
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Life around Calvary Chapel Phnom Penh</h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light">
+          <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-3">Gallery</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Life around Calvary Chapel Phnom Penh</h2>
+          <p class="text-lg text-white/80 max-w-2xl mx-auto font-light">
             Glimpses of our community, worship services, and ministry events
           </p>
         </div>
         
         <div v-if="loading" class="text-center py-12">
-          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-brand-blue border-t-transparent mb-4"></div>
-          <p class="text-gray-600">Loading gallery...</p>
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-white border-t-transparent mb-4"></div>
+          <p class="text-white/80">Loading gallery...</p>
         </div>
 
         <div v-else-if="error" class="text-center py-8">
-          <p class="text-red-500">{{ error }}</p>
+          <p class="text-red-200">{{ error }}</p>
         </div>
 
         <div v-else>
@@ -116,14 +116,14 @@
               v-for="(image, index) in paginatedImages" 
               :key="image.src"
               @click="openLightbox(getFullImageIndex(index))"
-              class="relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group bg-white"
+              class="relative overflow-hidden rounded-2xl border border-white/15 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group bg-white/10 backdrop-blur-md"
             >
               <img
                 :src="image.src"
                 :alt="image.alt"
-                class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500 brightness-90"
               />
-              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+              <div class="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
                 <svg class="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
                 </svg>
@@ -136,7 +136,7 @@
             <button
               @click="goToPage(currentPage - 1)"
               :disabled="currentPage === 1"
-              class="px-5 py-2.5 bg-white text-gray-900 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-sm"
+              class="px-5 py-2.5 bg-white/10 blur-0 text-white border border-white/20 rounded-md hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
             >
               Previous
             </button>
@@ -147,10 +147,10 @@
                 :key="page"
                 @click="goToPage(page)"
                 :class="[
-                  'px-4 py-2.5 rounded-md transition-colors font-medium shadow-sm',
+                  'px-4 py-2.5 rounded-md transition-colors font-medium border border-white/20',
                   currentPage === page
                     ? 'bg-brand-orange text-white'
-                    : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
+                    : 'bg-white/10 text-white hover:bg-white/20'
                 ]"
               >
                 {{ page }}
@@ -160,7 +160,7 @@
             <button
               @click="goToPage(currentPage + 1)"
               :disabled="currentPage === totalPages"
-              class="px-5 py-2.5 bg-white text-gray-900 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-sm"
+              class="px-5 py-2.5 bg-white/10 text-white border border-white/20 rounded-md hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
             >
               Next
             </button>
