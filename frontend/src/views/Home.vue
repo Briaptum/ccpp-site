@@ -166,7 +166,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <p class="text-sm uppercase tracking-[0.3em] text-gray-500 mb-3">Latest Teachings</p>
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Recent messages from our pulpit</h2>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-700 mb-4">Recent messages from our pulpit</h2>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light">
             Teachings captured each week to keep you connected to the verse-by-verse journey through Scripture.
           </p>
