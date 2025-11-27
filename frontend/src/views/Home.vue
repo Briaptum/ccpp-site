@@ -95,83 +95,80 @@
       </div>
     </div>
 
-    <!-- Services Section -->
-    <div class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Upcoming Section -->
+    <div class="py-24 bg-brand-blue">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
         <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Join Us for Worship</h2>
-          <div class="w-20 h-1 bg-brand-orange mx-auto mb-4"></div>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light">
-            We welcome you to join our community for meaningful worship and Bible study
+          <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-3">Upcoming</p>
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">What’s ahead this season</h2>
+          <p class="text-white/80 max-w-2xl mx-auto">
+            A glimpse at the moments, gatherings, and opportunities we’re preparing for together.
           </p>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12">
-          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="h-72 overflow-hidden bg-gray-100">
-              <img 
-                :src="sundayWorshipImage" 
-                alt="Sunday Worship Service" 
-                class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </div>
-            <div class="p-8">
-              <h3 class="text-2xl font-bold mb-4 text-gray-900">Sunday Worship Service</h3>
-              <p class="text-gray-600 mb-2 font-medium">Every Sunday at 9:00 AM</p>
-              <p class="text-gray-700 mb-6 leading-relaxed">
-                Join us for our weekly worship service featuring verse-by-verse Bible teaching, 
-                heartfelt worship, and fellowship with our church family.
-              </p>
-              <router-link
-                to="/contact"
-                class="inline-flex items-center px-6 py-3 bg-brand-orange text-white font-medium rounded-md hover:bg-brand-orange/90 transition-colors duration-200 shadow-sm hover:shadow-md"
-              >
-                Get Directions
-                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </router-link>
-            </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg">
+            <p class="text-xs uppercase tracking-[0.4em] text-white/60 mb-2">Mar 2</p>
+            <h3 class="text-2xl font-semibold mb-3">City Prayer Night</h3>
+            <p class="text-white/80 text-sm leading-relaxed mb-5">
+              An evening of prayer and worship for Phnom Penh, hosted in the main sanctuary at 6:30 PM.
+            </p>
+            <router-link
+              to="/events"
+              class="inline-flex items-center text-brand-orange font-semibold tracking-wide text-sm hover:text-white transition-colors"
+            >
+              Details
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </router-link>
           </div>
-          
-          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="h-72 overflow-hidden bg-gray-100">
-              <img 
-                :src="bibleStudyImage" 
-                alt="Wednesday Bible Study" 
-                class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </div>
-            <div class="p-8">
-              <h3 class="text-2xl font-bold mb-4 text-gray-900">Wednesday Bible Study</h3>
-              <p class="text-gray-600 mb-2 font-medium">Every Wednesday at 7:00 PM</p>
-              <p class="text-gray-700 mb-6 leading-relaxed">
-                Mid-week Bible study providing deeper exploration of Scripture through 
-                systematic teaching and discussion in a more intimate setting.
-              </p>
-              <router-link
-                to="/contact"
-                class="inline-flex items-center px-6 py-3 bg-brand-orange text-white font-medium rounded-md hover:bg-brand-orange/90 transition-colors duration-200 shadow-sm hover:shadow-md"
-              >
-                Get Directions
-                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </router-link>
-            </div>
+
+          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg">
+            <p class="text-xs uppercase tracking-[0.4em] text-white/60 mb-2">Mar 10</p>
+            <h3 class="text-2xl font-semibold mb-3">Foundations Class</h3>
+            <p class="text-white/80 text-sm leading-relaxed mb-5">
+              Four weeks exploring what we believe, how to grow, and where to serve. Sundays at 11:15 AM.
+            </p>
+            <router-link
+              to="/ministries"
+              class="inline-flex items-center text-brand-orange font-semibold tracking-wide text-sm hover:text-white transition-colors"
+            >
+              Save a seat
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </router-link>
+          </div>
+
+          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg">
+            <p class="text-xs uppercase tracking-[0.4em] text-white/60 mb-2">Mar 16</p>
+            <h3 class="text-2xl font-semibold mb-3">Serve Phnom Penh</h3>
+            <p class="text-white/80 text-sm leading-relaxed mb-5">
+              Neighborhood outreach day providing meals, prayer, and practical care. Teams launch at 8:00 AM.
+            </p>
+            <router-link
+              to="/ministries/outreaches"
+              class="inline-flex items-center text-brand-orange font-semibold tracking-wide text-sm hover:text-white transition-colors"
+            >
+              Volunteer
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </router-link>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Latest Teachings Section -->
-    <div class="relative py-24 overflow-hidden bg-gradient-to-b from-gray-900 via-gray-700 to-white">
+    <div class="py-24 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Latest Teachings</h2>
-          <div class="w-20 h-1 bg-brand-orange mx-auto mb-4"></div>
-          <p class="text-lg text-white/90 max-w-2xl mx-auto font-light">
-            Watch our recent messages and stay connected with God's Word throughout the week
+          <p class="text-sm uppercase tracking-[0.3em] text-gray-500 mb-3">Latest Teachings</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Recent messages from our pulpit</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light">
+            Teachings captured each week to keep you connected to the verse-by-verse journey through Scripture.
           </p>
         </div>
         
@@ -179,36 +176,38 @@
           <div
             v-for="teaching in latestTeachings"
             :key="teaching.id"
-            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 group"
+            class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
           >
-            <div class="relative h-48 overflow-hidden bg-gray-900">
+            <div class="relative h-48 overflow-hidden">
               <img
                 :src="`https://img.youtube.com/vi/${teaching.id}/hqdefault.jpg`"
                 :alt="teaching.title"
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
               />
-              <div class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-colors duration-300">
-                <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:bg-white transition-colors duration-300">
-                  <svg class="w-6 h-6 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+              <div class="absolute bottom-4 left-4 inline-flex items-center px-3 py-1 bg-white/90 rounded-full text-xs font-semibold tracking-wide text-gray-900 shadow">
+                Teaching Series
               </div>
             </div>
-            <div class="p-6">
-              <h3 class="text-lg font-bold text-gray-900 mb-3 leading-tight">{{ teaching.title }}</h3>
-              <p class="text-sm text-gray-600 mb-5 leading-relaxed">{{ teaching.description }}</p>
-              <a
-                :href="teaching.url"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center px-5 py-2.5 bg-gray-900 text-white font-medium rounded-md hover:bg-gray-800 transition-colors duration-200 text-sm shadow-sm hover:shadow-md"
-              >
-                Watch Now
-                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="text-lg font-semibold text-gray-800 mb-2 leading-snug line-clamp-2">{{ teaching.title }}</h3>
+              <p class="text-sm text-gray-600 mb-5 leading-relaxed line-clamp-3 flex-1">
+                {{ teaching.description }}
+              </p>
+              <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                <span class="text-xs uppercase tracking-[0.3em] text-gray-500">YouTube</span>
+                <a
+                  :href="teaching.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center text-sm font-semibold text-brand-blue hover:text-gray-900 transition-colors"
+                >
+                  Watch now
+                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
