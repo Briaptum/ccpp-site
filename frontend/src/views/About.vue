@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden pt-16 md:pt-24">
+    <div class="relative min-h-screen flex items-center overflow-hidden pt-24 md:pt-28">
       <div
         class="absolute inset-0 bg-cover bg-center opacity-30 blur-[1.5px]"
         :style="{ backgroundImage: `url(${aboutHeroImage})` }"
