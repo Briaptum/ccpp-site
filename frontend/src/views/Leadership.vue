@@ -17,13 +17,13 @@
     </section>
 
     <!-- Leaders Section -->
-    <section class="py-24 bg-white">
+    <section class="py-24 bg-gray-50">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           <article
             v-for="leader in leaders"
             :key="leader.name"
-            class="rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow bg-white p-8 text-center flex flex-col"
+            class="rounded-3xl bg-white/80 border border-white/60 shadow-md backdrop-blur hover:shadow-2xl transition-shadow p-8 text-center flex flex-col"
           >
             <div class="mx-auto h-32 w-32 overflow-hidden rounded-full border-4 border-white shadow-lg mb-6">
               <img
