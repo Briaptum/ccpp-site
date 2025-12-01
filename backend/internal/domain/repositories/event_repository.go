@@ -11,3 +11,4 @@ type EventRepository interface {
 	Delete(id uint) error
 }
 
+

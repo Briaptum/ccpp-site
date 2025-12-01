@@ -19,3 +19,4 @@ type Event struct {
 	DeletedAt   gorm.DeletedAt `gorm:"index" json:"-"`
 }
 
+

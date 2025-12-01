@@ -38,3 +38,4 @@ func (s *eventServiceImpl) DeleteEvent(id uint) error {
 	return s.eventRepo.Delete(id)
 }
 
+

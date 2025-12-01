@@ -494,7 +494,7 @@ export default {
       return this.$route.path.startsWith('/admin')
     },
     hasHeroOverlay() {
-      const overlayRoutes = ['/', '/about']
+      const overlayRoutes = ['/', '/about', '/about/leadership']
       return overlayRoutes.includes(this.$route.path)
     }
   },

@@ -11,3 +11,4 @@ type EventService interface {
 	DeleteEvent(id uint) error
 }
 
+

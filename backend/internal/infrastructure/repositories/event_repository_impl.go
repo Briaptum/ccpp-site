@@ -50,3 +50,4 @@ func (r *eventRepositoryImpl) Delete(id uint) error {
 	return r.db.Delete(&models.Event{}, id).Error
 }
 
+
