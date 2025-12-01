@@ -3,10 +3,10 @@
     <!-- Hero Section -->
     <div class="relative min-h-[80vh] md:min-h-[90vh] flex items-center overflow-hidden pt-16 md:pt-24">
       <div
-        class="absolute inset-0 bg-cover bg-center"
+        class="absolute inset-0 bg-cover bg-center opacity-30 blur-[1.5px]"
         :style="{ backgroundImage: `url(${aboutHeroImage})` }"
       ></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50"></div>
       <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p class="text-sm uppercase tracking-[0.4em] text-white/70 mb-4">About Calvary Chapel Phnom Penh</p>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
@@ -217,7 +217,7 @@
 
 <script>
 import { ref, onMounted, computed } from 'vue'
-import aboutHeroImage from '@/assets/background/bg-hero4.jpg'
+import aboutHeroImage from '@/assets/background/about-bg.jpg'
 
 export default {
   name: 'About',
