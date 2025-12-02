@@ -51,3 +51,5 @@ func (r *eventRepositoryImpl) Delete(id uint) error {
 }
 
 
+
+

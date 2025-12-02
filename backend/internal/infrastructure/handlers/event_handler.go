@@ -128,3 +128,5 @@ func (h *EventHandler) DeleteEvent(c *gin.Context) {
 }
 
 
+
+

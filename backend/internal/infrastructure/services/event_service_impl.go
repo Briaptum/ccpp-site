@@ -39,3 +39,5 @@ func (s *eventServiceImpl) DeleteEvent(id uint) error {
 }
 
 
+
+
