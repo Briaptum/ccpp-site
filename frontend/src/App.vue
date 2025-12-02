@@ -11,12 +11,16 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
           <!-- Logo -->
-          <router-link to="/" class="flex items-center">
+          <router-link to="/" class="flex items-center space-x-3">
             <img 
               src="/src/assets/background/CCPP Logo 2021.svg" 
               alt="Calvary Chapel Phnom Penh Logo" 
               class="h-14 w-auto"
             />
+            <div class="text-[#1F1F1F]">
+              <span class="block text-xs uppercase tracking-[0.4em] text-[#1F1F1F]/70">Calvary Chapel</span>
+              <span class="block text-lg font-semibold tracking-[0.2em]">Phnom Penh</span>
+            </div>
           </router-link>
           
           <!-- Navigation Links -->

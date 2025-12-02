@@ -43,6 +43,78 @@
       </div>
     </div>
 
+    <!-- Regular Study Times -->
+    <section class="py-20 bg-gradient-to-b from-white to-gray-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <p class="text-sm uppercase tracking-[0.35em] text-gray-400 mb-3">Weekly Rhythm</p>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Regular Study & Worship</h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Two anchor gatherings each week keep us rooted in Scripture and connected as a family.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="relative overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-2xl">
+            <div class="absolute inset-0 opacity-60 pointer-events-none" style="background: radial-gradient(circle at top left, rgba(255,164,91,0.18), transparent 50%), radial-gradient(circle at bottom right, rgba(34,112,130,0.15), transparent 45%);"></div>
+            <div class="relative flex flex-col md:flex-row items-center md:items-center gap-8 p-8">
+              <div class="flex flex-col items-center justify-center text-center bg-brand-blue/10 text-brand-blue rounded-2xl px-6 py-7 w-full md:w-40 shrink-0">
+                <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/70">Sunday</span>
+                <span class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 leading-none">9:00</span>
+                <span class="text-sm tracking-[0.3em] text-gray-500 mt-1">a.m.</span>
+              </div>
+              <div class="flex-1 text-gray-700">
+                <div class="inline-flex items-center bg-brand-blue/10 text-brand-blue px-3 py-1 rounded-full uppercase tracking-[0.35em] text-xs font-semibold mb-4">
+                  Sunday Worship
+                </div>
+                <h3 class="text-3xl font-semibold text-gray-900 mb-3">Sunday Morning Worship</h3>
+                <p class="text-base leading-relaxed text-gray-600 mb-5">
+                  Verse-by-verse teaching, Spirit-led worship, and community for every generation gathered in the sanctuary each Sunday morning at 9:00 a.m.
+                </p>
+                <router-link
+                  to="/contact"
+                  class="inline-flex items-center text-brand-blue font-semibold hover:text-brand-orange transition-colors"
+                >
+                  Plan your visit
+                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </router-link>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-2xl">
+            <div class="absolute inset-0 opacity-60 pointer-events-none" style="background: radial-gradient(circle at top right, rgba(34,112,130,0.2), transparent 50%), radial-gradient(circle at bottom left, rgba(255,164,91,0.15), transparent 40%);"></div>
+            <div class="relative flex flex-col md:flex-row items-center md:items-center gap-8 p-8">
+              <div class="flex flex-col items-center justify-center text-center bg-brand-orange/10 text-brand-orange rounded-2xl px-6 py-7 w-full md:w-40 shrink-0">
+                <span class="text-xs uppercase tracking-[0.4em] text-brand-orange/80">Wednesday</span>
+                <span class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 leading-none">7:00</span>
+                <span class="text-sm tracking-[0.3em] text-gray-500 mt-1">p.m.</span>
+              </div>
+              <div class="flex-1 text-gray-700">
+                <div class="inline-flex items-center bg-brand-orange/10 text-brand-orange px-3 py-1 rounded-full uppercase tracking-[0.35em] text-xs font-semibold mb-4">
+                  Wednesday Church
+                </div>
+                <h3 class="text-3xl font-semibold text-gray-900 mb-3">Wednesday Night Church</h3>
+                <p class="text-base leading-relaxed text-gray-600 mb-5">
+                  Wednesday night church family gathering featuring Scripture, discussion, and prayer beginning promptly at 7:00 p.m.
+                </p>
+                <router-link
+                  to="/events/calendar"
+                  class="inline-flex items-center text-brand-orange font-semibold hover:text-brand-blue transition-colors"
+                >
+                  View details
+                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Upcoming Section -->
     <div class="py-24 bg-brand-blue">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
@@ -54,56 +126,74 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg">
-            <p class="text-xs uppercase tracking-[0.4em] text-white/60 mb-2">Mar 2</p>
-            <h3 class="text-2xl font-semibold mb-3">City Prayer Night</h3>
-            <p class="text-white/80 text-sm leading-relaxed mb-5">
-              An evening of prayer and worship for Phnom Penh, hosted in the main sanctuary at 6:30 PM.
-            </p>
-            <router-link
-              to="/events"
-              class="inline-flex items-center text-brand-orange font-semibold tracking-wide text-sm hover:text-white transition-colors"
-            >
-              Details
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </router-link>
+        <div class="max-w-3xl mx-auto space-y-6">
+          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg flex items-center gap-6">
+            <div class="flex flex-col items-center justify-center w-28 h-full bg-white/10 rounded-2xl border border-white/30 text-white text-center">
+              <span class="text-sm uppercase tracking-[0.4em] text-white/70 mb-1">Mar</span>
+              <span class="text-5xl font-bold leading-none">02</span>
+              <span class="text-xs uppercase tracking-[0.4em] text-white/60 mt-2">Sat</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl md:text-3xl font-semibold mb-3">City Prayer Night</h3>
+              <p class="text-white/80 text-base leading-relaxed mb-5">
+                An evening of prayer and worship for Phnom Penh, hosted in the main sanctuary at 6:30 PM.
+              </p>
+              <router-link
+                to="/events"
+                class="inline-flex items-center px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors"
+              >
+                Details
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </router-link>
+            </div>
           </div>
 
-          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg">
-            <p class="text-xs uppercase tracking-[0.4em] text-white/60 mb-2">Mar 10</p>
-            <h3 class="text-2xl font-semibold mb-3">Foundations Class</h3>
-            <p class="text-white/80 text-sm leading-relaxed mb-5">
-              Four weeks exploring what we believe, how to grow, and where to serve. Sundays at 11:15 AM.
-            </p>
-            <router-link
-              to="/ministries"
-              class="inline-flex items-center text-brand-orange font-semibold tracking-wide text-sm hover:text-white transition-colors"
-            >
-              Save a seat
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </router-link>
+          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg flex items-center gap-6">
+            <div class="flex flex-col items-center justify-center w-28 h-full bg-white/10 rounded-2xl border border-white/30 text-white text-center">
+              <span class="text-sm uppercase tracking-[0.4em] text-white/70 mb-1">Mar</span>
+              <span class="text-5xl font-bold leading-none">10</span>
+              <span class="text-xs uppercase tracking-[0.4em] text-white/60 mt-2">Sun</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl md:text-3xl font-semibold mb-3">Foundations Class</h3>
+              <p class="text-white/80 text-base leading-relaxed mb-5">
+                Four weeks exploring what we believe, how to grow, and where to serve. Sundays at 11:15 AM.
+              </p>
+              <router-link
+                to="/ministries"
+                class="inline-flex items-center px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors"
+              >
+                Save a seat
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </router-link>
+            </div>
           </div>
 
-          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg">
-            <p class="text-xs uppercase tracking-[0.4em] text-white/60 mb-2">Mar 16</p>
-            <h3 class="text-2xl font-semibold mb-3">Serve Phnom Penh</h3>
-            <p class="text-white/80 text-sm leading-relaxed mb-5">
-              Neighborhood outreach day providing meals, prayer, and practical care. Teams launch at 8:00 AM.
-            </p>
-            <router-link
-              to="/ministries/outreaches"
-              class="inline-flex items-center text-brand-orange font-semibold tracking-wide text-sm hover:text-white transition-colors"
-            >
-              Volunteer
-              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </router-link>
+          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg flex items-center gap-6">
+            <div class="flex flex-col items-center justify-center w-28 h-full bg-white/10 rounded-2xl border border-white/30 text-white text-center">
+              <span class="text-sm uppercase tracking-[0.4em] text-white/70 mb-1">Mar</span>
+              <span class="text-5xl font-bold leading-none">16</span>
+              <span class="text-xs uppercase tracking-[0.4em] text-white/60 mt-2">Sat</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl md:text-3xl font-semibold mb-3">Serve Phnom Penh</h3>
+              <p class="text-white/80 text-base leading-relaxed mb-5">
+                Neighborhood outreach day providing meals, prayer, and practical care. Teams launch at 8:00 AM.
+              </p>
+              <router-link
+                to="/ministries/outreaches"
+                class="inline-flex items-center px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors"
+              >
+                Volunteer
+                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
