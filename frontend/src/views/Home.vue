@@ -134,70 +134,76 @@
           </p>
         </div>
 
-        <div class="max-w-3xl mx-auto space-y-6">
-          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg flex items-center gap-6">
-            <div class="flex flex-col items-center justify-center w-28 h-full bg-white/10 rounded-2xl border border-white/30 text-white text-center">
-              <span class="text-sm uppercase tracking-[0.4em] text-white/70 mb-1">Mar</span>
-              <span class="text-5xl font-bold leading-none">02</span>
-              <span class="text-xs uppercase tracking-[0.4em] text-white/60 mt-2">Sat</span>
+        <div class="max-w-2xl mx-auto space-y-6">
+          <div class="bg-white/10 rounded-2xl border border-white/15 px-6 py-8 backdrop-blur-md shadow-lg flex flex-col gap-6 sm:flex-row sm:items-stretch min-h-[200px]">
+            <div class="flex flex-col items-center justify-center text-center w-full sm:w-40 sm:min-w-[10rem] bg-white text-brand-blue rounded-2xl border border-white/30 shadow-2xl px-6 py-8">
+              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mb-2">Mar</span>
+              <span class="text-5xl font-bold leading-none text-brand-blue">02</span>
+              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mt-3">Sat</span>
             </div>
-            <div class="flex-1">
-              <h3 class="text-2xl md:text-3xl font-semibold mb-3">City Prayer Night</h3>
-              <p class="text-white/80 text-base leading-relaxed mb-5">
-                An evening of prayer and worship for Phnom Penh, hosted in the main sanctuary at 6:30 PM.
-              </p>
+            <div class="flex-1 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+              <div class="flex-1">
+                <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">City Prayer Night</h3>
+                <p class="text-white/80 text-base leading-relaxed">
+                  An evening of prayer and worship for Phnom Penh, hosted in the main sanctuary at 6:30 PM.
+                </p>
+              </div>
               <router-link
                 to="/events"
-                class="inline-flex items-center px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors"
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors whitespace-nowrap self-start sm:self-auto"
               >
-                Details
-                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                More Details
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
               </router-link>
             </div>
           </div>
 
-          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg flex items-center gap-6">
-            <div class="flex flex-col items-center justify-center w-28 h-full bg-white/10 rounded-2xl border border-white/30 text-white text-center">
-              <span class="text-sm uppercase tracking-[0.4em] text-white/70 mb-1">Mar</span>
-              <span class="text-5xl font-bold leading-none">10</span>
-              <span class="text-xs uppercase tracking-[0.4em] text-white/60 mt-2">Sun</span>
+          <div class="bg-white/10 rounded-2xl border border-white/15 px-6 py-8 backdrop-blur-md shadow-lg flex flex-col gap-6 sm:flex-row sm:items-stretch min-h-[200px]">
+            <div class="flex flex-col items-center justify-center text-center w-full sm:w-40 sm:min-w-[10rem] bg-white text-brand-blue rounded-2xl border border-white/30 shadow-2xl px-6 py-8">
+              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mb-2">Mar</span>
+              <span class="text-5xl font-bold leading-none text-brand-blue">10</span>
+              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mt-3">Sun</span>
             </div>
-            <div class="flex-1">
-              <h3 class="text-2xl md:text-3xl font-semibold mb-3">Foundations Class</h3>
-              <p class="text-white/80 text-base leading-relaxed mb-5">
-                Four weeks exploring what we believe, how to grow, and where to serve. Sundays at 11:15 AM.
-              </p>
+            <div class="flex-1 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+              <div class="flex-1">
+                <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">Foundations Class</h3>
+                <p class="text-white/80 text-base leading-relaxed">
+                  Four weeks exploring what we believe, how to grow, and where to serve. Sundays at 11:15 AM.
+                </p>
+              </div>
               <router-link
                 to="/ministries"
-                class="inline-flex items-center px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors"
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors whitespace-nowrap self-start sm:self-auto"
               >
-                Save a seat
-                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                More Details
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
               </router-link>
             </div>
           </div>
 
-          <div class="bg-white/10 rounded-2xl border border-white/15 p-6 backdrop-blur-md shadow-lg flex items-center gap-6">
-            <div class="flex flex-col items-center justify-center w-28 h-full bg-white/10 rounded-2xl border border-white/30 text-white text-center">
-              <span class="text-sm uppercase tracking-[0.4em] text-white/70 mb-1">Mar</span>
-              <span class="text-5xl font-bold leading-none">16</span>
-              <span class="text-xs uppercase tracking-[0.4em] text-white/60 mt-2">Sat</span>
+          <div class="bg-white/10 rounded-2xl border border-white/15 px-6 py-8 backdrop-blur-md shadow-lg flex flex-col gap-6 sm:flex-row sm:items-stretch min-h-[200px]">
+            <div class="flex flex-col items-center justify-center text-center w-full sm:w-40 sm:min-w-[10rem] bg-white text-brand-blue rounded-2xl border border-white/30 shadow-2xl px-6 py-8">
+              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mb-2">Mar</span>
+              <span class="text-5xl font-bold leading-none text-brand-blue">16</span>
+              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mt-3">Sat</span>
             </div>
-            <div class="flex-1">
-              <h3 class="text-2xl md:text-3xl font-semibold mb-3">Serve Phnom Penh</h3>
-              <p class="text-white/80 text-base leading-relaxed mb-5">
-                Neighborhood outreach day providing meals, prayer, and practical care. Teams launch at 8:00 AM.
-              </p>
+            <div class="flex-1 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+              <div class="flex-1">
+                <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">Serve Phnom Penh</h3>
+                <p class="text-white/80 text-base leading-relaxed">
+                  Neighborhood outreach day providing meals, prayer, and practical care. Teams launch at 8:00 AM.
+                </p>
+              </div>
               <router-link
                 to="/ministries/outreaches"
-                class="inline-flex items-center px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors"
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors whitespace-nowrap self-start sm:self-auto"
               >
-                Volunteer
-                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                More Details
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
               </router-link>

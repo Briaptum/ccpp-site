@@ -18,7 +18,7 @@
                   <h3 class="font-semibold text-gray-900">Address</h3>
                   <p class="text-gray-600">
                     Street 26BT, House 428<br>
-                    Sangkat Boeung Tompun, Khan Meanchey<br>
+                    Boeung Tompun<br>
                     Phnom Penh, Cambodia
                   </p>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="text-2xl">📞</div>
                 <div>
                   <h3 class="font-semibold text-gray-900">Phone</h3>
-                  <p class="text-gray-600">855 77 777 470</p>
+                  <p class="text-gray-600">+855 15 81 44 40</p>
                 </div>
               </div>
               
@@ -36,7 +36,7 @@
                 <div class="text-2xl">📧</div>
                 <div>
                   <h3 class="font-semibold text-gray-900">Email</h3>
-                  <p class="text-gray-600">info@ccpp.org</p>
+                  <p class="text-gray-600">calvarychapelphnompenh@gmail.com</p>
                 </div>
               </div>
               
@@ -133,7 +133,7 @@
                   v-model="form.phone"
                   type="tel"
                   class="input-field"
-                  placeholder="855 77 777 470"
+                  placeholder="+855 15 81 44 40"
                 />
               </div>
               
@@ -193,7 +193,7 @@
         <h2 class="text-2xl font-bold text-gray-900 mb-6">Find Us</h2>
         <div class="relative w-full h-96 rounded-lg overflow-hidden shadow-lg">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.7347!2d104.8975!3d11.5564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDMzJzIzLjAiTiAxMDTCsDUzJzUxLjAiRQ!5e0!3m2!1sen!2sus!4v1234567890"
+            src="https://www.google.com/maps?q=Street+26BT,+House+428,+Phnom+Penh,+Cambodia&output=embed"
             width="100%"
             height="100%"
             style="border:0;"
@@ -205,7 +205,7 @@
         </div>
         <div class="mt-4 text-center">
           <a 
-            href="https://maps.app.goo.gl/99i0uWMZ5NJg16w2V" 
+            href="https://maps.app.goo.gl/a4YGCcvWRLy6BvRz9" 
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center text-main hover:opacity-80 font-medium"
@@ -227,7 +227,7 @@
           <p class="text-gray-600 mb-4">
             Send us an email and we'll get back to you within 24 hours.
           </p>
-          <a href="mailto:info@ccpp.org" class="btn-primary">
+          <a href="mailto:calvarychapelphnompenh@gmail.com" class="btn-primary">
             Send Email
           </a>
         </div>
@@ -238,7 +238,7 @@
           <p class="text-gray-600 mb-4">
             Speak directly with our staff during office hours.
           </p>
-          <a href="tel:+85577777470" class="btn-primary">
+          <a href="tel:+85515814440" class="btn-primary">
             Call Now
           </a>
         </div>
@@ -308,7 +308,7 @@ export default {
 
     const scheduleVisit = () => {
       // This would typically open a scheduling modal or redirect to a booking system
-      alert('Visit scheduling feature coming soon! Please call us at 855 77 777 470 to schedule your visit.')
+      alert('Visit scheduling feature coming soon! Please call us at +855 15 81 44 40 to schedule your visit.')
     }
 
     return {
