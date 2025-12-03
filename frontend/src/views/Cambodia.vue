@@ -1,76 +1,74 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="py-6 md:py-8">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl md:text-5xl font-bold mb-2">Cambodia</h1>
+    <section class="relative min-h-[70vh] flex items-center overflow-hidden pt-24 md:pt-28 pb-20 bg-gradient-to-br from-[#0b1c34] via-[#142b4a] to-[#1d3c5f] text-white">
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute inset-0 opacity-30 mix-blend-screen" style="background-image: radial-gradient(circle at 25% 20%, rgba(255,255,255,0.18), transparent 45%), radial-gradient(circle at 75% 15%, rgba(255,255,255,0.12), transparent 35%), radial-gradient(circle at 60% 80%, rgba(255,255,255,0.18), transparent 30%);"></div>
+        <div class="absolute inset-y-[-25%] left-[-10%] w-1/2 bg-gradient-to-r from-brand-orange/25 via-transparent to-transparent blur-[150px] opacity-60"></div>
+        <div class="absolute inset-y-[-35%] right-[-15%] w-2/3 bg-gradient-to-l from-brand-blue/30 via-transparent to-transparent blur-[180px] opacity-65"></div>
+        <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/50 via-black/30 to-transparent"></div>
       </div>
-    </div>
-
-    <!-- Content Section -->
-    <div class="bg-primary py-12 md:py-16">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose max-w-none">
-          <p class="text-base md:text-lg text-gray-900 mb-8 leading-relaxed">
-            <span class="font-bold text-main">Cambodia</span>, officially the Kingdom of Cambodia, is a Southeast Asian nation bordered by Thailand to the northwest, Laos to the north, Vietnam to the east, and the Gulf of Thailand to the southwest. Covering approximately 181,035 square kilometers, the country features a central plain dominated by the Mekong River and Tonlé Sap Lake, Southeast Asia's largest freshwater lake.
-          </p>
-          <p class="text-base md:text-lg text-gray-900 mb-8 leading-relaxed">
-            As of 2024, Cambodia's population is estimated at around 17.6 million people, with the majority being ethnically Khmer. The capital and largest city is <span class="font-bold text-main">Phnom Penh</span>, situated at the confluence of the Tonlé Sap and Mekong rivers, where Calvary Chapel Phnom Penh serves the community.
-          </p>
-          <p class="text-base md:text-lg text-gray-900 mb-8 leading-relaxed">
-            Historically, Cambodia was home to the <span class="font-bold">Khmer Empire</span>, which flourished from the 9th to the 15th centuries and is renowned for constructing the magnificent Angkor Wat temple complex. In the 19th century, Cambodia became a French protectorate, gaining independence in 1953. The nation endured significant turmoil during the Khmer Rouge regime from 1975 to 1979, resulting in the deaths of an estimated 1.7 to 2.2 million people—a period that deeply shaped the nation's resilience and character.
-          </p>
-          <p class="text-base md:text-lg text-gray-900 mb-8 leading-relaxed">
-            In recent years, Cambodia has experienced rapid economic growth, with the economy primarily driven by the textile industry, tourism, and agriculture. Tourism plays a vital role, with millions of international visitors drawn to the country's rich cultural heritage, including traditional arts, dance, and cuisine. The Khmer language is the official language, and Buddhism is the predominant religion.
-          </p>
-          <p class="text-base md:text-lg text-gray-900 mb-8 leading-relaxed">
-            Cambodia's diverse ecosystems, including tropical forests and the Tonlé Sap Biosphere Reserve, support a wide array of wildlife and plant species. The country's rich cultural heritage and resilient spirit, having overcome tremendous challenges throughout its history, make it a nation of great promise and potential.
-          </p>
-          <p class="text-base md:text-lg text-gray-900 mb-4">Our ministry in Cambodia is focused on:</p>
-          <ul class="space-y-3 text-base md:text-lg text-gray-900 mb-8">
-            <li class="flex items-start">
-              <span class="text-main mr-2">•</span>
-              <span>Sharing the Gospel with Cambodians in their heart language</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-main mr-2">•</span>
-              <span>Supporting local communities through outreaches and practical care</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-main mr-2">•</span>
-              <span>Training and equipping Cambodian believers for ministry</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-main mr-2">•</span>
-              <span>Partnering with local ministries and organizations</span>
-            </li>
-            <li class="flex items-start">
-              <span class="text-main mr-2">•</span>
-              <span>Praying for spiritual awakening across the nation</span>
-            </li>
-          </ul>
-          <p class="text-base md:text-lg text-gray-900 mb-8 leading-relaxed">
-            Cambodia is a nation open to the Gospel. The people are friendly, welcoming, and hungry for truth. Whether you're a Cambodian national or an expatriate living here, we invite you to join us as we share the love of Jesus Christ with all who call Cambodia home.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap justify-center gap-4 mt-12">
-          <router-link
-            to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-lg hover:bg-brand-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
-          >
-            Contact Us
-          </router-link>
+      <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Cambodia</h1>
+        <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto font-light">
+          A vibrant nation of resilience, heritage, and Gospel opportunity in the heart of Southeast Asia.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Phnom Penh
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Khmer Heritage
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Tonlé Sap
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Gospel Future
+          </span>
         </div>
       </div>
-    </div>
+    </section>
 
+    <!-- About Section -->
+    <section class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 text-center">
+        <p class="text-sm uppercase tracking-[0.35em] text-gray-400">Question</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What is Cambodia?</h2>
+        <div class="space-y-4 text-left text-lg text-gray-600 leading-relaxed">
+          <p>
+            <span class="font-semibold text-brand-orange">Cambodia</span>, officially the <span class="font-semibold text-brand-orange">Kingdom of Cambodia</span>, sits at the crossroads of <span class="font-semibold text-brand-orange">Southeast Asia</span> bordered by Thailand, Laos, Vietnam, and the Gulf of Thailand. The <span class="font-semibold text-brand-orange">Mekong River</span>, <span class="font-semibold text-brand-orange">Tonlé Sap Lake</span>, and fertile plains shape daily life for the 17+ million people who call the country home.
+          </p>
+          <p>
+            <span class="font-semibold text-brand-orange">Phnom Penh</span>, the capital, pulses at the confluence of the Mekong and Tonlé Sap rivers. From here, <span class="font-semibold text-brand-orange">Calvary Chapel Phnom Penh</span> shares the hope of Jesus within a city marked by markets, cafes, universities, and local neighborhoods that represent every layer of Cambodian society.
+          </p>
+          <p>
+            The legacy of the <span class="font-semibold text-brand-orange">Khmer Empire</span>—highlighted by <span class="font-semibold text-brand-orange">Angkor Wat</span>—still inspires national pride. Yet recent history includes deep trauma from the <span class="font-semibold text-brand-orange">Khmer Rouge</span> regime. Today’s Cambodia is rebuilding through education, entrepreneurship, and a new generation eager for truth, restoration, and purpose.
+          </p>
+          <p>
+            <span class="font-semibold text-brand-orange">Ministry in Cambodia</span> involves listening well, honoring the culture, investing in relationships, and presenting the <span class="font-semibold text-brand-orange">Gospel</span> faithfully in Khmer. From house gatherings to city outreaches, we seek to equip believers and serve Phnom Penh with humility and hope.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="pb-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <a
+          href="https://en.wikipedia.org/wiki/Cambodia"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-full hover:bg-brand-orange/90 transition-colors shadow-lg shadow-brand-orange/30"
+        >
+          Learn More
+        </a>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Cambodia',
-};
+  name: 'Cambodia'
+}
 </script>
 
