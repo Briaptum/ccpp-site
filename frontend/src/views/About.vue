@@ -1,35 +1,29 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="relative min-h-screen flex items-center overflow-hidden pt-24 md:pt-28">
-      <div
-        class="absolute inset-0 bg-cover bg-center opacity-30 blur-[1.5px]"
-        :style="{ backgroundImage: `url(${aboutHeroImage})` }"
-      ></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50"></div>
-      <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p class="text-sm uppercase tracking-[0.4em] text-white/70 mb-4">About Calvary Chapel Phnom Penh</p>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-          A worshiping community rooted in Scripture and present for Phnom Penh.
+    <div class="relative min-h-[55vh] flex items-center overflow-hidden pt-20 md:pt-24 pb-16">
+      <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div
+          class="absolute inset-0 bg-cover bg-center scale-105 saturate-110 brightness-105 transition-transform duration-[4000ms]"
+          :style="{ backgroundImage: `linear-gradient(120deg, rgba(17, 39, 84, 0.25), rgba(17, 39, 84, 0.45)), url(${aboutHeroImage})` }"
+        ></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-black/70 via-black/55 to-black/65"></div>
+        <div class="absolute inset-y-[-25%] left-[-10%] w-1/2 bg-gradient-to-r from-brand-blue/35 via-brand-blue/15 to-transparent blur-[120px] opacity-60"></div>
+        <div class="absolute inset-y-[-35%] right-[-15%] w-2/3 bg-gradient-to-l from-brand-orange/30 via-brand-orange/12 to-transparent blur-[180px] opacity-65"></div>
+        <div class="absolute -top-24 left-1/2 w-[420px] h-[420px] -translate-x-1/2 bg-white/15 blur-[180px] opacity-60"></div>
+        <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/80 via-black/60 to-transparent"></div>
+        <div
+          class="absolute inset-0 opacity-15 mix-blend-screen"
+          style="background-image: radial-gradient(circle at 20% 28%, rgba(255,255,255,0.25), transparent 45%), radial-gradient(circle at 80% 10%, rgba(255,255,255,0.22), transparent 30%), radial-gradient(circle at 62% 78%, rgba(255,255,255,0.18), transparent 32%);"
+        ></div>
+      </div>
+      <div class="relative z-10 w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
+        <h1 class="text-xl sm:text-2xl md:text-3xl font-semibold text-white leading-snug">
+          About Calvary Chapel Phnom Penh
         </h1>
-        <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto font-light mb-10">
-          We gather to teach verse by verse through the Bible, cultivate authentic relationships,
-          and serve the city with the hope of Jesus.
+        <p class="text-xs sm:text-sm md:text-base text-white/80 font-light">
+          A simple Calvary Chapel fellowship teaching the Bible verse by verse, welcoming Phnom Penh to know and follow Jesus together.
         </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <router-link
-            to="/what-we-believe"
-            class="inline-flex items-center px-6 py-3 bg-brand-orange text-white font-semibold rounded-md hover:bg-brand-orange/90 transition-colors"
-          >
-            What We Believe
-          </router-link>
-          <router-link
-            to="/contact"
-            class="inline-flex items-center px-6 py-3 bg-white/10 text-white font-semibold rounded-md border border-white/20 hover:bg-white/20 transition-colors backdrop-blur-sm"
-          >
-            Plan a Visit
-          </router-link>
-        </div>
       </div>
     </div>
 
@@ -38,8 +32,8 @@
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
           <p class="text-sm uppercase tracking-[0.3em] text-brand-blue mb-4">Our story</p>
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Calvary Chapel Phnom Penh is a verse-by-verse church with an open Bible and open doors.
+          <h2 class="text-4xl md:text-5xl font-bold text-brand-orange mb-6">
+            What is Calvary Chapel Phnom Penh?
           </h2>
           <p class="text-lg text-gray-700 leading-relaxed mb-4">
             Beginning with a handful of families studying Scripture together, the church has grown into a diverse
@@ -51,40 +45,13 @@
             equip people to know Jesus, love one another, and serve Phnom Penh with humility and hope.
           </p>
         </div>
-        <div class="bg-gray-50 rounded-3xl border border-gray-100 p-8 space-y-6">
-          <div class="flex items-start space-x-4">
-            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-orange/15 text-brand-orange flex items-center justify-center">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 0V4m0 8v8m4-6h4m-8 0H4" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-1">Scripture-centered</h3>
-              <p class="text-gray-600">Teaching verse by verse through books of the Bible so that the Word shapes everything.</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-4">
-            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-blue/15 text-brand-blue flex items-center justify-center">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-1">Authentic discipleship</h3>
-              <p class="text-gray-600">Smaller communities and mentors walking together in prayer, care, and mission.</p>
-            </div>
-          </div>
-          <div class="flex items-start space-x-4">
-            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-900/10 text-gray-900 flex items-center justify-center">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 5v9" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-1">City presence</h3>
-              <p class="text-gray-600">Serving Phnom Penh through mercy initiatives, youth mentorship, and partnerships.</p>
-            </div>
-          </div>
+        <div class="relative rounded-3xl overflow-hidden border border-gray-100 shadow-2xl bg-gray-900/5">
+          <img
+            :src="storyImage"
+            alt="Calvary Chapel Phnom Penh community"
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent"></div>
         </div>
       </div>
     </section>
@@ -217,7 +184,8 @@
 
 <script>
 import { ref, onMounted, computed } from 'vue'
-import aboutHeroImage from '@/assets/background/about-bg.jpg'
+import aboutHeroImage from '@/assets/background/bg-hero4.jpg'
+import storyImage from '@/assets/background/background2.jpg'
 
 export default {
   name: 'About',
@@ -300,6 +268,7 @@ export default {
 
     return {
       aboutHeroImage,
+      storyImage,
       loading,
       error,
       galleryImages,
