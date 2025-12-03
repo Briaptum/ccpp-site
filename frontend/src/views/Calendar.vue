@@ -1,16 +1,42 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="py-6 md:py-8">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl md:text-5xl font-bold mb-2">Church Calendar</h1>
-        <p class="text-lg text-gray-700 mt-2">Monthly view of all our church activities</p>
+    <section class="relative min-h-[55vh] flex items-center overflow-hidden pt-20 md:pt-24 pb-16 bg-gradient-to-br from-[#0f1f33] via-[#182f4a] to-[#1f4061] text-white">
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute inset-0 opacity-25 mix-blend-screen" style="background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25), transparent 45%), radial-gradient(circle at 80% 10%, rgba(255,255,255,0.18), transparent 35%), radial-gradient(circle at 60% 80%, rgba(255,255,255,0.2), transparent 30%);"></div>
+        <div class="absolute inset-y-[-30%] left-[-10%] w-1/2 bg-gradient-to-r from-brand-orange/25 via-transparent to-transparent blur-[150px] opacity-60"></div>
+        <div class="absolute inset-y-[-40%] right-[-15%] w-2/3 bg-gradient-to-l from-brand-blue/35 via-transparent to-transparent blur-[200px] opacity-65"></div>
+        <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
       </div>
-    </div>
+      <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Church Calendar</h1>
+        <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto font-light">
+          One place to see every worship gathering, prayer night, outreach, and family moment we have planned.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Monthly Rhythm
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Worship & Prayer
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Youth & Families
+          </span>
+        </div>
+      </div>
+    </section>
 
     <!-- Content Section -->
-    <div class="bg-primary py-12 md:py-16">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="bg-primary py-12 md:py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <section class="text-center space-y-4">
+          <p class="text-sm uppercase tracking-[0.35em] text-gray-400">Question</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">How do I use the calendar?</h2>
+          <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Browse by month, tap any highlighted day to see its events, then open an event for full details—dates, times, and locations.
+          </p>
+        </section>
         <!-- Loading State -->
         <div v-if="loading" class="py-12">
           <div class="text-center">
@@ -20,15 +46,13 @@
         </div>
 
         <!-- Error State -->
-        <div v-else-if="error" class="py-12">
-          <div class="card bg-red-50 border-red-200">
-            <p class="text-red-600 text-center">{{ error }}</p>
-          </div>
+        <div v-else-if="error" class="py-12 text-center">
+          <p class="text-red-600">{{ error }}</p>
         </div>
 
         <!-- Calendar View -->
         <div v-else>
-          <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+          <div class="bg-white/95 backdrop-blur-sm rounded-[32px] shadow-2xl p-6 md:p-8 border border-gray-100">
             <!-- Calendar Header -->
             <div class="text-center mb-8">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{{ currentMonthName }} {{ currentYear }}</h2>
@@ -44,7 +68,7 @@
                 </button>
                 <button 
                   @click="resetToCurrentMonth"
-                  class="px-6 py-2 bg-main text-white font-semibold rounded-lg hover:bg-main/90 transition-colors shadow-md"
+                  class="px-6 py-2 bg-main text-white font-semibold rounded-full hover:bg-main/90 transition-colors shadow-md shadow-main/30"
                 >
                   Today
                 </button>
@@ -76,19 +100,20 @@
                 v-for="day in calendarDays" 
                 :key="day.date"
                 :class="[
-                  'min-h-24 md:min-h-32 p-2 border-2 rounded-lg cursor-pointer transition-all',
-                  day.isCurrentMonth 
-                    ? 'bg-white hover:bg-gray-50 border-gray-200 hover:border-main/30' 
-                    : 'bg-gray-50 text-gray-400 border-gray-100',
-                  day.isToday ? 'ring-2 ring-main ring-offset-2 bg-main/5 border-main' : '',
-                  day.hasEvents ? 'border-brand-orange/50' : ''
+                  'min-h-24 md:min-h-32 p-3 border rounded-2xl cursor-pointer transition-all',
+                  day.isToday
+                    ? 'bg-main text-white border-main shadow-lg shadow-main/20'
+                    : day.isCurrentMonth 
+                      ? 'bg-white hover:bg-gray-50 border-gray-200 hover:border-main/30' 
+                      : 'bg-gray-50 text-gray-400 border-gray-100 opacity-70',
+                  day.hasEvents && !day.isToday ? 'border-brand-orange/50' : ''
                 ]"
                 @click="selectDate(day)"
               >
                 <div 
                   :class="[
                     'text-sm md:text-base font-semibold mb-2',
-                    day.isToday ? 'text-main' : day.isCurrentMonth ? 'text-gray-900' : 'text-gray-400'
+                    day.isToday ? 'text-white' : day.isCurrentMonth ? 'text-gray-900' : 'text-gray-400'
                   ]"
                 >
                   {{ day.day }}
@@ -97,7 +122,7 @@
                   <div 
                     v-for="event in day.events.slice(0, 2)" 
                     :key="event.id"
-                    class="text-xs bg-brand-orange/20 text-brand-orange rounded px-2 py-1 truncate font-medium"
+                    class="text-xs bg-brand-orange/15 text-brand-orange rounded-full px-2 py-1 truncate font-medium"
                   >
                     {{ event.title }}
                   </div>
@@ -110,7 +135,7 @@
           </div>
 
           <!-- Selected Date Events -->
-          <div v-if="selectedDateEvents.length > 0" class="bg-white rounded-xl shadow-lg p-6 md:p-8 mt-8">
+          <div v-if="selectedDateEvents.length > 0" class="bg-white/95 rounded-[32px] shadow-2xl p-6 md:p-8 mt-8 border border-gray-100">
             <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
               Events on {{ formatFullDate(selectedDay) }}
             </h3>
@@ -118,7 +143,7 @@
               <div 
                 v-for="event in selectedDateEvents" 
                 :key="event.id"
-                class="border-l-4 border-main pl-6 py-4 hover:bg-gray-50 transition-colors rounded-r-lg cursor-pointer group"
+                class="border-l-4 border-main pl-6 py-4 hover:bg-gray-50 transition-all rounded-r-lg cursor-pointer group bg-white"
                 @click="openModal(event)"
               >
                 <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-main transition-colors">{{ event.title }}</h4>
@@ -143,7 +168,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Event Modal -->
     <div

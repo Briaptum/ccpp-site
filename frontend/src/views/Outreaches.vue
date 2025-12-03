@@ -1,88 +1,126 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="py-6 md:py-8">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl md:text-5xl font-bold mb-2">Outreaches</h1>
+    <section class="relative min-h-[55vh] flex items-center overflow-hidden pt-20 md:pt-24 pb-16 bg-gradient-to-br from-[#0a1f33] via-[#102a47] to-[#153a5d] text-white">
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute inset-0 opacity-25 mix-blend-screen" style="background-image: radial-gradient(circle at 15% 25%, rgba(255,255,255,0.2), transparent 45%), radial-gradient(circle at 70% 15%, rgba(255,255,255,0.15), transparent 35%), radial-gradient(circle at 60% 80%, rgba(255,255,255,0.18), transparent 30%);"></div>
+        <div class="absolute inset-y-[-30%] left-[-10%] w-1/2 bg-gradient-to-r from-brand-orange/25 via-transparent to-transparent blur-[150px] opacity-60"></div>
+        <div class="absolute inset-y-[-40%] right-[-15%] w-2/3 bg-gradient-to-l from-brand-blue/30 via-transparent to-transparent blur-[200px] opacity-65"></div>
+        <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
       </div>
-    </div>
+      <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Outreaches</h1>
+        <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto font-light">
+          Serving Cambodia with tangible compassion, prayer, and the hope of Jesus.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            MercyTeams
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Meals & Care
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Prayer
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Gospel Moments
+          </span>
+        </div>
+      </div>
+    </section>
 
     <!-- Content Section -->
-    <div class="bg-primary py-12 md:py-16">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
-          We carry the love and message of Jesus into the communities of Cambodia, serving with compassion and sharing hope.
-        </p>
+    <section class="bg-primary py-12 md:py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <section class="text-center space-y-6">
+          <p class="text-sm uppercase tracking-[0.35em] text-gray-400">Question</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What are our outreaches?</h2>
+          <div class="space-y-4 text-left text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            <p>
+              Outreaches carry <span class="font-semibold text-brand-orange">Calvary Chapel Phnom Penh</span> into neighborhoods, schools, and villages with meals, medical care, prayer, and discipleship.
+            </p>
+            <p>
+              We partner with local leaders, listen to community needs, and respond with <span class="font-semibold text-brand-orange">compassionate action</span> that points every person to Jesus.
+            </p>
+            <p>
+              Whether we’re serving families, youth, or vulnerable neighbors, our teams keep the <span class="font-semibold text-brand-orange">Gospel and presence of the Holy Spirit</span> at the center.
+            </p>
+          </div>
+        </section>
 
-        <div class="prose prose-lg max-w-none">
-          <p class="text-lg text-gray-700 mb-6">
-            Our outreach programs are designed to take the love and message of Jesus Christ beyond our church walls into the communities of Cambodia. Serving others is a vital expression of our faith and a powerful way to share the Gospel.
-          </p>
-          <p class="text-lg text-gray-700 mb-12">
-            Through these initiatives we partner with local organizations, serve those in need, and create opportunities for people to encounter God's love through practical acts of service.
-          </p>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article class="group relative rounded-[32px] border border-gray-100 bg-white shadow-2xl overflow-hidden flex flex-col">
+            <div class="relative h-52 overflow-hidden">
+              <img
+                :src="araksatImage"
+                alt="Araksat Outreach"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs uppercase tracking-[0.35em] bg-white/90 text-gray-900">
+                Araksat
+              </span>
+            </div>
+            <div class="p-8 space-y-4 flex flex-col flex-1">
+              <h3 class="text-2xl font-semibold text-gray-900">Village gatherings</h3>
+              <p class="text-gray-600 flex-1">
+                Meals, house visits, and Bible studies anchor this long-term relationship with families north of the city.
+              </p>
+            </div>
+          </article>
+
+          <article class="group relative rounded-[32px] border border-gray-100 bg-white shadow-2xl overflow-hidden flex flex-col">
+            <div class="relative h-52 overflow-hidden">
+              <img
+                :src="steunmeancheyImage"
+                alt="Steunmeanchey Outreach"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs uppercase tracking-[0.35em] bg-white/90 text-gray-900">
+                Steung Meanchey
+              </span>
+            </div>
+            <div class="p-8 space-y-4 flex flex-col flex-1">
+              <h3 class="text-2xl font-semibold text-gray-900">Urban compassion</h3>
+              <p class="text-gray-600 flex-1">
+                Care packages, medical clinics, and youth ministry support families living around the landfill district.
+              </p>
+            </div>
+          </article>
+
+          <article class="group relative rounded-[32px] border border-gray-100 bg-white shadow-2xl overflow-hidden flex flex-col">
+            <div class="relative h-52 overflow-hidden">
+              <img
+                :src="preyVengImage"
+                alt="Prey Veng Outreach"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs uppercase tracking-[0.35em] bg-white/90 text-gray-900">
+                Prey Veng
+              </span>
+            </div>
+            <div class="p-8 space-y-4 flex flex-col flex-1">
+              <h3 class="text-2xl font-semibold text-gray-900">Regional partnership</h3>
+              <p class="text-gray-600 flex-1">
+                Monthly teams encourage rural churches with leadership training, prayer, and evangelistic outreaches.
+              </p>
+            </div>
+          </article>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <div class="bg-primary rounded-lg overflow-hidden shadow-md">
-            <div class="w-full h-48 overflow-hidden">
-              <img 
-                :src="araksatImage" 
-                alt="Araksat Outreach" 
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h2 class="text-2xl font-semibold text-gray-900 mb-4">Araksat</h2>
-              <p class="text-gray-700">
-                Our outreach to the Araksat community focuses on sharing the Gospel and serving the people with love and compassion.
-              </p>
-            </div>
-          </div>
-          
-          <div class="bg-primary rounded-lg overflow-hidden shadow-md">
-            <div class="w-full h-48 overflow-hidden">
-              <img 
-                :src="steunmeancheyImage" 
-                alt="Steunmeanchey Outreach" 
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h2 class="text-2xl font-semibold text-gray-900 mb-4">Steunmeanchey</h2>
-              <p class="text-gray-700">
-                We serve the Steunmeanchey community through practical acts of service and sharing the hope of Jesus Christ.
-              </p>
-            </div>
-          </div>
-          
-          <div class="bg-primary rounded-lg overflow-hidden shadow-md">
-            <div class="w-full h-48 overflow-hidden">
-              <img 
-                :src="preyVengImage" 
-                alt="Prey Veng Outreach" 
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h2 class="text-2xl font-semibold text-gray-900 mb-4">Prey Veng</h2>
-              <p class="text-gray-700">
-                Our Prey Veng outreach brings the love of Christ to this community through ministry, service, and discipleship.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex flex-wrap justify-center gap-4 mt-12">
+        <div class="flex flex-wrap justify-center gap-4">
           <router-link
             to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-lg hover:bg-brand-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+            class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-full hover:bg-brand-orange/90 transition-colors shadow-lg shadow-brand-orange/30"
           >
-            Contact Us
+            Serve with Us
           </router-link>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Gallery Section -->
     <div class="py-20 bg-gray-200">
@@ -211,6 +249,9 @@
 <script>
 import { ref, computed, onMounted } from 'vue'
 import { galleryService } from '@/services/galleryService'
+import araksatImage from '@/assets/gallery/548625714_1236675678494090_1776087346866151382_n.jpg'
+import steunmeancheyImage from '@/assets/gallery/547653470_1236675908494067_1828648105188893790_n.jpg'
+import preyVengImage from '@/assets/gallery/548222744_1236675851827406_3818316444684279685_n.jpg'
 
 export default {
   name: 'Outreaches',
@@ -315,7 +356,10 @@ export default {
       paginatedImages,
       getFullImageIndex,
       goToPage,
-      handleImageError
+      handleImageError,
+      araksatImage,
+      steunmeancheyImage,
+      preyVengImage
     }
   },
 };

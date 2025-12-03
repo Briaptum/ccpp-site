@@ -1,16 +1,38 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="py-6 md:py-8">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl md:text-5xl font-bold mb-2">Upcoming Events</h1>
-        <p class="text-lg text-gray-700 mt-2">Join us for worship, fellowship, and community</p>
+    <section class="relative min-h-[55vh] flex items-center overflow-hidden pt-20 md:pt-24 pb-16 bg-gradient-to-br from-[#0a1f33] via-[#162c46] to-[#1e3d5d] text-white">
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute inset-0 opacity-25 mix-blend-screen" style="background-image: radial-gradient(circle at 15% 25%, rgba(255,255,255,0.25), transparent 45%), radial-gradient(circle at 80% 12%, rgba(255,255,255,0.18), transparent 35%), radial-gradient(circle at 60% 80%, rgba(255,255,255,0.2), transparent 30%);"></div>
+        <div class="absolute inset-y-[-30%] left-[-8%] w-1/2 bg-gradient-to-r from-brand-orange/25 via-transparent to-transparent blur-[150px] opacity-60"></div>
+        <div class="absolute inset-y-[-40%] right-[-15%] w-2/3 bg-gradient-to-l from-brand-blue/35 via-transparent to-transparent blur-[200px] opacity-65"></div>
+        <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
       </div>
-    </div>
+      <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Upcoming Events</h1>
+        <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto font-light">
+          Prayer nights, serve days, retreats, and gatherings that keep our church present in Phnom Penh all year.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Worship moments
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Serve Phnom Penh
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Youth retreats
+          </span>
+          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
+            Prayer & fasting
+          </span>
+        </div>
+      </div>
+    </section>
 
     <!-- Content Section -->
-    <div class="bg-primary py-12 md:py-16">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="bg-primary py-12 md:py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <!-- Loading State -->
         <div v-if="loading" class="py-12">
           <div class="text-center">
@@ -20,10 +42,8 @@
         </div>
 
         <!-- Error State -->
-        <div v-else-if="error" class="py-12">
-          <div class="card bg-red-50 border-red-200">
-            <p class="text-red-600 text-center">{{ error }}</p>
-          </div>
+        <div v-else-if="error" class="py-12 text-center">
+          <p class="text-red-600">{{ error }}</p>
         </div>
 
         <!-- Events List -->
@@ -32,42 +52,44 @@
             <div 
               v-for="event in events" 
               :key="event.id"
-              class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-100 hover:border-main/20 transform hover:-translate-y-1 flex flex-col"
+              class="relative rounded-[32px] border border-white/15 bg-white backdrop-blur-sm overflow-hidden shadow-2xl flex flex-col cursor-pointer group"
               @click="openModal(event)"
             >
-              <!-- Date Badge -->
-              <div class="bg-gradient-to-br from-main to-secondary p-6 flex flex-col items-center justify-center">
-                <span class="text-4xl font-bold text-white mb-1">{{ formatDay(event.date) }}</span>
-                <span class="text-sm uppercase text-white/90 font-medium tracking-wider">{{ formatMonth(event.date) }}</span>
-                <span class="text-xs text-white/80 mt-1">{{ event.date.getFullYear() }}</span>
+              <div class="relative h-44 bg-gradient-to-br from-brand-blue/90 to-brand-blue flex items-center justify-center">
+                <div class="text-center text-white space-y-1">
+                  <p class="text-sm uppercase tracking-[0.35em] text-white/80">{{ formatMonth(event.date) }}</p>
+                  <p class="text-5xl font-bold leading-none">{{ formatDay(event.date) }}</p>
+                  <p class="text-xs uppercase tracking-[0.35em] text-white/70">{{ event.date.getFullYear() }}</p>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
               </div>
-              
-              <!-- Content -->
-              <div class="flex-1 p-6 flex flex-col">
-                <h2 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-main transition-colors line-clamp-2">
-                  {{ event.title }}
-                </h2>
-                <p class="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3 flex-grow">{{ event.summary }}</p>
-                <div class="flex flex-col gap-3 text-sm mt-auto">
-                  <div class="flex items-center text-gray-600">
-                    <svg class="w-4 h-4 mr-2 text-main flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              <div class="p-6 flex flex-col gap-4 flex-1">
+                <div>
+                  <h2 class="text-xl font-semibold text-gray-900 mb-2 group-hover:text-brand-orange transition-colors">
+                    {{ event.title }}
+                  </h2>
+                  <p class="text-gray-600 text-sm leading-relaxed line-clamp-3">{{ event.summary }}</p>
+                </div>
+                <div class="flex flex-wrap gap-2 text-xs text-gray-600">
+                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-brand-blue/10 text-brand-blue font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a 2 2 0 00-2-2H5a 2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    <span class="font-medium text-xs">{{ formatFullDate(event.date) }}</span>
-                  </div>
-                  <div v-if="event.time" class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {{ formatFullDate(event.date) }}
+                  </span>
+                  <span v-if="event.time" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-brand-orange/10 text-brand-orange font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span class="px-2 py-1 bg-brand-orange/10 text-brand-orange rounded-full font-medium text-xs">{{ event.time }}</span>
-                  </div>
-                  <div v-if="event.location" class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-main flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {{ event.time }}
+                  </span>
+                  <span v-if="event.location" class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gray-100 text-gray-700 font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full font-medium text-xs truncate">{{ event.location }}</span>
-                  </div>
+                    {{ event.location }}
+                  </span>
                 </div>
               </div>
             </div>
@@ -81,7 +103,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Event Modal -->
     <div
