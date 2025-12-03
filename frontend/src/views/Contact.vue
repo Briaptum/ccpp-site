@@ -17,9 +17,9 @@
                 <div>
                   <h3 class="font-semibold text-gray-900">Address</h3>
                   <p class="text-gray-600">
-                    123 Faith Street<br>
-                    Hope City, HC 12345<br>
-                    United States
+                    Street 26BT, House 428<br>
+                    Sangkat Boeung Tompun, Khan Meanchey<br>
+                    Phnom Penh, Cambodia
                   </p>
                 </div>
               </div>
@@ -28,7 +28,7 @@
                 <div class="text-2xl">📞</div>
                 <div>
                   <h3 class="font-semibold text-gray-900">Phone</h3>
-                  <p class="text-gray-600">(555) 123-4567</p>
+                  <p class="text-gray-600">855 77 777 470</p>
                 </div>
               </div>
               
@@ -133,7 +133,7 @@
                   v-model="form.phone"
                   type="tel"
                   class="input-field"
-                  placeholder="(555) 123-4567"
+                  placeholder="855 77 777 470"
                 />
               </div>
               
@@ -238,7 +238,7 @@
           <p class="text-gray-600 mb-4">
             Speak directly with our staff during office hours.
           </p>
-          <a href="tel:+15551234567" class="btn-primary">
+          <a href="tel:+85577777470" class="btn-primary">
             Call Now
           </a>
         </div>
@@ -308,7 +308,7 @@ export default {
 
     const scheduleVisit = () => {
       // This would typically open a scheduling modal or redirect to a booking system
-      alert('Visit scheduling feature coming soon! Please call us at (555) 123-4567 to schedule your visit.')
+      alert('Visit scheduling feature coming soon! Please call us at 855 77 777 470 to schedule your visit.')
     }
 
     return {
