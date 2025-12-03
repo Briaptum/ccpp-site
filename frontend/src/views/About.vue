@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="relative min-h-[55vh] flex items-center overflow-hidden pt-20 md:pt-24 pb-16">
+    <div class="relative min-h-[62vh] flex items-center overflow-hidden pt-20 md:pt-24 pb-20">
       <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div
           class="absolute inset-0 bg-cover bg-center scale-105 saturate-110 brightness-105 transition-transform duration-[4000ms]"
