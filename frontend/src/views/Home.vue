@@ -28,10 +28,10 @@
         </p>
         <div class="flex flex-wrap justify-center gap-4">
           <router-link
-            to="/what-we-believe"
+            to="/about"
             class="inline-flex items-center px-6 py-3 bg-brand-orange text-white font-semibold rounded-md hover:bg-brand-orange/90 transition-colors"
           >
-            What We Believe
+            About Us
           </router-link>
           <router-link
             to="/contact"
@@ -116,7 +116,15 @@
     </section>
 
     <!-- Upcoming Section -->
-    <div class="py-24 bg-brand-blue">
+    <div class="relative py-24 bg-brand-blue overflow-hidden">
+      <div class="absolute inset-0 opacity-80" aria-hidden="true">
+        <div class="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-black/40 via-transparent to-transparent"></div>
+        <div class="absolute inset-y-0 right-0 w-2/3 bg-gradient-to-l from-brand-orange/20 via-transparent to-transparent"></div>
+        <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/15 via-transparent to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-black/30 via-brand-blue/20 to-transparent"></div>
+        <div class="absolute inset-0 opacity-35 mix-blend-screen" style="background-image: radial-gradient(circle at 25% 20%, rgba(255,255,255,0.25), transparent 40%), radial-gradient(circle at 80% 0%, rgba(255,255,255,0.15), transparent 35%), radial-gradient(circle at 60% 85%, rgba(255,255,255,0.2), transparent 40%);"></div>
+      </div>
+      <div class="relative">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
         <div class="text-center mb-16">
           <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-3">Upcoming</p>
@@ -197,15 +205,21 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
 
     <!-- Latest Teachings Section -->
-    <div class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative py-24 bg-gradient-to-br from-[#0B111E] via-[#112437] to-[#1C4053] text-white overflow-hidden">
+      <div class="absolute inset-0 opacity-70" aria-hidden="true">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 15%, rgba(228,157,64,0.25), transparent 45%), radial-gradient(circle at 80% 10%, rgba(255,255,255,0.12), transparent 40%), radial-gradient(circle at 60% 85%, rgba(34,112,130,0.3), transparent 45%);"></div>
+        <div class="absolute inset-0 mix-blend-soft-light opacity-40" style="background-image: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 45%), linear-gradient(300deg, rgba(34,112,130,0.25) 0%, rgba(255,255,255,0) 55%);"></div>
+        <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 80px 80px;"></div>
+      </div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <p class="text-sm uppercase tracking-[0.3em] text-gray-500 mb-3">Latest Teachings</p>
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-700 mb-4">Recent messages from our pulpit</h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light">
+          <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-3">Latest Teachings</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Recent messages from our pulpit</h2>
+          <p class="text-lg text-white/80 max-w-2xl mx-auto font-light">
             Teachings captured each week to keep you connected to the verse-by-verse journey through Scripture.
           </p>
         </div>
@@ -214,31 +228,31 @@
           <div
             v-for="teaching in latestTeachings"
             :key="teaching.id"
-            class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
+            class="bg-white/10 border border-white/15 rounded-2xl backdrop-blur-xl shadow-2xl hover:bg-white/15 transition-all duration-300 overflow-hidden flex flex-col"
           >
             <div class="relative h-48 overflow-hidden">
               <img
                 :src="`https://img.youtube.com/vi/${teaching.id}/hqdefault.jpg`"
                 :alt="teaching.title"
-                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-              <div class="absolute bottom-4 left-4 inline-flex items-center px-3 py-1 bg-white/90 rounded-full text-xs font-semibold tracking-wide text-gray-900 shadow">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
+              <div class="absolute bottom-4 left-4 inline-flex items-center px-3 py-1 bg-white text-gray-900 rounded-full text-xs font-semibold tracking-wide shadow">
                 Teaching Series
               </div>
             </div>
             <div class="p-6 flex flex-col flex-1">
-              <h3 class="text-lg font-semibold text-gray-800 mb-2 leading-snug line-clamp-2">{{ teaching.title }}</h3>
-              <p class="text-sm text-gray-600 mb-5 leading-relaxed line-clamp-3 flex-1">
+              <h3 class="text-lg font-semibold text-white mb-2 leading-snug line-clamp-2">{{ teaching.title }}</h3>
+              <p class="text-sm text-white/70 mb-5 leading-relaxed line-clamp-3 flex-1">
                 {{ teaching.description }}
               </p>
-              <div class="flex items-center justify-between border-t border-gray-100 pt-4">
-                <span class="text-xs uppercase tracking-[0.3em] text-gray-500">YouTube</span>
+              <div class="flex items-center justify-between border-t border-white/20 pt-4">
+                <span class="text-xs uppercase tracking-[0.3em] text-white/50">YouTube</span>
                 <a
                   :href="teaching.url"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center text-sm font-semibold text-brand-blue hover:text-gray-900 transition-colors"
+                  class="inline-flex items-center text-sm font-semibold text-brand-orange hover:text-white transition-colors"
                 >
                   Watch now
                   <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

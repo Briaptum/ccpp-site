@@ -19,7 +19,7 @@
             />
             <div class="text-[#1F1F1F]">
               <span class="block text-xs uppercase tracking-[0.4em] text-[#1F1F1F]/70">Calvary Chapel</span>
-              <span class="block text-lg font-semibold tracking-[0.2em]">Phnom Penh</span>
+              <span class="block text-lg font-semibold tracking-[0.2em] text-brand-orange">Phnom Penh</span>
             </div>
           </router-link>
           
