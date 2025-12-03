@@ -1,51 +1,64 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="py-6 md:py-8">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl md:text-5xl font-bold mb-2">Calvary Chapel</h1>
+    <section class="relative min-h-[70vh] flex items-center overflow-hidden pt-24 md:pt-28 pb-20 bg-gradient-to-br from-[#081229] via-[#0f233f] to-[#173452] text-white">
+      <div class="absolute inset-0" aria-hidden="true">
+        <div
+          class="absolute inset-0 opacity-30 mix-blend-screen"
+          style="background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent 40%), radial-gradient(circle at 80% 15%, rgba(255,255,255,0.15), transparent 35%), radial-gradient(circle at 60% 80%, rgba(255,255,255,0.18), transparent 30%);"
+        ></div>
+        <div class="absolute inset-y-[-30%] left-[-15%] w-2/3 bg-gradient-to-r from-brand-orange/25 via-transparent to-transparent blur-[180px] opacity-60"></div>
+        <div class="absolute inset-y-[-20%] right-[-10%] w-1/2 bg-gradient-to-l from-brand-blue/35 via-transparent to-transparent blur-[150px] opacity-70"></div>
+        <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
       </div>
-    </div>
-
-    <!-- Content Section -->
-    <div class="bg-primary py-12 md:py-16">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
-          An international association of charismatic evangelical churches committed to faithful Bible teaching and Spirit-led ministry.
+      <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Calvary Chapel</h1>
+        <p class="text-lg md:text-xl text-white/80 max-w-3xl mx-auto font-light">
+          A global fellowship of churches rooted in expositional teaching, the work of the Holy Spirit, and a grace-filled culture that welcomes every generation.
         </p>
-
-        <div class="prose prose-lg max-w-none">
-          <p class="text-lg text-gray-700 mb-6">
-            <span class="font-bold text-brand-orange">Calvary Chapel</span> is an international association of charismatic evangelical churches, with origins in Pentecostalism. It maintains a number of radio stations around the world and operates many local Calvary Chapel Bible College programs.
-          </p>
-          <p class="text-lg text-gray-700 mb-6">
-            Beginning in 1965 in Southern California, this fellowship of churches grew out of Chuck Smith's Calvary Chapel Costa Mesa. It became a hub of the Jesus Movement in the late 1960s through connections with Lonnie Frisbee and John Higgins, attracting thousands of young converts and fostering contemporary Christian music through Maranatha! Music. Known for its verse-by-verse Bible teaching, casual style of worship, and emphasis on expository preaching, the movement expanded into a worldwide fellowship of independent churches.
-          </p>
-          <p class="text-lg text-gray-700 mb-6">
-            Calvary Chapel identifies as neither a denomination nor strictly Pentecostal. It holds to evangelical doctrine with charismatic practices like tongues and prophecy while maintaining a strong pretribulationist, premillennialist eschatology.
-          </p>
-          <p class="text-lg text-gray-700 mb-6">
-            Calvary Chapel remains influential through its Bible college, radio stations, and Harvest Crusades. Many well-known pastors and musicians, such as Greg Laurie, Skip Heitzig, Switchfoot, and P.O.D., have roots in Calvary Chapel.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap justify-center gap-4 mt-12">
-          <router-link
-            to="/contact"
-            class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-lg hover:bg-brand-orange/90 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
+        <div class="flex flex-wrap justify-center gap-3">
+          <span
+            v-for="point in heroPoints"
+            :key="point"
+            class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm"
           >
-            Contact Us
-          </router-link>
+            {{ point }}
+          </span>
         </div>
       </div>
-    </div>
+    </section>
 
+    <!-- About Section -->
+    <section class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 text-center">
+        <p class="text-sm uppercase tracking-[0.35em] text-gray-400">Question</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What is Calvary Chapel?</h2>
+        <div class="space-y-4 text-left text-lg text-gray-600 leading-relaxed">
+          <p>
+            Calvary Chapel is an international association of charismatic evangelical churches with roots in the 1960s Jesus Movement. Beginning in Costa Mesa, California, the fellowship embraced verse-by-verse Bible teaching, simple worship, and a welcoming culture that drew thousands of new believers.
+          </p>
+          <p>
+            The churches identify as neither a denomination nor strictly Pentecostal. They hold to historic evangelical doctrine, practice the gifts of the Holy Spirit in an orderly way, and maintain a strong expectation of Christ’s return.
+          </p>
+          <p>
+            Today the Calvary Chapel family includes radio ministries, Bible colleges, and church plants around the world—all focused on teaching Scripture, depending on the Spirit, and serving communities with the hope of Jesus.
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
   name: 'CalvaryChapel',
-};
+  setup() {
+    const heroPoints = ['Verse-by-verse', 'Spirit-led', 'Global family', 'Grace & truth']
+
+    return {
+      heroPoints
+    }
+  }
+}
 </script>
 
