@@ -37,7 +37,7 @@
             to="/contact"
             class="inline-flex items-center px-6 py-3 bg-white/10 text-white font-semibold rounded-md border border-white/20 hover:bg-white/20 transition-colors backdrop-blur-sm"
           >
-            Plan a Visit
+            Contact Us
           </router-link>
         </div>
       </div>
@@ -74,7 +74,7 @@
                   to="/contact"
                   class="inline-flex items-center text-brand-blue font-semibold hover:text-brand-orange transition-colors"
                 >
-                  Plan your visit
+                  Contact Us
                   <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
@@ -103,7 +103,7 @@
                   to="/events/calendar"
                   class="inline-flex items-center text-brand-orange font-semibold hover:text-brand-blue transition-colors"
                 >
-                  View details
+                  Contact Us
                   <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
