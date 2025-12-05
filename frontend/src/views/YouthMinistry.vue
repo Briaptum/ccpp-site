@@ -108,16 +108,22 @@
             class="flex gap-4 overflow-x-auto rounded-3xl shadow-2xl bg-gray-200 px-4 py-4 scroll-smooth"
           >
             <div
-              v-for="image in galleryImages"
+              v-for="(image, index) in galleryImages"
               :key="image.id || image.src"
-              class="w-64 h-44 md:w-80 md:h-52 flex-shrink-0 rounded-2xl overflow-hidden bg-gray-200"
+              @click="openLightbox(index)"
+              class="relative w-64 h-44 md:w-80 md:h-52 flex-shrink-0 rounded-2xl overflow-hidden bg-gray-200 cursor-pointer group"
             >
               <img
                 :src="image.src"
                 :alt="image.alt"
                 @error="handleImageError"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                <svg class="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                </svg>
+              </div>
             </div>
           </div>
           <button
@@ -140,6 +146,50 @@
       </div>
     </section>
 
+    <!-- Lightbox Modal -->
+    <div
+      v-if="lightboxOpen"
+      @click="closeLightbox"
+      class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+    >
+      <button
+        @click="closeLightbox"
+        class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
+      >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <button
+        v-if="currentImageIndex > 0"
+        @click.stop="prevImage"
+        class="absolute left-4 text-white hover:text-gray-300 transition-colors z-10"
+      >
+        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      
+      <div class="max-w-5xl w-full" @click.stop>
+        <img
+          :src="galleryImages[currentImageIndex]?.src"
+          :alt="galleryImages[currentImageIndex]?.alt"
+          class="w-full h-auto max-h-[80vh] object-contain rounded-lg"
+        />
+      </div>
+
+      <button
+        v-if="currentImageIndex < galleryImages.length - 1"
+        @click.stop="nextImage"
+        class="absolute right-4 text-white hover:text-gray-300 transition-colors z-10"
+      >
+        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+
   </div>
 </template>
 
@@ -150,6 +200,8 @@ import { galleryService } from '@/services/galleryService'
 export default {
   name: 'YouthMinistry',
   setup() {
+    const lightboxOpen = ref(false)
+    const currentImageIndex = ref(0)
     const loading = ref(true)
     const error = ref('')
     const galleryImages = ref([])
@@ -186,6 +238,27 @@ export default {
         'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%23ddd" width="200" height="200"/%3E%3Ctext fill="%23999" font-family="sans-serif" font-size="14" dy="10.5" font-weight="bold" x="50%25" y="50%25" text-anchor="middle"%3EImage not found%3C/text%3E%3C/svg%3E'
     }
 
+    const openLightbox = (index) => {
+      currentImageIndex.value = index
+      lightboxOpen.value = true
+    }
+
+    const closeLightbox = () => {
+      lightboxOpen.value = false
+    }
+
+    const nextImage = () => {
+      if (currentImageIndex.value < galleryImages.value.length - 1) {
+        currentImageIndex.value++
+      }
+    }
+
+    const prevImage = () => {
+      if (currentImageIndex.value > 0) {
+        currentImageIndex.value--
+      }
+    }
+
     const scrollGallery = (direction) => {
       const el = galleryScroll.value
       if (!el) return
@@ -198,12 +271,18 @@ export default {
     })
 
     return {
+      lightboxOpen,
+      currentImageIndex,
       galleryImages,
       loading,
       error,
       handleImageError,
       galleryScroll,
-      scrollGallery
+      scrollGallery,
+      openLightbox,
+      closeLightbox,
+      nextImage,
+      prevImage
     }
   }
 }
