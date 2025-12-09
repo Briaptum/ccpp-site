@@ -5,7 +5,7 @@
       <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div
           class="absolute inset-0 bg-cover bg-center scale-105 saturate-110 brightness-105 transition-transform duration-[4000ms]"
-          :style="{ backgroundImage: `linear-gradient(120deg, rgba(17, 39, 84, 0.25), rgba(17, 39, 84, 0.45)), url(${aboutHeroImage})` }"
+          :style="heroBackgroundStyle"
         ></div>
         <div class="absolute inset-0 bg-gradient-to-br from-black/70 via-black/55 to-black/65"></div>
         <div class="absolute inset-y-[-25%] left-[-10%] w-1/2 bg-gradient-to-r from-brand-blue/35 via-brand-blue/15 to-transparent blur-[120px] opacity-60"></div>
@@ -17,28 +17,65 @@
           style="background-image: radial-gradient(circle at 20% 28%, rgba(255,255,255,0.25), transparent 45%), radial-gradient(circle at 80% 10%, rgba(255,255,255,0.22), transparent 30%), radial-gradient(circle at 62% 78%, rgba(255,255,255,0.18), transparent 32%);"
         ></div>
       </div>
-      <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p class="text-sm uppercase tracking-[0.4em] text-white/70 mb-4">Calvary Chapel Phnom Penh</p>
+      <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center" aria-live="polite">
+        <p class="text-sm uppercase tracking-[0.4em] text-white/70 mb-4">{{ activeSlide.eyebrow }}</p>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-          A worshiping community rooted in Scripture and present for Phnom Penh.
+          {{ activeSlide.title }}
         </h1>
         <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto font-light mb-10">
-          We gather to teach verse by verse through the Bible, cultivate authentic relationships,
-          and serve the city with the hope of Jesus.
+          {{ activeSlide.description }}
         </p>
         <div class="flex flex-wrap justify-center gap-4">
           <router-link
-            to="/about"
+            v-if="activeSlide.primaryCta"
+            :to="activeSlide.primaryCta.route"
             class="inline-flex items-center px-6 py-3 bg-brand-orange text-white font-semibold rounded-md hover:bg-brand-orange/90 transition-colors"
           >
-            About Us
+            {{ activeSlide.primaryCta.label }}
           </router-link>
           <router-link
-            to="/contact"
+            v-if="activeSlide.secondaryCta"
+            :to="activeSlide.secondaryCta.route"
             class="inline-flex items-center px-6 py-3 bg-white/10 text-white font-semibold rounded-md border border-white/20 hover:bg-white/20 transition-colors backdrop-blur-sm"
           >
-            Contact Us
+            {{ activeSlide.secondaryCta.label }}
           </router-link>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        @click="prevSlide"
+        class="absolute left-4 sm:left-6 lg:left-10 top-1/2 -translate-y-1/2 inline-flex items-center justify-center p-3 sm:p-4 rounded-full border border-white/40 text-white bg-white/10 hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-white/80"
+        aria-label="Previous banner"
+      >
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        @click="nextSlide"
+        class="absolute right-4 sm:right-6 lg:right-10 top-1/2 -translate-y-1/2 inline-flex items-center justify-center p-3 sm:p-4 rounded-full border border-white/40 text-white bg-white/10 hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-white/80"
+        aria-label="Next banner"
+      >
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <div class="absolute inset-x-0 bottom-8 px-6 sm:px-10 z-20 flex items-center justify-center">
+        <div class="flex items-center gap-3" aria-label="Select hero banner">
+          <button
+            v-for="(slide, index) in heroSlides"
+            :key="slide.id"
+            type="button"
+            @click="goToSlide(index)"
+            :aria-label="`Show banner ${index + 1}`"
+            :aria-current="currentSlideIndex === index ? 'true' : 'false'"
+            class="h-2.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/80 focus:ring-offset-2 focus:ring-offset-white/10"
+            :class="currentSlideIndex === index ? 'w-9 bg-white' : 'w-2.5 bg-white/40 hover:bg-white/70'"
+          ></button>
         </div>
       </div>
     </div>
@@ -275,11 +312,78 @@
 </template>
 
 <script>
-import aboutHeroImage from '@/assets/background/about-bg.jpg'
+import { ref, computed } from 'vue'
+import heroImageCommunity from '@/assets/background/about-bg.jpg'
+import heroImageTeaching from '@/assets/background/hero-bg.jpg'
+import heroImageServe from '@/assets/background/bg-hero2.jpg'
+import heroImageYouth from '@/assets/background/bg-hero3.jpg'
 
 export default {
   name: 'Home',
   setup() {
+    const heroSlides = [
+      {
+        id: 'community',
+        eyebrow: 'Calvary Chapel Phnom Penh',
+        title: 'A worshiping community rooted in Scripture and present for Phnom Penh.',
+        description:
+          'We gather to teach verse by verse through the Bible, cultivate authentic relationships, and serve the city with the hope of Jesus.',
+        image: heroImageCommunity,
+        primaryCta: { label: 'About Us', route: '/about' },
+        secondaryCta: { label: 'Contact Us', route: '/contact' }
+      },
+      {
+        id: 'teaching',
+        eyebrow: 'Verse-by-verse teaching',
+        title: 'Teaching the whole Bible with clarity and conviction.',
+        description:
+          'Join us Sunday mornings at 9:00 a.m. as we open the Scriptures, worship together, and practice the way of Jesus.',
+        image: heroImageTeaching,
+        primaryCta: { label: 'Plan a Visit', route: '/contact' },
+        secondaryCta: { label: 'What We Believe', route: '/about/what-we-believe' }
+      },
+      {
+        id: 'serve',
+        eyebrow: 'Mercy & mission',
+        title: 'Serving Phnom Penh with meals, prayer, and practical care.',
+        description:
+          'From city outreaches to regional partnerships, teams are loving neighbors with tangible compassion in Jesus’ name.',
+        image: heroImageServe,
+        primaryCta: { label: 'Explore Outreaches', route: '/ministries/outreaches' },
+        secondaryCta: { label: 'How to Help', route: '/how-to-help' }
+      },
+      {
+        id: 'prayer',
+        eyebrow: 'Citywide prayer',
+        title: 'Friday prayer night at 7:00 p.m.',
+        description:
+          'Gather with us every Friday at 7:00 p.m. to seek Jesus together in worship and intercession for Phnom Penh.',
+        image: heroImageYouth,
+        primaryCta: { label: 'Join Prayer Night', route: '/events/upcoming-events' },
+        secondaryCta: { label: 'Contact Us', route: '/contact' }
+      }
+    ]
+
+    const currentSlideIndex = ref(0)
+
+    const activeSlide = computed(() => heroSlides[currentSlideIndex.value])
+
+    const heroBackgroundStyle = computed(() => ({
+      backgroundImage: `linear-gradient(120deg, rgba(17, 39, 84, 0.25), rgba(17, 39, 84, 0.45)), url(${activeSlide.value.image})`
+    }))
+
+    const nextSlide = () => {
+      currentSlideIndex.value = (currentSlideIndex.value + 1) % heroSlides.length
+    }
+
+    const prevSlide = () => {
+      currentSlideIndex.value = (currentSlideIndex.value - 1 + heroSlides.length) % heroSlides.length
+    }
+
+    const goToSlide = (index) => {
+      currentSlideIndex.value = index
+    }
+
     const latestTeachings = [
       {
         id: 'IrTzMEBtbaI',
@@ -302,7 +406,13 @@ export default {
     ]
 
     return {
-      aboutHeroImage,
+      heroSlides,
+      activeSlide,
+      heroBackgroundStyle,
+      nextSlide,
+      prevSlide,
+      goToSlide,
+      currentSlideIndex,
       latestTeachings
     }
   }

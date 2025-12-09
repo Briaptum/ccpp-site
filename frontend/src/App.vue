@@ -4,11 +4,49 @@
     <nav
       v-if="!isAdminRoute"
       :class="[
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-black/10',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled ? 'shadow-md' : 'shadow-none'
       ]"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-[#0B1F33] text-white text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:h-10">
+          <div class="flex items-center gap-2 text-white/80 uppercase tracking-[0.35em]">
+            <svg class="hidden sm:block h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 0v20m10-10H2" />
+            </svg>
+            <span class="text-[10px] sm:text-xs">Translate</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="inline-flex rounded-full border border-white/30 overflow-hidden text-[11px] sm:text-xs">
+              <button
+                type="button"
+                @click="setLanguage('en')"
+                :class="[
+                  'px-3 py-1 font-semibold tracking-[0.2em] uppercase transition-colors',
+                  selectedLanguage === 'en' ? 'bg-white text-[#0B1F33]' : 'text-white/80 hover:text-white'
+                ]"
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                @click="setLanguage('kh')"
+                :class="[
+                  'px-3 py-1 font-semibold tracking-[0.2em] uppercase transition-colors',
+                  selectedLanguage === 'kh' ? 'bg-white text-[#0B1F33]' : 'text-white/80 hover:text-white'
+                ]"
+              >
+                KH
+              </button>
+            </div>
+            <span class="text-white/70 text-[11px] sm:text-xs uppercase tracking-[0.3em]">
+              {{ selectedLanguage === 'en' ? 'English' : 'Khmer' }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white/95 backdrop-blur-md border-b border-black/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
           <!-- Logo -->
           <router-link to="/" class="flex items-center space-x-3">
@@ -373,11 +411,12 @@
             </router-link>
           </div>
         </div>
+        </div>
       </div>
     </nav>
 
     <!-- Main Content -->
-    <main :class="isAdminRoute ? '' : (hasHeroOverlay ? '' : 'pt-20')">
+    <main :class="isAdminRoute ? '' : (hasHeroOverlay ? '' : 'pt-[120px]')">
       <router-view />
     </main>
 
@@ -515,12 +554,14 @@ export default {
       ministriesDropdownMobileOpen: false,
       eventsDropdownOpen: false,
       eventsDropdownMobileOpen: false,
-      isScrolled: false
+      isScrolled: false,
+      selectedLanguage: 'en'
     }
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll, { passive: true })
     this.handleScroll()
+    this.updateDocumentLanguage()
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll)
@@ -556,6 +597,17 @@ export default {
         }
         return this.$route.path.startsWith(prefix)
       })
+    },
+    setLanguage(language) {
+      if (this.selectedLanguage === language) return
+      this.selectedLanguage = language
+      this.updateDocumentLanguage(language)
+    },
+    updateDocumentLanguage(language = this.selectedLanguage) {
+      if (typeof document !== 'undefined') {
+        const langCode = language === 'kh' ? 'km' : language
+        document.documentElement.setAttribute('lang', langCode)
+      }
     }
   }
 }

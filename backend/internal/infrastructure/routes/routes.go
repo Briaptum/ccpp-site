@@ -1,18 +1,36 @@
 package routes
 
 import (
-	"ccpp-backend/internal/infrastructure/handlers"
-	"ccpp-backend/internal/domain/services"
 	"os"
+
+	"ccpp-backend/internal/domain/services"
+	"ccpp-backend/internal/infrastructure/handlers"
 
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRoutes(router *gin.Engine, userService services.UserService, contactService services.ContactService, galleryService services.GalleryService, eventService services.EventService) {
+func SetupRoutes(
+	router *gin.Engine,
+	userService services.UserService,
+	contactService services.ContactService,
+	contactRequestService services.ContactRequestService,
+	galleryService services.GalleryService,
+	eventService services.EventService,
+) {
 	userHandler := handlers.NewUserHandler(userService)
 	contactHandler := handlers.NewContactHandler(contactService)
+	contactRequestHandler := handlers.NewContactRequestHandler(contactRequestService)
 	galleryHandler := handlers.NewGalleryHandler(galleryService)
 	eventHandler := handlers.NewEventHandler(eventService)
+
+	// Legacy-free routes copied from Rolston HVAC for contact requests
+	contactRequests := router.Group("/api/contact-requests")
+	{
+		contactRequests.POST("", contactRequestHandler.CreateContactRequest)
+		contactRequests.GET("", contactRequestHandler.GetContactRequests)
+		contactRequests.GET("/:id", contactRequestHandler.GetContactRequest)
+		contactRequests.DELETE("/:id", contactRequestHandler.DeleteContactRequest)
+	}
 
 	api := router.Group("/api/v1")
 	{
@@ -23,6 +41,14 @@ func SetupRoutes(router *gin.Engine, userService services.UserService, contactSe
 			users.GET("/:id", userHandler.GetUser)
 			users.PUT("/:id", userHandler.UpdateUser)
 			users.DELETE("/:id", userHandler.DeleteUser)
+		}
+
+		contactRequestsV1 := api.Group("/contact-requests")
+		{
+			contactRequestsV1.POST("", contactRequestHandler.CreateContactRequest)
+			contactRequestsV1.GET("", contactRequestHandler.GetContactRequests)
+			contactRequestsV1.GET("/:id", contactRequestHandler.GetContactRequest)
+			contactRequestsV1.DELETE("/:id", contactRequestHandler.DeleteContactRequest)
 		}
 
 		contacts := api.Group("/contacts")

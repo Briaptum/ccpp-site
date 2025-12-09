@@ -25,19 +25,21 @@ func main() {
 	db := database.GetDB()
 
 	// Auto migrate the schema
-	if err := db.AutoMigrate(&models.User{}, &models.Contact{}, &models.Gallery{}, &models.Event{}); err != nil {
+	if err := db.AutoMigrate(&models.User{}, &models.Contact{}, &models.ContactRequest{}, &models.Gallery{}, &models.Event{}); err != nil {
 		log.Fatal("Failed to migrate database:", err)
 	}
 
 	// Initialize repositories
 	userRepo := infraRepos.NewUserRepository(db)
 	contactRepo := infraRepos.NewContactRepository(db)
+	contactRequestRepo := infraRepos.NewContactRequestRepository(db)
 	galleryRepo := infraRepos.NewGalleryRepository(db)
 	eventRepo := infraRepos.NewEventRepository(db)
 
 	// Initialize services
 	userService := infraServices.NewUserService(userRepo)
 	contactService := infraServices.NewContactService(contactRepo)
+	contactRequestService := infraServices.NewContactRequestService(contactRequestRepo, infraServices.NewEmailService())
 	galleryService := infraServices.NewGalleryService(galleryRepo)
 	eventService := infraServices.NewEventService(eventRepo)
 
@@ -59,7 +61,7 @@ func main() {
 	})
 
 	// Setup routes
-	routes.SetupRoutes(router, userService, contactService, galleryService, eventService)
+	routes.SetupRoutes(router, userService, contactService, contactRequestService, galleryService, eventService)
 
 	// Get port from environment or use default
 	port := os.Getenv("PORT")

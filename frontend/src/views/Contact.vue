@@ -123,64 +123,56 @@
             <form @submit.prevent="submitForm" class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
                   <input
-                    v-model="form.firstName"
+                    v-model="form.name"
                     type="text"
                     required
                     class="input-field"
-                    placeholder="Your first name"
+                    placeholder="Your full name"
                   />
                 </div>
                 <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
                   <input
-                    v-model="form.lastName"
-                    type="text"
+                    v-model="form.email"
+                    type="email"
                     required
                     class="input-field"
-                    placeholder="Your last name"
+                    placeholder="your.email@example.com"
                   />
                 </div>
               </div>
-              <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-                <input
-                  v-model="form.email"
-                  type="email"
-                  required
-                  class="input-field"
-                  placeholder="your.email@example.com"
-                />
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                  <input
+                    v-model="form.phone"
+                    type="tel"
+                    class="input-field"
+                    placeholder="+855 15 81 44 40"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Why are you visiting? *</label>
+                  <select
+                    v-model="form.reason"
+                    required
+                    class="input-field"
+                  >
+                    <option value="">Select one</option>
+                    <option value="Plan a visit">Plan a visit</option>
+                    <option value="Prayer request">Prayer request</option>
+                    <option value="Counseling / care">Counseling / care</option>
+                    <option value="Serving / volunteer">Serving / volunteer</option>
+                    <option value="Membership / next steps">Membership / next steps</option>
+                    <option value="General question">General question</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
               </div>
               <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                <input
-                  v-model="form.phone"
-                  type="tel"
-                  class="input-field"
-                  placeholder="+855 15 81 44 40"
-                />
-              </div>
-              <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
-                <select
-                  v-model="form.subject"
-                  required
-                  class="input-field"
-                >
-                  <option value="">Select a subject</option>
-                  <option value="general">General Inquiry</option>
-                  <option value="visit">Planning a Visit</option>
-                  <option value="membership">Membership Information</option>
-                  <option value="ministry">Ministry Opportunities</option>
-                  <option value="prayer">Prayer Request</option>
-                  <option value="support">Pastoral Support</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
                 <textarea
                   v-model="form.message"
                   required
@@ -250,17 +242,16 @@
 
 <script>
 import { ref } from 'vue'
-import { contactService } from '@/services/contactService'
+import { contactRequestService } from '@/services/contactRequestService'
 
 export default {
   name: 'Contact',
   setup() {
     const form = ref({
-      firstName: '',
-      lastName: '',
+      name: '',
       email: '',
       phone: '',
-      subject: '',
+      reason: '',
       message: ''
     })
     
@@ -273,17 +264,22 @@ export default {
       message.value = ''
       
       try {
-        await contactService.createContact(form.value)
+        await contactRequestService.createContactRequest({
+          name: form.value.name,
+          email: form.value.email,
+          phone: form.value.phone || undefined,
+          reason: form.value.reason,
+          message: form.value.message,
+        })
         
         message.value = 'Thank you for your message! We\'ll get back to you soon.'
         messageType.value = 'success'
         
         form.value = {
-          firstName: '',
-          lastName: '',
+          name: '',
           email: '',
           phone: '',
-          subject: '',
+          reason: '',
           message: ''
         }
       } catch (error) {
