@@ -543,6 +543,9 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'pinia'
+import { useLanguageStore } from './stores/language'
+
 export default {
   name: 'App',
   data() {
@@ -554,19 +557,21 @@ export default {
       ministriesDropdownMobileOpen: false,
       eventsDropdownOpen: false,
       eventsDropdownMobileOpen: false,
-      isScrolled: false,
-      selectedLanguage: 'en'
+      isScrolled: false
     }
+  },
+  created() {
+    this.initLanguage()
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll, { passive: true })
     this.handleScroll()
-    this.updateDocumentLanguage()
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll)
   },
   computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
     isAdminRoute() {
       return this.$route.path.startsWith('/admin')
     },
@@ -587,6 +592,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions(useLanguageStore, {
+      setLanguage: 'setLanguage',
+      initLanguage: 'init'
+    }),
     handleScroll() {
       this.isScrolled = window.scrollY > 20
     },
@@ -597,17 +606,6 @@ export default {
         }
         return this.$route.path.startsWith(prefix)
       })
-    },
-    setLanguage(language) {
-      if (this.selectedLanguage === language) return
-      this.selectedLanguage = language
-      this.updateDocumentLanguage(language)
-    },
-    updateDocumentLanguage(language = this.selectedLanguage) {
-      if (typeof document !== 'undefined') {
-        const langCode = language === 'kh' ? 'km' : language
-        document.documentElement.setAttribute('lang', langCode)
-      }
     }
   }
 }

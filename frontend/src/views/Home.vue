@@ -84,34 +84,46 @@
     <section class="py-20 bg-gradient-to-b from-white to-gray-50">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <p class="text-sm uppercase tracking-[0.35em] text-gray-400 mb-3">Weekly Rhythm</p>
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">Regular Study & Worship</h2>
+          <p class="text-sm uppercase tracking-[0.35em] text-gray-400 mb-3">{{ weekly.eyebrow }}</p>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">{{ weekly.title }}</h2>
           <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-            Two anchor gatherings each week keep us rooted in Scripture and connected as a family.
+            {{ weekly.description }}
           </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="relative overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-2xl">
-            <div class="absolute inset-0 opacity-60 pointer-events-none" style="background: radial-gradient(circle at top left, rgba(255,164,91,0.18), transparent 50%), radial-gradient(circle at bottom right, rgba(34,112,130,0.15), transparent 45%);"></div>
+            <div
+              class="absolute inset-0 opacity-60 pointer-events-none"
+              :style="{ background: weeklyGatherings[0].backgroundStyle }"
+            ></div>
             <div class="relative flex flex-col md:flex-row items-center md:items-center gap-8 p-8">
-              <div class="flex flex-col items-center justify-center text-center bg-brand-blue/10 text-brand-blue rounded-2xl px-6 py-7 w-full md:w-40 shrink-0">
-                <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/70">Sunday</span>
-                <span class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 leading-none">9:00</span>
-                <span class="text-sm tracking-[0.3em] text-gray-500 mt-1">a.m.</span>
+              <div
+                class="flex flex-col items-center justify-center text-center rounded-2xl px-6 py-7 w-full md:w-40 shrink-0"
+                :class="weeklyGatherings[0].accent === 'orange' ? 'bg-brand-orange/10 text-brand-orange' : 'bg-brand-blue/10 text-brand-blue'"
+              >
+                <span class="text-xs uppercase tracking-[0.4em]" :class="weeklyGatherings[0].accent === 'orange' ? 'text-brand-orange/80' : 'text-brand-blue/70'">
+                  {{ weeklyGatherings[0].dayLabel }}
+                </span>
+                <span class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 leading-none">{{ weeklyGatherings[0].time }}</span>
+                <span class="text-sm tracking-[0.3em] text-gray-500 mt-1">{{ weeklyGatherings[0].meridiem }}</span>
               </div>
               <div class="flex-1 text-gray-700">
-                <div class="inline-flex items-center bg-brand-blue/10 text-brand-blue px-3 py-1 rounded-full uppercase tracking-[0.35em] text-xs font-semibold mb-4">
-                  Sunday Worship
+                <div
+                  class="inline-flex items-center px-3 py-1 rounded-full uppercase tracking-[0.35em] text-xs font-semibold mb-4"
+                  :class="weeklyGatherings[0].accent === 'orange' ? 'bg-brand-orange/10 text-brand-orange' : 'bg-brand-blue/10 text-brand-blue'"
+                >
+                  {{ weeklyGatherings[0].badge }}
                 </div>
-                <h3 class="text-3xl font-semibold text-gray-900 mb-3">Sunday Morning Worship</h3>
+                <h3 class="text-3xl font-semibold text-gray-900 mb-3">{{ weeklyGatherings[0].title }}</h3>
                 <p class="text-base leading-relaxed text-gray-600 mb-5">
-                  Verse-by-verse teaching, Spirit-led worship, and community for every generation gathered in the sanctuary each Sunday morning at 9:00 a.m.
+                  {{ weeklyGatherings[0].body }}
                 </p>
                 <router-link
-                  to="/contact"
-                  class="inline-flex items-center text-brand-blue font-semibold hover:text-brand-orange transition-colors"
+                  :to="weeklyGatherings[0].ctaRoute"
+                  class="inline-flex items-center font-semibold transition-colors"
+                  :class="weeklyGatherings[0].accent === 'orange' ? 'text-brand-orange hover:text-brand-blue' : 'text-brand-blue hover:text-brand-orange'"
                 >
-                  Contact Us
+                  {{ weeklyGatherings[0].ctaLabel }}
                   <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
@@ -121,26 +133,38 @@
           </div>
 
           <div class="relative overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-2xl">
-            <div class="absolute inset-0 opacity-60 pointer-events-none" style="background: radial-gradient(circle at top right, rgba(34,112,130,0.2), transparent 50%), radial-gradient(circle at bottom left, rgba(255,164,91,0.15), transparent 40%);"></div>
+            <div
+              class="absolute inset-0 opacity-60 pointer-events-none"
+              :style="{ background: weeklyGatherings[1].backgroundStyle }"
+            ></div>
             <div class="relative flex flex-col md:flex-row items-center md:items-center gap-8 p-8">
-              <div class="flex flex-col items-center justify-center text-center bg-brand-orange/10 text-brand-orange rounded-2xl px-6 py-7 w-full md:w-40 shrink-0">
-                <span class="text-xs uppercase tracking-[0.4em] text-brand-orange/80">Wednesday</span>
-                <span class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 leading-none">7:00</span>
-                <span class="text-sm tracking-[0.3em] text-gray-500 mt-1">p.m.</span>
+              <div
+                class="flex flex-col items-center justify-center text-center rounded-2xl px-6 py-7 w-full md:w-40 shrink-0"
+                :class="weeklyGatherings[1].accent === 'orange' ? 'bg-brand-orange/10 text-brand-orange' : 'bg-brand-blue/10 text-brand-blue'"
+              >
+                <span class="text-xs uppercase tracking-[0.4em]" :class="weeklyGatherings[1].accent === 'orange' ? 'text-brand-orange/80' : 'text-brand-blue/70'">
+                  {{ weeklyGatherings[1].dayLabel }}
+                </span>
+                <span class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 leading-none">{{ weeklyGatherings[1].time }}</span>
+                <span class="text-sm tracking-[0.3em] text-gray-500 mt-1">{{ weeklyGatherings[1].meridiem }}</span>
               </div>
               <div class="flex-1 text-gray-700">
-                <div class="inline-flex items-center bg-brand-orange/10 text-brand-orange px-3 py-1 rounded-full uppercase tracking-[0.35em] text-xs font-semibold mb-4">
-                  Wednesday Church
+                <div
+                  class="inline-flex items-center px-3 py-1 rounded-full uppercase tracking-[0.35em] text-xs font-semibold mb-4"
+                  :class="weeklyGatherings[1].accent === 'orange' ? 'bg-brand-orange/10 text-brand-orange' : 'bg-brand-blue/10 text-brand-blue'"
+                >
+                  {{ weeklyGatherings[1].badge }}
                 </div>
-                <h3 class="text-3xl font-semibold text-gray-900 mb-3">Wednesday Night Church</h3>
+                <h3 class="text-3xl font-semibold text-gray-900 mb-3">{{ weeklyGatherings[1].title }}</h3>
                 <p class="text-base leading-relaxed text-gray-600 mb-5">
-                  Wednesday night church family gathering featuring Scripture, discussion, and prayer beginning promptly at 7:00 p.m.
+                  {{ weeklyGatherings[1].body }}
                 </p>
                 <router-link
-                  to="/events/calendar"
-                  class="inline-flex items-center text-brand-orange font-semibold hover:text-brand-blue transition-colors"
+                  :to="weeklyGatherings[1].ctaRoute"
+                  class="inline-flex items-center font-semibold transition-colors"
+                  :class="weeklyGatherings[1].accent === 'orange' ? 'text-brand-orange hover:text-brand-blue' : 'text-brand-blue hover:text-brand-orange'"
                 >
-                  Contact Us
+                  {{ weeklyGatherings[1].ctaLabel }}
                   <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
@@ -162,92 +186,92 @@
         <div class="absolute inset-0 opacity-35 mix-blend-screen" style="background-image: radial-gradient(circle at 25% 20%, rgba(255,255,255,0.25), transparent 40%), radial-gradient(circle at 80% 0%, rgba(255,255,255,0.15), transparent 35%), radial-gradient(circle at 60% 85%, rgba(255,255,255,0.2), transparent 40%);"></div>
       </div>
       <div class="relative">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
-        <div class="text-center mb-16">
-          <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-3">Upcoming</p>
-          <h2 class="text-4xl md:text-5xl font-bold mb-4">What’s ahead this season</h2>
-          <p class="text-white/80 max-w-2xl mx-auto">
-            A glimpse at the moments, gatherings, and opportunities we’re preparing for together.
-          </p>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+          <div class="text-center mb-16">
+            <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-3">{{ upcoming.eyebrow }}</p>
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">{{ upcoming.title }}</h2>
+            <p class="text-white/80 max-w-2xl mx-auto">
+              {{ upcoming.description }}
+            </p>
+          </div>
+
+          <div class="max-w-2xl mx-auto space-y-6">
+            <div class="bg-white/10 rounded-2xl border border-white/15 px-6 py-8 backdrop-blur-md shadow-lg flex flex-col gap-6 sm:flex-row sm:items-stretch min-h-[200px]">
+              <div class="flex flex-col items-center justify-center text-center w-full sm:w-40 sm:min-w-[10rem] bg-white text-brand-blue rounded-2xl border border-white/30 shadow-2xl px-6 py-8">
+                <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mb-2">{{ upcomingItems[0].month }}</span>
+                <span class="text-5xl font-bold leading-none text-brand-blue">{{ upcomingItems[0].day }}</span>
+                <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mt-3">{{ upcomingItems[0].weekday }}</span>
+              </div>
+              <div class="flex-1 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+                <div class="flex-1">
+                  <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">{{ upcomingItems[0].title }}</h3>
+                  <p class="text-white/80 text-base leading-relaxed">
+                    {{ upcomingItems[0].description }}
+                  </p>
+                </div>
+                <router-link
+                  :to="upcomingItems[0].route"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors whitespace-nowrap self-start sm:self-auto"
+                >
+                  {{ upcoming.ctaLabel }}
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </router-link>
+              </div>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl border border-white/15 px-6 py-8 backdrop-blur-md shadow-lg flex flex-col gap-6 sm:flex-row sm:items-stretch min-h-[200px]">
+              <div class="flex flex-col items-center justify-center text-center w-full sm:w-40 sm:min-w-[10rem] bg-white text-brand-blue rounded-2xl border border-white/30 shadow-2xl px-6 py-8">
+                <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mb-2">{{ upcomingItems[1].month }}</span>
+                <span class="text-5xl font-bold leading-none text-brand-blue">{{ upcomingItems[1].day }}</span>
+                <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mt-3">{{ upcomingItems[1].weekday }}</span>
+              </div>
+              <div class="flex-1 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+                <div class="flex-1">
+                  <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">{{ upcomingItems[1].title }}</h3>
+                  <p class="text-white/80 text-base leading-relaxed">
+                    {{ upcomingItems[1].description }}
+                  </p>
+                </div>
+                <router-link
+                  :to="upcomingItems[1].route"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors whitespace-nowrap self-start sm:self-auto"
+                >
+                  {{ upcoming.ctaLabel }}
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </router-link>
+              </div>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl border border-white/15 px-6 py-8 backdrop-blur-md shadow-lg flex flex-col gap-6 sm:flex-row sm:items-stretch min-h-[200px]">
+              <div class="flex flex-col items-center justify-center text-center w-full sm:w-40 sm:min-w-[10rem] bg-white text-brand-blue rounded-2xl border border-white/30 shadow-2xl px-6 py-8">
+                <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mb-2">{{ upcomingItems[2].month }}</span>
+                <span class="text-5xl font-bold leading-none text-brand-blue">{{ upcomingItems[2].day }}</span>
+                <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mt-3">{{ upcomingItems[2].weekday }}</span>
+              </div>
+              <div class="flex-1 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+                <div class="flex-1">
+                  <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">{{ upcomingItems[2].title }}</h3>
+                  <p class="text-white/80 text-base leading-relaxed">
+                    {{ upcomingItems[2].description }}
+                  </p>
+                </div>
+                <router-link
+                  :to="upcomingItems[2].route"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors whitespace-nowrap self-start sm:self-auto"
+                >
+                  {{ upcoming.ctaLabel }}
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </router-link>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="max-w-2xl mx-auto space-y-6">
-          <div class="bg-white/10 rounded-2xl border border-white/15 px-6 py-8 backdrop-blur-md shadow-lg flex flex-col gap-6 sm:flex-row sm:items-stretch min-h-[200px]">
-            <div class="flex flex-col items-center justify-center text-center w-full sm:w-40 sm:min-w-[10rem] bg-white text-brand-blue rounded-2xl border border-white/30 shadow-2xl px-6 py-8">
-              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mb-2">Mar</span>
-              <span class="text-5xl font-bold leading-none text-brand-blue">02</span>
-              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mt-3">Sat</span>
-            </div>
-            <div class="flex-1 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-              <div class="flex-1">
-                <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">City Prayer Night</h3>
-                <p class="text-white/80 text-base leading-relaxed">
-                  An evening of prayer and worship for Phnom Penh, hosted in the main sanctuary at 6:30 PM.
-                </p>
-              </div>
-              <router-link
-                to="/events"
-                class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors whitespace-nowrap self-start sm:self-auto"
-              >
-                More Details
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </router-link>
-            </div>
-          </div>
-
-          <div class="bg-white/10 rounded-2xl border border-white/15 px-6 py-8 backdrop-blur-md shadow-lg flex flex-col gap-6 sm:flex-row sm:items-stretch min-h-[200px]">
-            <div class="flex flex-col items-center justify-center text-center w-full sm:w-40 sm:min-w-[10rem] bg-white text-brand-blue rounded-2xl border border-white/30 shadow-2xl px-6 py-8">
-              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mb-2">Mar</span>
-              <span class="text-5xl font-bold leading-none text-brand-blue">10</span>
-              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mt-3">Sun</span>
-            </div>
-            <div class="flex-1 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-              <div class="flex-1">
-                <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">Foundations Class</h3>
-                <p class="text-white/80 text-base leading-relaxed">
-                  Four weeks exploring what we believe, how to grow, and where to serve. Sundays at 11:15 AM.
-                </p>
-              </div>
-              <router-link
-                to="/ministries"
-                class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors whitespace-nowrap self-start sm:self-auto"
-              >
-                More Details
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </router-link>
-            </div>
-          </div>
-
-          <div class="bg-white/10 rounded-2xl border border-white/15 px-6 py-8 backdrop-blur-md shadow-lg flex flex-col gap-6 sm:flex-row sm:items-stretch min-h-[200px]">
-            <div class="flex flex-col items-center justify-center text-center w-full sm:w-40 sm:min-w-[10rem] bg-white text-brand-blue rounded-2xl border border-white/30 shadow-2xl px-6 py-8">
-              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mb-2">Mar</span>
-              <span class="text-5xl font-bold leading-none text-brand-blue">16</span>
-              <span class="text-xs uppercase tracking-[0.4em] text-brand-blue/60 mt-3">Sat</span>
-            </div>
-            <div class="flex-1 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-              <div class="flex-1">
-                <h3 class="text-xl md:text-2xl font-semibold text-white mb-2">Serve Phnom Penh</h3>
-                <p class="text-white/80 text-base leading-relaxed">
-                  Neighborhood outreach day providing meals, prayer, and practical care. Teams launch at 8:00 AM.
-                </p>
-              </div>
-              <router-link
-                to="/ministries/outreaches"
-                class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-brand-blue font-semibold rounded-full tracking-wide text-sm hover:bg-brand-orange hover:text-white transition-colors whitespace-nowrap self-start sm:self-auto"
-              >
-                More Details
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </div>
       </div>
     </div>
 
@@ -260,16 +284,16 @@
       </div>
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-3">Latest Teachings</p>
-          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Recent messages from our pulpit</h2>
+          <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-3">{{ teachings.eyebrow }}</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ teachings.title }}</h2>
           <p class="text-lg text-white/80 max-w-2xl mx-auto font-light">
-            Teachings captured each week to keep you connected to the verse-by-verse journey through Scripture.
+            {{ teachings.description }}
           </p>
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div
-            v-for="teaching in latestTeachings"
+            v-for="teaching in teachingsList"
             :key="teaching.id"
             class="bg-white/10 border border-white/15 rounded-2xl backdrop-blur-xl shadow-2xl hover:bg-white/15 transition-all duration-300 overflow-hidden flex flex-col"
           >
@@ -281,7 +305,7 @@
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"></div>
               <div class="absolute bottom-4 left-4 inline-flex items-center px-3 py-1 bg-white text-gray-900 rounded-full text-xs font-semibold tracking-wide shadow">
-                Teaching Series
+                {{ teachings.badge }}
               </div>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -297,7 +321,7 @@
                   rel="noopener noreferrer"
                   class="inline-flex items-center text-sm font-semibold text-brand-orange hover:text-white transition-colors"
                 >
-                  Watch now
+                  {{ teachings.watchLabel }}
                   <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
@@ -312,7 +336,9 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { computed, ref, watch } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
 import heroImageCommunity from '@/assets/background/about-bg.jpg'
 import heroImageTeaching from '@/assets/background/hero-bg.jpg'
 import heroImageServe from '@/assets/background/bg-hero2.jpg'
@@ -321,89 +347,326 @@ import heroImageYouth from '@/assets/background/bg-hero3.jpg'
 export default {
   name: 'Home',
   setup() {
-    const heroSlides = [
-      {
-        id: 'community',
-        eyebrow: 'Calvary Chapel Phnom Penh',
-        title: 'A worshiping community rooted in Scripture and present for Phnom Penh.',
-        description:
-          'We gather to teach verse by verse through the Bible, cultivate authentic relationships, and serve the city with the hope of Jesus.',
-        image: heroImageCommunity,
-        primaryCta: { label: 'About Us', route: '/about' },
-        secondaryCta: { label: 'Contact Us', route: '/contact' }
+    const { selectedLanguage } = storeToRefs(useLanguageStore())
+
+    const sundayBackground =
+      'radial-gradient(circle at top left, rgba(255,164,91,0.18), transparent 50%), radial-gradient(circle at bottom right, rgba(34,112,130,0.15), transparent 45%)'
+    const wednesdayBackground =
+      'radial-gradient(circle at top right, rgba(34,112,130,0.2), transparent 50%), radial-gradient(circle at bottom left, rgba(255,164,91,0.15), transparent 40%)'
+
+    const translations = {
+      en: {
+        heroSlides: [
+          {
+            id: 'community',
+            eyebrow: 'Calvary Chapel Phnom Penh',
+            title: 'A worshiping community rooted in Scripture and present for Phnom Penh.',
+            description:
+              'We gather to teach verse by verse through the Bible, cultivate authentic relationships, and serve the city with the hope of Jesus.',
+            image: heroImageCommunity,
+            primaryCta: { label: 'About Us', route: '/about' },
+            secondaryCta: { label: 'Contact Us', route: '/contact' }
+          },
+          {
+            id: 'teaching',
+            eyebrow: 'Verse-by-verse teaching',
+            title: 'Teaching the whole Bible with clarity and conviction.',
+            description:
+              'Join us Sunday mornings at 9:00 a.m. as we open the Scriptures, worship together, and practice the way of Jesus.',
+            image: heroImageTeaching,
+            primaryCta: { label: 'Plan a Visit', route: '/contact' },
+            secondaryCta: { label: 'What We Believe', route: '/about/what-we-believe' }
+          },
+          {
+            id: 'serve',
+            eyebrow: 'Mercy & mission',
+            title: 'Serving Phnom Penh with meals, prayer, and practical care.',
+            description:
+              'From city outreaches to regional partnerships, teams are loving neighbors with tangible compassion in Jesus’ name.',
+            image: heroImageServe,
+            primaryCta: { label: 'Explore Outreaches', route: '/ministries/outreaches' },
+            secondaryCta: { label: 'How to Help', route: '/how-to-help' }
+          },
+          {
+            id: 'prayer',
+            eyebrow: 'Citywide prayer',
+            title: 'Friday prayer night at 7:00 p.m.',
+            description:
+              'Gather with us every Friday at 7:00 p.m. to seek Jesus together in worship and intercession for Phnom Penh.',
+            image: heroImageYouth,
+            primaryCta: { label: 'Join Prayer Night', route: '/events/upcoming-events' },
+            secondaryCta: { label: 'Contact Us', route: '/contact' }
+          }
+        ],
+        weekly: {
+          eyebrow: 'Weekly Rhythm',
+          title: 'Regular Study & Worship',
+          description: 'Two anchor gatherings each week keep us rooted in Scripture and connected as a family.',
+          gatherings: [
+            {
+              id: 'sunday',
+              accent: 'blue',
+              backgroundStyle: sundayBackground,
+              dayLabel: 'Sunday',
+              time: '9:00',
+              meridiem: 'a.m.',
+              badge: 'Sunday Worship',
+              title: 'Sunday Morning Worship',
+              body: 'Verse-by-verse teaching, Spirit-led worship, and community for every generation gathered in the sanctuary each Sunday morning at 9:00 a.m.',
+              ctaLabel: 'Contact Us',
+              ctaRoute: '/contact'
+            },
+            {
+              id: 'wednesday',
+              accent: 'orange',
+              backgroundStyle: wednesdayBackground,
+              dayLabel: 'Wednesday',
+              time: '7:00',
+              meridiem: 'p.m.',
+              badge: 'Wednesday Church',
+              title: 'Wednesday Night Church',
+              body: 'Wednesday night church family gathering featuring Scripture, discussion, and prayer beginning promptly at 7:00 p.m.',
+              ctaLabel: 'Contact Us',
+              ctaRoute: '/events/calendar'
+            }
+          ]
+        },
+        upcoming: {
+          eyebrow: 'Upcoming',
+          title: 'What’s ahead this season',
+          description: 'A glimpse at the moments, gatherings, and opportunities we’re preparing for together.',
+          ctaLabel: 'More Details',
+          items: [
+            {
+              id: 'prayer-night',
+              month: 'Mar',
+              day: '02',
+              weekday: 'Sat',
+              title: 'City Prayer Night',
+              description: 'An evening of prayer and worship for Phnom Penh, hosted in the main sanctuary at 6:30 PM.',
+              route: '/events'
+            },
+            {
+              id: 'foundations-class',
+              month: 'Mar',
+              day: '10',
+              weekday: 'Sun',
+              title: 'Foundations Class',
+              description: 'Four weeks exploring what we believe, how to grow, and where to serve. Sundays at 11:15 AM.',
+              route: '/ministries'
+            },
+            {
+              id: 'serve-phnom-penh',
+              month: 'Mar',
+              day: '16',
+              weekday: 'Sat',
+              title: 'Serve Phnom Penh',
+              description: 'Neighborhood outreach day providing meals, prayer, and practical care. Teams launch at 8:00 AM.',
+              route: '/ministries/outreaches'
+            }
+          ]
+        },
+        teachings: {
+          eyebrow: 'Latest Teachings',
+          title: 'Recent messages from our pulpit',
+          description: 'Teachings captured each week to keep you connected to the verse-by-verse journey through Scripture.',
+          badge: 'Teaching Series',
+          watchLabel: 'Watch now',
+          list: [
+            {
+              id: 'IrTzMEBtbaI',
+              title: 'Latest Teaching 1',
+              description: 'Watch our latest message and be encouraged.',
+              url: 'https://www.youtube.com/watch?v=IrTzMEBtbaI'
+            },
+            {
+              id: 'AdDxynFrn8E',
+              title: 'Latest Teaching 2',
+              description: 'Join us for this week’s teaching.',
+              url: 'https://www.youtube.com/watch?v=AdDxynFrn8E'
+            },
+            {
+              id: 'FC0Tm4bNPkk',
+              title: 'Latest Teaching 3',
+              description: 'Stay connected with our community through God’s Word.',
+              url: 'https://www.youtube.com/watch?v=FC0Tm4bNPkk'
+            }
+          ]
+        }
       },
-      {
-        id: 'teaching',
-        eyebrow: 'Verse-by-verse teaching',
-        title: 'Teaching the whole Bible with clarity and conviction.',
-        description:
-          'Join us Sunday mornings at 9:00 a.m. as we open the Scriptures, worship together, and practice the way of Jesus.',
-        image: heroImageTeaching,
-        primaryCta: { label: 'Plan a Visit', route: '/contact' },
-        secondaryCta: { label: 'What We Believe', route: '/about/what-we-believe' }
-      },
-      {
-        id: 'serve',
-        eyebrow: 'Mercy & mission',
-        title: 'Serving Phnom Penh with meals, prayer, and practical care.',
-        description:
-          'From city outreaches to regional partnerships, teams are loving neighbors with tangible compassion in Jesus’ name.',
-        image: heroImageServe,
-        primaryCta: { label: 'Explore Outreaches', route: '/ministries/outreaches' },
-        secondaryCta: { label: 'How to Help', route: '/how-to-help' }
-      },
-      {
-        id: 'prayer',
-        eyebrow: 'Citywide prayer',
-        title: 'Friday prayer night at 7:00 p.m.',
-        description:
-          'Gather with us every Friday at 7:00 p.m. to seek Jesus together in worship and intercession for Phnom Penh.',
-        image: heroImageYouth,
-        primaryCta: { label: 'Join Prayer Night', route: '/events/upcoming-events' },
-        secondaryCta: { label: 'Contact Us', route: '/contact' }
+      kh: {
+        heroSlides: [
+          {
+            id: 'community',
+            eyebrow: 'Calvary Chapel Phnom Penh',
+            title: 'សហគមន៍ថ្វាយបង្គំដែលជិតស្និទ្ធនឹងព្រះវចនៈ និងស្ថិតសម្រាប់ទីក្រុងភ្នំពេញ។',
+            description:
+              'យើងជួបជុំគ្នាដើម្បីបង្រៀនតាមជួរព្រះគម្ពីរ បង្កើតទំនាក់ទំនងពិតប្រាកដ និងបម្រើទីក្រុងដោយសេចក្តីសង្ឃឹមនៅក្នុងព្រះយេស៊ូវ។',
+            image: heroImageCommunity,
+            primaryCta: { label: 'អំពីពួកយើង', route: '/about' },
+            secondaryCta: { label: 'ទាក់ទងមកកាន់ពួកយើង', route: '/contact' }
+          },
+          {
+            id: 'teaching',
+            eyebrow: 'ការបង្រៀនតាមជួរ',
+            title: 'បង្រៀនព្រះគម្ពីរទាំងស្រុងដោយច្បាស់លាស់ និងមុតមាំ។',
+            description:
+              'ចូលរួមជាមួយពួកយើងរៀងរាល់ថ្ងៃអាទិត្យ ម៉ោង 9 ព្រឹក ខណៈពេលយើងបើកព្រះគម្ពីរ ថ្វាយបង្គំ និងអនុវត្តផ្លូវព្រះយេស៊ូវ។',
+            image: heroImageTeaching,
+            primaryCta: { label: 'រៀបចំការមកចូលរួម', route: '/contact' },
+            secondaryCta: { label: 'អ្វីដែលយើងជឿ', route: '/about/what-we-believe' }
+          },
+          {
+            id: 'serve',
+            eyebrow: 'មេត្តាករុណា និងភារកិច្ច',
+            title: 'បម្រើទីក្រុងភ្នំពេញដោយអាហារ ការអធិស្ឋាន និងការថែទាំជាក់ស្តែង។',
+            description:
+              'ចាប់ពីការចេញផ្សាយក្នុងទីក្រុងដល់ដៃគូតំបន់ ក្រុមកំពុងស្រឡាញ់អ្នកជិតខាងដោយមេត្តាករុណាជាក់ស្តែងក្នុងនាមព្រះយេស៊ូវ។',
+            image: heroImageServe,
+            primaryCta: { label: 'ស្វែងរកការចេញផ្សាយ', route: '/ministries/outreaches' },
+            secondaryCta: { label: 'របៀបជួយ', route: '/how-to-help' }
+          },
+          {
+            id: 'prayer',
+            eyebrow: 'ការអធិស្ឋានទាំងទីក្រុង',
+            title: 'យប់អធិស្ឋានថ្ងៃសុក្រ ម៉ោង 7 យប់។',
+            description:
+              'ជួបជាមួយយើងរៀងរាល់ថ្ងៃសុក្រ ម៉ោង 7 យប់ ដើម្បីស្វែងរកព្រះយេស៊ូវរួមគ្នា ក្នុងការថ្វាយបង្គំ និងការអធិស្ឋានសម្រាប់ទីក្រុងភ្នំពេញ។',
+            image: heroImageYouth,
+            primaryCta: { label: 'ចូលរួមយប់អធិស្ឋាន', route: '/events/upcoming-events' },
+            secondaryCta: { label: 'ទាក់ទងមកកាន់ពួកយើង', route: '/contact' }
+          }
+        ],
+        weekly: {
+          eyebrow: 'កាលវិភាគប្រចាំសប្ដាហ៍',
+          title: 'ការសិក្សា និងការថ្វាយបង្គំទៀងទាត់',
+          description: 'កិច្ចប្រជុំសំខាន់ពីររៀងរាល់សប្ដាហ៍ជួយឲ្យយើងជាប់នឹងព្រះវចនៈ និងកាន់តែជាប់ស្និទ្ធជាគ្រួសារ។',
+          gatherings: [
+            {
+              id: 'sunday',
+              accent: 'blue',
+              backgroundStyle: sundayBackground,
+              dayLabel: 'ថ្ងៃអាទិត្យ',
+              time: '9:00',
+              meridiem: 'ព្រឹក',
+              badge: 'ការថ្វាយបង្គំថ្ងៃអាទិត្យ',
+              title: 'ការថ្វាយបង្គំនៅព្រឹកថ្ងៃអាទិត្យ',
+              body: 'បង្រៀនតាមជួរ ថ្វាយបង្គំដោយព្រះវិញ្ញាណ និងសហគមន៍សម្រាប់គ្រួសារទាំងអស់ នៅសាលធំរៀងរាល់ព្រឹកថ្ងៃអាទិត្យ ម៉ោង 9:00។',
+              ctaLabel: 'ទាក់ទងមកកាន់ពួកយើង',
+              ctaRoute: '/contact'
+            },
+            {
+              id: 'wednesday',
+              accent: 'orange',
+              backgroundStyle: wednesdayBackground,
+              dayLabel: 'ថ្ងៃពុធ',
+              time: '7:00',
+              meridiem: 'យប់',
+              badge: 'សិក្សាព្រះគម្ពីរ ថ្ងៃពុធ',
+              title: 'សិក្សាព្រះគម្ពីរ យប់ថ្ងៃពុធ',
+              body: 'ការជួបជុំគ្រួសារយប់ថ្ងៃពុធ ដែលមានព្រះគម្ពីរ ការពិភាក្សា និងការអធិស្ឋាន ចាប់ផ្តើមម៉ោង 7:00 ពេលល្ងាច។',
+              ctaLabel: 'ទាក់ទងមកកាន់ពួកយើង',
+              ctaRoute: '/events/calendar'
+            }
+          ]
+        },
+        upcoming: {
+          eyebrow: 'ព្រឹត្តិការណ៍ជិតមកដល់',
+          title: 'អ្វីខ្លះនៅមុខរដូវនេះ',
+          description: 'រូបភាពខ្លីៗនៃខណៈពេល ការជួបជុំ និងឱកាសដែលយើងកំពុងរៀបចំរួមគ្នា។',
+          ctaLabel: 'ព័ត៌មានបន្ថែម',
+          items: [
+            {
+              id: 'prayer-night',
+              month: 'មីនា',
+              day: '02',
+              weekday: 'សៅរ៍',
+              title: 'យប់អធិស្ឋានទីក្រុង',
+              description: 'យប់អធិស្ឋាន និងការថ្វាយបង្គំសម្រាប់ទីក្រុងភ្នំពេញ នៅសាលធំ ម៉ោង 6:30 ល្ងាច។',
+              route: '/events'
+            },
+            {
+              id: 'foundations-class',
+              month: 'មីនា',
+              day: '10',
+              weekday: 'អាទិត្យ',
+              title: 'ថ្នាក់មូលដ្ឋាន',
+              description: '៤ សប្ដាហ៍សិក្សាអំពីអ្វីដែលយើងជឿ របៀបលូតលាស់ និងទីកន្លែងបម្រើ រៀងរាល់ថ្ងៃអាទិត្យ ម៉ោង 11:15 ព្រឹក។',
+              route: '/ministries'
+            },
+            {
+              id: 'serve-phnom-penh',
+              month: 'មីនា',
+              day: '16',
+              weekday: 'សៅរ៍',
+              title: 'បម្រើទីក្រុងភ្នំពេញ',
+              description: 'ថ្ងៃចេញផ្សាយក្នុងសង្កាត់ ផ្តល់អាហារ ការអធិស្ឋាន និងការថែទាំជាក់ស្តែង ក្រុមចេញដំណើរម៉ោង 8 ព្រឹក។',
+              route: '/ministries/outreaches'
+            }
+          ]
+        },
+        teachings: {
+          eyebrow: 'ការបង្រៀនថ្មីៗ',
+          title: 'សារថ្មីៗពីឆាកសន្មត',
+          description: 'ការបង្រៀនត្រូវបានថតរៀងរាល់សប្ដាហ៍ ដើម្បីអោយអ្នកនៅតែភ្ជាប់ជាមួយដំណើរតាមជួរព្រះគម្ពីរ។',
+          badge: 'ស៊េរីការបង្រៀន',
+          watchLabel: 'មើលឥឡូវនេះ',
+          list: [
+            {
+              id: 'IrTzMEBtbaI',
+              title: 'ការបង្រៀនថ្មី ទី១',
+              description: 'មើលសារថ្មីបំផុតរបស់យើង ហើយទទួលបានការលើកទឹកចិត្ត។',
+              url: 'https://www.youtube.com/watch?v=IrTzMEBtbaI'
+            },
+            {
+              id: 'AdDxynFrn8E',
+              title: 'ការបង្រៀនថ្មី ទី២',
+              description: 'ចូលរួមស្តាប់ការបង្រៀនសប្ដាហ៍នេះជាមួយយើង។',
+              url: 'https://www.youtube.com/watch?v=AdDxynFrn8E'
+            },
+            {
+              id: 'FC0Tm4bNPkk',
+              title: 'ការបង្រៀនថ្មី ទី៣',
+              description: 'នៅតែភ្ជាប់ជាមួយសហគមន៍តាមរយៈព្រះបន្ទូលរបស់ព្រះ។',
+              url: 'https://www.youtube.com/watch?v=FC0Tm4bNPkk'
+            }
+          ]
+        }
       }
-    ]
+    }
 
     const currentSlideIndex = ref(0)
 
-    const activeSlide = computed(() => heroSlides[currentSlideIndex.value])
+    const content = computed(() => translations[selectedLanguage.value] || translations.en)
+    const heroSlides = computed(() => content.value.heroSlides)
+    const activeSlide = computed(() => heroSlides.value[currentSlideIndex.value])
 
     const heroBackgroundStyle = computed(() => ({
       backgroundImage: `linear-gradient(120deg, rgba(17, 39, 84, 0.25), rgba(17, 39, 84, 0.45)), url(${activeSlide.value.image})`
     }))
 
+    const weekly = computed(() => content.value.weekly)
+    const weeklyGatherings = computed(() => weekly.value.gatherings)
+    const upcoming = computed(() => content.value.upcoming)
+    const upcomingItems = computed(() => upcoming.value.items)
+    const teachings = computed(() => content.value.teachings)
+    const teachingsList = computed(() => teachings.value.list)
+
     const nextSlide = () => {
-      currentSlideIndex.value = (currentSlideIndex.value + 1) % heroSlides.length
+      currentSlideIndex.value = (currentSlideIndex.value + 1) % heroSlides.value.length
     }
 
     const prevSlide = () => {
-      currentSlideIndex.value = (currentSlideIndex.value - 1 + heroSlides.length) % heroSlides.length
+      currentSlideIndex.value = (currentSlideIndex.value - 1 + heroSlides.value.length) % heroSlides.value.length
     }
 
     const goToSlide = (index) => {
       currentSlideIndex.value = index
     }
 
-    const latestTeachings = [
-      {
-        id: 'IrTzMEBtbaI',
-        title: 'Latest Teaching 1',
-        description: 'Watch our latest message and be encouraged.',
-        url: 'https://www.youtube.com/watch?v=IrTzMEBtbaI'
-      },
-      {
-        id: 'AdDxynFrn8E',
-        title: 'Latest Teaching 2',
-        description: 'Join us for this week\'s teaching.',
-        url: 'https://www.youtube.com/watch?v=AdDxynFrn8E'
-      },
-      {
-        id: 'FC0Tm4bNPkk',
-        title: 'Latest Teaching 3',
-        description: 'Stay connected with our community through God\'s Word.',
-        url: 'https://www.youtube.com/watch?v=FC0Tm4bNPkk'
-      }
-    ]
+    watch(selectedLanguage, () => {
+      currentSlideIndex.value = 0
+    })
 
     return {
       heroSlides,
@@ -413,7 +676,12 @@ export default {
       prevSlide,
       goToSlide,
       currentSlideIndex,
-      latestTeachings
+      weekly,
+      weeklyGatherings,
+      upcoming,
+      upcomingItems,
+      teachings,
+      teachingsList
     }
   }
 }
