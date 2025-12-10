@@ -5,7 +5,7 @@
       <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div
           class="absolute inset-0 bg-cover bg-center scale-105 saturate-110 brightness-105 transition-transform duration-[4000ms]"
-          :style="{ backgroundImage: `linear-gradient(120deg, rgba(17, 39, 84, 0.25), rgba(17, 39, 84, 0.45)), url(${aboutHeroImage})` }"
+          :style="{ backgroundImage: `linear-gradient(120deg, rgba(17, 39, 84, 0.25), rgba(17, 39, 84, 0.45)), url(${hero.image})` }"
         ></div>
         <div class="absolute inset-0 bg-gradient-to-br from-black/70 via-black/55 to-black/65"></div>
         <div class="absolute inset-y-[-25%] left-[-10%] w-1/2 bg-gradient-to-r from-brand-blue/35 via-brand-blue/15 to-transparent blur-[120px] opacity-60"></div>
@@ -19,10 +19,10 @@
       </div>
       <div class="relative z-10 w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
         <h1 class="text-xl sm:text-2xl md:text-3xl font-semibold text-white leading-snug">
-          About Calvary Chapel Phnom Penh
+          {{ hero.title }}
         </h1>
         <p class="text-xs sm:text-sm md:text-base text-white/80 font-light">
-          A simple Calvary Chapel fellowship teaching the Bible verse by verse, welcoming Phnom Penh to know and follow Jesus together.
+          {{ hero.subtitle }}
         </p>
       </div>
     </div>
@@ -31,24 +31,21 @@
     <section class="py-24 bg-white">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
-          <p class="text-sm uppercase tracking-[0.3em] text-brand-blue mb-4">Our story</p>
+          <p class="text-sm uppercase tracking-[0.3em] text-brand-blue mb-4">{{ story.eyebrow }}</p>
           <h2 class="text-4xl md:text-5xl font-bold text-brand-orange mb-6">
-            What is Calvary Chapel Phnom Penh?
+            {{ story.heading }}
           </h2>
           <p class="text-lg text-gray-700 leading-relaxed mb-4">
-            Beginning with a handful of families studying Scripture together, the church has grown into a diverse
-            community anchored in the whole counsel of God. We value expository preaching, Spirit-led worship,
-            and discipleship for every generation.
+            {{ story.body[0] }}
           </p>
           <p class="text-lg text-gray-700 leading-relaxed">
-            From Sunday gatherings to mid-week studies, outreach projects, and leadership development, our aim is to
-            equip people to know Jesus, love one another, and serve Phnom Penh with humility and hope.
+            {{ story.body[1] }}
           </p>
         </div>
         <div class="relative rounded-3xl overflow-hidden border border-gray-100 shadow-2xl bg-gray-900/5">
           <img
             :src="storyImage"
-            alt="Calvary Chapel Phnom Penh community"
+            :alt="story.imageAlt"
             class="w-full h-full object-cover"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent"></div>
@@ -71,10 +68,10 @@
       </div>
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <div class="text-center">
-          <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-3">Gallery</p>
-          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Life around Calvary Chapel Phnom Penh</h2>
+          <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-3">{{ gallery.eyebrow }}</p>
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ gallery.title }}</h2>
           <p class="text-lg text-white/80 max-w-2xl mx-auto font-light">
-            Scenes from worship, discipleship, and everyday ministry in Phnom Penh.
+            {{ gallery.description }}
           </p>
         </div>
 
@@ -108,15 +105,15 @@
         <div class="space-y-6">
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-2">Rolling banner</p>
-              <h3 class="text-3xl font-semibold">A moving glimpse of community moments</h3>
+              <p class="text-sm uppercase tracking-[0.3em] text-white/70 mb-2">{{ gallery.rolling.eyebrow }}</p>
+              <h3 class="text-3xl font-semibold">{{ gallery.rolling.title }}</h3>
             </div>
-            <span class="text-white/70 text-sm">Updates automatically as new gallery photos are added.</span>
+            <span class="text-white/70 text-sm">{{ gallery.rolling.note }}</span>
           </div>
           <div class="relative overflow-hidden rounded-[40px] border border-white/15 bg-white/5 px-4 py-10">
             <div v-if="loading" class="flex flex-col items-center justify-center py-10 text-white/80">
               <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-white border-t-transparent mb-4"></div>
-              <p>Loading gallery...</p>
+              <p>{{ gallery.loading }}</p>
             </div>
             <div v-else-if="error" class="text-center py-10 text-red-200">
               {{ error }}
@@ -145,6 +142,8 @@
 
 <script>
 import { ref, onMounted, computed } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
 import aboutHeroImage from '@/assets/background/bg-hero4.jpg'
 import storyImage from '@/assets/background/background2.jpg'
 import highlightWorship from '@/assets/gallery/547212625_1236675858494072_4425998334324483137_n.jpg'
@@ -158,46 +157,154 @@ export default {
     const loading = ref(true)
     const error = ref('')
     const galleryImages = ref([])
+    const { selectedLanguage } = storeToRefs(useLanguageStore())
 
-    const highlightSections = [
-      {
-        id: 'worship',
-        tag: 'Gathered worship',
-        title: 'Sundays rooted in Scripture',
-        description: 'A bilingual family of believers worshiping, opening the Bible verse by verse, and sharing life together each week.',
-        detail: 'Captured during our 9:00 AM service inside the Phnom Penh sanctuary.',
-        image: highlightWorship
+    const translations = {
+      en: {
+        hero: {
+          title: 'About Calvary Chapel Phnom Penh',
+          subtitle:
+            'A simple Calvary Chapel fellowship teaching the Bible verse by verse, welcoming Phnom Penh to know and follow Jesus together.',
+          image: aboutHeroImage
+        },
+        story: {
+          eyebrow: 'Our story',
+          heading: 'What is Calvary Chapel Phnom Penh?',
+          body: [
+            'Beginning with a handful of families studying Scripture together, the church has grown into a diverse community anchored in the whole counsel of God. We value expository preaching, Spirit-led worship, and discipleship for every generation.',
+            'From Sunday gatherings to mid-week studies, outreach projects, and leadership development, our aim is to equip people to know Jesus, love one another, and serve Phnom Penh with humility and hope.'
+          ],
+          imageAlt: 'Calvary Chapel Phnom Penh community'
+        },
+        gallery: {
+          eyebrow: 'Gallery',
+          title: 'Life around Calvary Chapel Phnom Penh',
+          description: 'Scenes from worship, discipleship, and everyday ministry in Phnom Penh.',
+          loading: 'Loading gallery...',
+          loadError: 'Failed to load gallery images',
+          rolling: {
+            eyebrow: 'Rolling banner',
+            title: 'A moving glimpse of community moments',
+            note: 'Updates automatically as new gallery photos are added.'
+          }
+        },
+        highlights: [
+          {
+            id: 'worship',
+            tag: 'Gathered worship',
+            title: 'Sundays rooted in Scripture',
+            description:
+              'A bilingual family of believers worshiping, opening the Bible verse by verse, and sharing life together each week.',
+            detail: 'Captured during our 9:00 AM service inside the Phnom Penh sanctuary.',
+            image: highlightWorship
+          },
+          {
+            id: 'outreach',
+            tag: 'City outreach',
+            title: 'Serving Phnom Penh neighborhoods',
+            description: 'Teams distribute meals, pray with neighbors, and offer practical care throughout the city.',
+            detail: 'Moments from Serve Phnom Penh outreach mornings.',
+            image: highlightOutreach
+          },
+          {
+            id: 'youth',
+            tag: 'Next generation',
+            title: 'Youth discovering Jesus together',
+            description:
+              'Students gather midweek for teaching, discussion, and discipleship that equips them to follow Jesus boldly.',
+            detail: 'From our Friday youth ministry evenings.',
+            image: highlightYouth
+          },
+          {
+            id: 'prayer',
+            tag: 'Prayer & community',
+            title: 'House gatherings & prayer nights',
+            description:
+              'Circles of prayer, encouragement, and hospitality happening in homes across the city.',
+            detail: 'Snapshots from our monthly city prayer night.',
+            image: highlightPrayer
+          }
+        ]
       },
-      {
-        id: 'outreach',
-        tag: 'City outreach',
-        title: 'Serving Phnom Penh neighborhoods',
-        description: 'Teams distribute meals, pray with neighbors, and offer practical care throughout the city.',
-        detail: 'Moments from Serve Phnom Penh outreach mornings.',
-        image: highlightOutreach
-      },
-      {
-        id: 'youth',
-        tag: 'Next generation',
-        title: 'Youth discovering Jesus together',
-        description: 'Students gather midweek for teaching, discussion, and discipleship that equips them to follow Jesus boldly.',
-        detail: 'From our Friday youth ministry evenings.',
-        image: highlightYouth
-      },
-      {
-        id: 'prayer',
-        tag: 'Prayer & community',
-        title: 'House gatherings & prayer nights',
-        description: 'Circles of prayer, encouragement, and hospitality happening in homes across the city.',
-        detail: 'Snapshots from our monthly city prayer night.',
-        image: highlightPrayer
+      kh: {
+        hero: {
+          title: 'អំពី ព្រះវិហារកាល់វ៉ារីឆាបផលភ្នំពេញ',
+          subtitle:
+            'សហគមន៍ Calvary Chapel សាមញ្ញ បង្រៀនព្រះគម្ពីរតាមជួរ និងស្វាគមន៍ទីក្រុងភ្នំពេញឲ្យស្គាល់ និងតាមព្រះយេស៊ូវរួមគ្នា។',
+          image: aboutHeroImage
+        },
+        story: {
+          eyebrow: 'រឿងរ៉ាវរបស់យើង',
+          heading: 'តើ ព្រះវិហារកាល់វ៉ារីឆាបផលភ្នំពេញ ជាអ្វី?',
+          body: [
+            'ចាប់ផ្តើមពីគ្រួសារតិចតួចដែលសិក្សាព្រះគម្ពីររួមគ្នា គ្រឹស្តសាសនាចក្រ បានលូតលាស់ក្លាយជាសហគមន៍ចម្រុះ ដែលជាប់នឹងសេចក្តីប្រកាសព្រះវចនៈទាំងមូល។ យើងពឹងផ្អែកលើការប្រាប់អត្ថន័យព្រះគម្ពីរ ការថ្វាយបង្គំដឹកនាំដោយព្រះវិញ្ញាណ និងការបណ្តុះបណ្តាលសិស្សសម្រាប់គ្រួសារទាំងអស់។',
+            'ចាប់ពីការជួបជុំថ្ងៃអាទិត្យ ដល់សិក្សាកណ្ដាលសប្ដាហ៍ គម្រោងចេញផ្សាយជួយ និងការអភិវឌ្ឍភាពជាអ្នកដឹកនាំ គោលបំណងរបស់យើងគឺបំប៉នមនុស្សឲ្យស្គាល់ព្រះយេស៊ូវ ស្រឡាញ់គ្នា និងបម្រើទីក្រុងភ្នំពេញដោយភាពទាប និងសេចក្តីសង្ឃឹម។'
+          ],
+          imageAlt: 'សហគមន៍ ព្រះវិហារកាល់វ៉ារីឆាបផលភ្នំពេញ'
+        },
+        gallery: {
+          eyebrow: 'វិចិត្រសាល',
+          title: 'ជីវិតជុំវិញ ព្រះវិហារកាល់វ៉ារីឆាបផលភ្នំពេញ',
+          description: 'រូបភាពពីការថ្វាយបង្គំ ការបណ្តុះសិស្ស និងសេវាកម្មប្រចាំថ្ងៃនៅភ្នំពេញ។',
+          loading: 'កំពុងផ្ទុកវិចិត្រសាល...',
+          loadError: 'មិនអាចផ្ទុករូបវិចិត្រសាលបាន។',
+          rolling: {
+            eyebrow: 'បដារង្វិល',
+            title: 'រូបទិដ្ឋភាពរីករាយនៃសហគមន៍',
+            note: 'ធ្វើបច្ចុប្បន្នភាពស្វ័យប្រវត្តិពេលបន្ថែមរូបថ្មីៗ។'
+          }
+        },
+        highlights: [
+          {
+            id: 'worship',
+            tag: 'ការថ្វាយបង្គំរួមគ្នា',
+            title: 'ថ្ងៃអាទិត្យជាប់នឹងព្រះវចនៈ',
+            description:
+              'គ្រួសារជឿពីភាសាទាំងពីរថ្វាយបង្គំ បើកព្រះគម្ពីរតាមជួរ និងចែករំលែកជីវិតជាមួយគ្នារៀងរាល់សប្ដាហ៍។',
+            detail: 'ថតបានក្នុងពេលបំពេញបេសកកម្មម៉ោង 9 ព្រឹក នៅសាលធំភ្នំពេញ។',
+            image: highlightWorship
+          },
+          {
+            id: 'outreach',
+            tag: 'ការចេញផ្សាយទីក្រុង',
+            title: 'បម្រើសង្កាត់ក្នុងទីក្រុងភ្នំពេញ',
+            description: 'ក្រុមចែកចាយអាហារ អធិស្ឋានជាមួយអ្នកជិតខាង និងផ្តល់ការថែទាំជាក់ស្តែងទូទាំងទីក្រុង។',
+            detail: 'ពេលវេលាពីព្រឹត្តិការណ៍ Serve Phnom Penh ពេលព្រឹក។',
+            image: highlightOutreach
+          },
+          {
+            id: 'youth',
+            tag: 'ជំនាន់ក្រោយ',
+            title: 'យុវជនស្វែងយល់ពីព្រះយេស៊ូវរួមគ្នា',
+            description:
+              'និស្សិតជួបជុំកណ្ដាលសប្ដាហ៍ សម្រាប់ការបង្រៀន ការពិភាក្សា និងការបណ្តុះបណ្តាលសិស្ស ដើម្បីដើរតាមព្រះយេស៊ូវដោយក្លាហាន។',
+            detail: 'ពីយប់សេវាយុវជនថ្ងៃសុក្រ។',
+            image: highlightYouth
+          },
+          {
+            id: 'prayer',
+            tag: 'ការអធិស្ឋាន និងសហគមន៍',
+            title: 'ក្រុមផ្ទះ និងយប់អធិស្ឋាន',
+            description: 'រង្វង់អធិស្ឋាន ការលើកទឹកចិត្ត និងការស្វាគមន៍នៅគេហដ្ឋានជុំវិញទីក្រុង។',
+            detail: 'រូបពីយប់អធិស្ឋានទីក្រុងប្រចាំខែ។',
+            image: highlightPrayer
+          }
+        ]
       }
-    ]
+    }
 
-    const fallbackBannerImages = highlightSections.map((section) => ({
-      src: section.image,
-      alt: section.title
-    }))
+    const content = computed(() => translations[selectedLanguage.value] || translations.en)
+    const hero = computed(() => content.value.hero)
+    const story = computed(() => content.value.story)
+    const gallery = computed(() => content.value.gallery)
+    const highlightSections = computed(() => content.value.highlights)
+
+    const fallbackBannerImages = computed(() =>
+      highlightSections.value.map((section) => ({
+        src: section.image,
+        alt: section.title
+      }))
+    )
 
     const fetchGalleryImages = async () => {
       loading.value = true
@@ -215,7 +322,7 @@ export default {
         error.value = ''
       } catch (err) {
         console.error('Error loading gallery images:', err)
-        error.value = 'Failed to load gallery images'
+        error.value = gallery.value.loadError
         galleryImages.value = []
       } finally {
         loading.value = false
@@ -223,7 +330,7 @@ export default {
     }
 
     const marqueeImages = computed(() => {
-      const source = galleryImages.value.length ? galleryImages.value : fallbackBannerImages
+      const source = galleryImages.value.length ? galleryImages.value : fallbackBannerImages.value
       const base = source.slice(0, Math.min(source.length, 8))
       return base.length ? [...base, ...base] : []
     })
@@ -233,8 +340,10 @@ export default {
     })
 
     return {
-      aboutHeroImage,
+      hero,
+      story,
       storyImage,
+      gallery,
       highlightSections,
       loading,
       error,
