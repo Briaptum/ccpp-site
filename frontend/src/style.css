@@ -9,6 +9,16 @@
     font-weight: 400;
     font-size: 16px;
   }
+
+  html[lang="km"] {
+    font-family: 'Hanuman', Lato, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    letter-spacing: normal;
+  }
+
+  /* Reset letter spacing when Khmer is active to avoid stretched glyphs */
+  html[lang="km"] * {
+    letter-spacing: normal !important;
+  }
   
   p {
     font-weight: 300;
