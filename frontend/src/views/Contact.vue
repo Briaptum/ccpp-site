@@ -12,10 +12,10 @@
         <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
       </div>
       <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-        <p class="text-sm uppercase tracking-[0.35em] text-white/70">We'd love to hear from you</p>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Contact Calvary Chapel Phnom Penh</h1>
+        <p class="text-sm uppercase tracking-[0.35em] text-white/70">{{ hero.eyebrow }}</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">{{ hero.title }}</h1>
         <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto font-light">
-          Questions, prayer requests, or planning a visit? Reach out and our team will respond quickly.
+          {{ hero.subtitle }}
         </p>
         <div class="flex justify-center gap-4 pt-4 text-white/80">
           <a
@@ -58,57 +58,55 @@
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-2">
         <div class="space-y-8">
           <div class="rounded-[28px] border border-gray-100 bg-white shadow-2xl p-8 space-y-6">
-            <p class="text-xs uppercase tracking-[0.35em] text-brand-blue/70">Visit & connect</p>
-            <h2 class="text-3xl font-semibold text-gray-900">Get in touch</h2>
+            <p class="text-xs uppercase tracking-[0.35em] text-brand-blue/70">{{ info.eyebrow }}</p>
+            <h2 class="text-3xl font-semibold text-gray-900">{{ info.title }}</h2>
             <p class="text-gray-600">
-              Our team is available throughout the week to answer questions, pray with you, and help you plug in.
+              {{ info.description }}
             </p>
             <div class="space-y-6">
               <div class="flex gap-4">
                 <div class="rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center h-14 w-14 text-2xl">📍</div>
                 <div>
-                  <h3 class="font-semibold text-gray-900">Address</h3>
+                  <h3 class="font-semibold text-gray-900">{{ info.address.label }}</h3>
                   <p class="text-gray-600 leading-relaxed">
-                    Street 26BT, House 428<br />
-                    Boeung Tompun<br />
-                    Phnom Penh, Cambodia
+                    <span v-for="(line, idx) in info.address.lines" :key="idx">
+                      {{ line }}<br />
+                    </span>
                   </p>
                 </div>
               </div>
               <div class="flex gap-4">
                 <div class="rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center h-14 w-14 text-2xl">📞</div>
                 <div>
-                  <h3 class="font-semibold text-gray-900">Phone</h3>
-                  <p class="text-gray-600">+855 15 81 44 40</p>
+                  <h3 class="font-semibold text-gray-900">{{ info.phone.label }}</h3>
+                  <p class="text-gray-600">{{ info.phone.value }}</p>
                 </div>
               </div>
               <div class="flex gap-4">
                 <div class="rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center h-14 w-14 text-2xl">📧</div>
                 <div>
-                  <h3 class="font-semibold text-gray-900">Email</h3>
-                  <p class="text-gray-600">calvarychapelphnompenh@gmail.com</p>
+                  <h3 class="font-semibold text-gray-900">{{ info.email.label }}</h3>
+                  <p class="text-gray-600">{{ info.email.value }}</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="rounded-[28px] border border-gray-100 bg-white shadow-2xl p-8 space-y-4">
-            <p class="text-xs uppercase tracking-[0.35em] text-brand-orange/80">Gatherings</p>
-            <h3 class="text-2xl font-semibold text-gray-900">Regular Service</h3>
+            <p class="text-xs uppercase tracking-[0.35em] text-brand-orange/80">{{ gatherings.eyebrow }}</p>
+            <h3 class="text-2xl font-semibold text-gray-900">{{ gatherings.title }}</h3>
             <ul class="space-y-4 text-gray-600">
-              <li class="flex items-center justify-between border-b border-gray-100 pb-3">
+              <li
+                v-for="(item, idx) in gatherings.items"
+                :key="item.id"
+                class="flex items-center justify-between"
+                :class="idx === 0 ? 'border-b border-gray-100 pb-3' : ''"
+              >
                 <div>
-                  <p class="font-semibold text-gray-900">Sunday Bible Study</p>
-                  <p class="text-sm text-gray-500">Main sanctuary</p>
-              </div>
-                <span class="font-medium text-gray-700">9:00 AM</span>
-              </li>
-              <li class="flex items-center justify-between">
-                <div>
-                  <p class="font-semibold text-gray-900">Wednesday Bible Study</p>
-                  <p class="text-sm text-gray-500">Mid-week gathering</p>
-              </div>
-                <span class="font-medium text-gray-700">7:00 PM</span>
+                  <p class="font-semibold text-gray-900">{{ item.title }}</p>
+                  <p class="text-sm text-gray-500">{{ item.location }}</p>
+                </div>
+                <span class="font-medium text-gray-700">{{ item.time }}</span>
               </li>
             </ul>
           </div>
@@ -116,69 +114,69 @@
 
         <div class="rounded-[28px] border border-gray-100 bg-white shadow-2xl p-8">
           <div class="space-y-2 mb-6 text-center lg:text-left">
-            <p class="text-xs uppercase tracking-[0.35em] text-brand-blue/70">Reach out</p>
-            <h2 class="text-3xl font-semibold text-gray-900">Send us a message</h2>
-            <p class="text-gray-600">We typically respond within one business day.</p>
+            <p class="text-xs uppercase tracking-[0.35em] text-brand-blue/70">{{ formTexts.eyebrow }}</p>
+            <h2 class="text-3xl font-semibold text-gray-900">{{ formTexts.title }}</h2>
+            <p class="text-gray-600">{{ formTexts.subtitle }}</p>
           </div>
             <form @submit.prevent="submitForm" class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">{{ formTexts.fields.name }}</label>
                   <input
                     v-model="form.name"
                     type="text"
                     required
                     class="input-field"
-                    placeholder="Your full name"
+                    :placeholder="formTexts.placeholders.name"
                   />
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">{{ formTexts.fields.email }}</label>
                   <input
                     v-model="form.email"
                     type="email"
                     required
                     class="input-field"
-                    placeholder="your.email@example.com"
+                    :placeholder="formTexts.placeholders.email"
                   />
                 </div>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">{{ formTexts.fields.phone }}</label>
                   <input
                     v-model="form.phone"
                     type="tel"
                     class="input-field"
-                    placeholder="+855 15 81 44 40"
+                    :placeholder="formTexts.placeholders.phone"
                   />
                 </div>
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Why are you visiting? *</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">{{ formTexts.fields.reason }}</label>
                   <select
                     v-model="form.reason"
                     required
                     class="input-field"
                   >
-                    <option value="">Select one</option>
-                    <option value="Plan a visit">Plan a visit</option>
-                    <option value="Prayer request">Prayer request</option>
-                    <option value="Counseling / care">Counseling / care</option>
-                    <option value="Serving / volunteer">Serving / volunteer</option>
-                    <option value="Membership / next steps">Membership / next steps</option>
-                    <option value="General question">General question</option>
-                    <option value="Other">Other</option>
+                    <option value="">{{ formTexts.placeholders.reason }}</option>
+                    <option
+                      v-for="option in formTexts.reasonOptions"
+                      :key="option.value"
+                      :value="option.value"
+                    >
+                      {{ option.label }}
+                    </option>
                   </select>
                 </div>
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">{{ formTexts.fields.message }}</label>
                 <textarea
                   v-model="form.message"
                   required
                   rows="5"
                   class="input-field"
-                  placeholder="How can we help you?"
+                  :placeholder="formTexts.placeholders.message"
                 ></textarea>
               </div>
               <button
@@ -187,7 +185,7 @@
                 class="btn-primary w-full"
                 :class="{ 'opacity-50 cursor-not-allowed': submitting }"
               >
-                {{ submitting ? 'Sending...' : 'Send Message' }}
+                {{ submitting ? formTexts.sending : formTexts.submit }}
               </button>
             </form>
           <div
@@ -205,10 +203,10 @@
     <section class="py-16 bg-white">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-2 items-center">
         <div class="space-y-4">
-          <p class="text-sm uppercase tracking-[0.35em] text-gray-400">Visit us</p>
-          <h2 class="text-3xl font-semibold text-gray-900">Sunday gatherings in Phnom Penh</h2>
+          <p class="text-sm uppercase tracking-[0.35em] text-gray-400">{{ map.eyebrow }}</p>
+          <h2 class="text-3xl font-semibold text-gray-900">{{ map.title }}</h2>
           <p class="text-gray-600">
-            We meet just south of central Phnom Penh near Boeung Tompun. Use the map for directions or open the route in Google Maps.
+            {{ map.description }}
           </p>
           <a
             href="https://maps.app.goo.gl/a4YGCcvWRLy6BvRz9"
@@ -216,7 +214,7 @@
             rel="noopener noreferrer"
             class="inline-flex items-center text-brand-blue font-semibold hover:text-brand-orange transition-colors"
           >
-            Open directions
+            {{ map.cta }}
             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
@@ -241,7 +239,9 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
 import { contactRequestService } from '@/services/contactRequestService'
 
 export default {
@@ -259,6 +259,152 @@ export default {
     const message = ref('')
     const messageType = ref('')
 
+    const { selectedLanguage } = storeToRefs(useLanguageStore())
+
+    const translations = {
+      en: {
+        hero: {
+          eyebrow: "We'd love to hear from you",
+          title: 'Contact Calvary Chapel Phnom Penh',
+          subtitle: 'Questions, prayer requests, or planning a visit? Reach out and our team will respond quickly.'
+        },
+        info: {
+          eyebrow: 'Visit & connect',
+          title: 'Get in touch',
+          description: 'Our team is available throughout the week to answer questions, pray with you, and help you plug in.',
+          address: {
+            label: 'Address',
+            lines: ['Street 26BT, House 428', 'Boeung Tompun', 'Phnom Penh, Cambodia']
+          },
+          phone: { label: 'Phone', value: '+855 15 81 44 40' },
+          email: { label: 'Email', value: 'calvarychapelphnompenh@gmail.com' }
+        },
+        gatherings: {
+          eyebrow: 'Gatherings',
+          title: 'Regular Service',
+          items: [
+            { id: 'sun', title: 'Sunday Bible Study', location: 'Main sanctuary', time: '9:00 AM' },
+            { id: 'wed', title: 'Wednesday Bible Study', location: 'Mid-week gathering', time: '7:00 PM' }
+          ]
+        },
+        form: {
+          eyebrow: 'Reach out',
+          title: 'Send us a message',
+          subtitle: 'We typically respond within one business day.',
+          fields: {
+            name: 'Full Name *',
+            email: 'Email *',
+            phone: 'Phone',
+            reason: 'Why are you visiting? *',
+            message: 'Message *'
+          },
+          placeholders: {
+            name: 'Your full name',
+            email: 'your.email@example.com',
+            phone: '+855 15 81 44 40',
+            reason: 'Select one',
+            message: 'How can we help you?'
+          },
+          reasonOptions: [
+            { value: 'Plan a visit', label: 'Plan a visit' },
+            { value: 'Prayer request', label: 'Prayer request' },
+            { value: 'Counseling / care', label: 'Counseling / care' },
+            { value: 'Serving / volunteer', label: 'Serving / volunteer' },
+            { value: 'Membership / next steps', label: 'Membership / next steps' },
+            { value: 'General question', label: 'General question' },
+            { value: 'Other', label: 'Other' }
+          ],
+          submit: 'Send Message',
+          sending: 'Sending...',
+          success: "Thank you for your message! We'll get back to you soon.",
+          error: 'Sorry, there was an error sending your message. Please try again.'
+        },
+        map: {
+          eyebrow: 'Visit us',
+          title: 'Sunday gatherings in Phnom Penh',
+          description: 'We meet just south of central Phnom Penh near Boeung Tompun. Use the map for directions or open the route in Google Maps.',
+          cta: 'Open directions'
+        },
+        cta: { primary: 'Contact Us' },
+        footerNote: 'For detailed schedules and new events, check the calendar or contact us—new opportunities are added regularly.'
+      },
+      kh: {
+        hero: {
+          eyebrow: 'យើងចង់ស្តាប់ពីអ្នក',
+          title: 'ទាក់ទងព្រះវិហារកាល់វ៉ារីឆាបផលភ្នំពេញ',
+          subtitle: 'សំណួរ សំណូមពរអធិស្ឋាន ឬរៀបចំការមកទស្សនា? សូមទាក់ទង មន្ត្រីរបស់យើងនឹងឆ្លើយតបរហ័ស។'
+        },
+        info: {
+          eyebrow: 'មកទស្សនា និងតភ្ជាប់',
+          title: 'ទាក់ទងមកកាន់ពួកយើង',
+          description: 'ក្រុមរបស់យើងមានស្រាប់ទូទាំងសប្ដាហ៍ ដើម្បីឆ្លើយសំណួរ អធិស្ឋានជាមួយអ្នក និងជួយអ្នករួមចំណែក។',
+          address: {
+            label: 'អាសយដ្ឋាន',
+            lines: ['ផ្លូវ 26BT ផ្ទះលេខ 428', 'បឹងទំពុន', 'ភ្នំពេញ ប្រទេសកម្ពុជា']
+          },
+          phone: { label: 'ទូរស័ព្ទ', value: '+855 15 81 44 40' },
+          email: { label: 'អ៊ីមែល', value: 'calvarychapelphnompenh@gmail.com' }
+        },
+        gatherings: {
+          eyebrow: 'កាលវិភាគសេវាកម្ម',
+          title: 'សេវាប្រចាំ',
+          items: [
+            { id: 'sun', title: 'សិក្សាព្រះគម្ពីរ ថ្ងៃអាទិត្យ', location: 'សាលធំ', time: '9:00 ព្រឹក' },
+            { id: 'wed', title: 'សិក្សាព្រះគម្ពីរ ថ្ងៃពុធ', location: 'ការជួបកណ្ដាលសប្ដាហ៍', time: '7:00 ល្ងាច' }
+          ]
+        },
+        form: {
+          eyebrow: 'ទាក់ទង',
+          title: 'ផ្ញើសារមកយើង',
+          subtitle: 'យើងភាគច្រើនឆ្លើយតបក្នុងរយៈពេលមួយថ្ងៃធ្វើការ។',
+          fields: {
+            name: 'ឈ្មោះពេញ *',
+            email: 'អ៊ីមែល *',
+            phone: 'ទូរស័ព្ទ',
+            reason: 'ហេតុអ្វីបានមកទស្សនា? *',
+            message: 'សារ *'
+          },
+          placeholders: {
+            name: 'ឈ្មោះពេញរបស់អ្នក',
+            email: 'your.email@example.com',
+            phone: '+855 15 81 44 40',
+            reason: 'ជ្រើសរើសមួយ',
+            message: 'យើងអាចជួយអ្វីដល់អ្នក?'
+          },
+          reasonOptions: [
+            { value: 'Plan a visit', label: 'រៀបចំការមកទស្សនា' },
+            { value: 'Prayer request', label: 'សំណូមពរអធិស្ឋាន' },
+            { value: 'Counseling / care', label: 'ការប្រឹក្សា / ថែទាំ' },
+            { value: 'Serving / volunteer', label: 'បម្រើ / ស្ម័គ្រចិត្ត' },
+            { value: 'Membership / next steps', label: 'សមាជិកភាព / ជំហានបន្ទាប់' },
+            { value: 'General question', label: 'សំណួរទូទៅ' },
+            { value: 'Other', label: 'ផ្សេងៗ' }
+          ],
+          submit: 'ផ្ញើសារ',
+          sending: 'កំពុងផ្ញើ...',
+          success: 'សូមអរគុណសម្រាប់សាររបស់អ្នក! យើងនឹងតបត្រូវឆាប់ៗនេះ។',
+          error: 'សូមទោស មានបញ្ហា​ក្នុងការផ្ញើសារ សូមព្យាយាមម្តងទៀត។'
+        },
+        map: {
+          eyebrow: 'មកទស្សនាយើង',
+          title: 'ការជួបជុំថ្ងៃអាទិត្យនៅភ្នំពេញ',
+          description: 'យើងជួបនៅខាងត្បូងមួយចំនួននៃទីក្រុងភ្នំពេញ នៅជិតបឹងទំពុន។ ប្រើផែនទីសម្រាប់ទិសដៅ ឬបើកផ្លូវក្នុង Google Maps។',
+          cta: 'បើកទិសដៅ'
+        },
+        cta: { primary: 'ទាក់ទងមកកាន់ពួកយើង' },
+        footerNote: 'សម្រាប់កាលវិភាគលម្អិត និងព្រឹត្តិការណ៍ថ្មី សូមពិនិត្យប្រតិទិន ឬទាក់ទងមកយើង—ឱកាសថ្មីត្រូវបានបន្ថែមជាប្រចាំ។'
+      }
+    }
+
+    const content = computed(() => translations[selectedLanguage.value] || translations.en)
+    const hero = computed(() => content.value.hero)
+    const info = computed(() => content.value.info)
+    const gatherings = computed(() => content.value.gatherings)
+    const formTexts = computed(() => content.value.form)
+    const map = computed(() => content.value.map)
+    const cta = computed(() => content.value.cta)
+    const footerNote = computed(() => content.value.footerNote)
+
     const submitForm = async () => {
       submitting.value = true
       message.value = ''
@@ -272,7 +418,7 @@ export default {
           message: form.value.message,
         })
         
-        message.value = 'Thank you for your message! We\'ll get back to you soon.'
+        message.value = formTexts.value.success
         messageType.value = 'success'
         
         form.value = {
@@ -283,7 +429,7 @@ export default {
           message: ''
         }
       } catch (error) {
-        message.value = error.message || 'Sorry, there was an error sending your message. Please try again.'
+        message.value = error.message || formTexts.value.error
         messageType.value = 'error'
       } finally {
         submitting.value = false
@@ -291,7 +437,7 @@ export default {
     }
 
     const scheduleVisit = () => {
-      alert('Visit scheduling feature coming soon! Please call us at +855 15 81 44 40 to schedule your visit.')
+      alert(info.value.phone.value)
     }
 
     return {
@@ -300,7 +446,14 @@ export default {
       message,
       messageType,
       submitForm,
-      scheduleVisit
+      scheduleVisit,
+      hero,
+      info,
+      gatherings,
+      formTexts,
+      map,
+      cta,
+      footerNote
     }
   }
 }

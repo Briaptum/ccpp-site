@@ -9,22 +9,17 @@
         <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
       </div>
       <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Youth Ministry</h1>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">{{ hero.title }}</h1>
         <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto font-light">
-          Students discovering who they are in Jesus through Scripture, community, and mission.
+          {{ hero.subtitle }}
         </p>
         <div class="flex flex-wrap justify-center gap-3">
-          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
-            Fridays 6:30PM
-          </span>
-          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
-            Ages 12-18
-          </span>
-          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
-            Scripture & Worship
-          </span>
-          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
-            City Serve
+          <span
+            v-for="chip in hero.chips"
+            :key="chip"
+            class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm"
+          >
+            {{ chip }}
           </span>
         </div>
       </div>
@@ -34,41 +29,23 @@
     <section class="bg-primary py-12 md:py-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <section class="text-center space-y-6">
-          <p class="text-sm uppercase tracking-[0.35em] text-gray-400">Question</p>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What is Youth Ministry?</h2>
+          <p class="text-sm uppercase tracking-[0.35em] text-gray-400">{{ intro.eyebrow }}</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">{{ intro.title }}</h2>
           <div class="space-y-4 text-left text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            <p>
-              Friday nights are designed for <span class="font-semibold text-brand-orange">teens to encounter Jesus</span>, ask honest questions, and build friendships that last beyond the gathering.
-            </p>
-            <p>
-              We teach the Bible directly, invite students into <span class="font-semibold text-brand-orange">Spirit-led worship</span>, and create space for conversations that connect faith to Phnom Penh life.
-            </p>
-            <p>
-              Serving together—from city outreaches to helping on Sundays—forms students into disciples who love Jesus and their neighbors.
-            </p>
+            <p v-for="(paragraph, idx) in intro.body" :key="idx" v-html="paragraph"></p>
           </div>
         </section>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <article class="rounded-[28px] border border-gray-100 bg-white shadow-2xl p-8 space-y-4">
-            <p class="text-xs uppercase tracking-[0.35em] text-brand-blue/70">Teaching</p>
-            <h3 class="text-2xl font-semibold text-gray-900">Bible-centered nights</h3>
+          <article
+            v-for="card in cards"
+            :key="card.id"
+            class="rounded-[28px] border border-gray-100 bg-white shadow-2xl p-8 space-y-4"
+          >
+            <p class="text-xs uppercase tracking-[0.35em] text-brand-blue/70">{{ card.tag }}</p>
+            <h3 class="text-2xl font-semibold text-gray-900">{{ card.title }}</h3>
             <p class="text-gray-600">
-              Verse-by-verse teaching, small-group discussion, and mentoring conversations help students apply Scripture.
-            </p>
-          </article>
-          <article class="rounded-[28px] border border-gray-100 bg-white shadow-2xl p-8 space-y-4">
-            <p class="text-xs uppercase tracking-[0.35em] text-brand-blue/70">Community</p>
-            <h3 class="text-2xl font-semibold text-gray-900">Shared life & worship</h3>
-            <p class="text-gray-600">
-              Student-led worship, hangouts, and retreats build a healthy community where every teen belongs.
-            </p>
-          </article>
-          <article class="rounded-[28px] border border-gray-100 bg-white shadow-2xl p-8 space-y-4">
-            <p class="text-xs uppercase tracking-[0.35em] text-brand-blue/70">Mission</p>
-            <h3 class="text-2xl font-semibold text-gray-900">Serve Phnom Penh</h3>
-            <p class="text-gray-600">
-              Monthly projects, prayer walks, and partnering with outreaches teach students to live on mission daily.
+              {{ card.body }}
             </p>
           </article>
         </div>
@@ -78,7 +55,7 @@
             to="/contact"
             class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-full hover:bg-brand-orange/90 transition-colors shadow-lg shadow-brand-orange/30"
           >
-            Connect a student
+            {{ cta.primary }}
           </router-link>
         </div>
       </div>
@@ -88,19 +65,19 @@
     <section class="py-20 bg-gray-100">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div class="text-center space-y-3">
-          <h2 class="text-4xl font-bold text-main">Gallery</h2>
+          <h2 class="text-4xl font-bold text-main">{{ galleryContent.title }}</h2>
           <p class="text-lg text-gray-700 max-w-2xl mx-auto">
-            Scroll through Youth Ministry moments from gatherings, retreats, and serve days.
+            {{ galleryContent.description }}
           </p>
         </div>
 
         <div v-if="loading" class="text-center py-12">
           <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-main border-t-transparent mb-4"></div>
-          <p class="text-gray-700">Loading gallery...</p>
+          <p class="text-gray-700">{{ galleryContent.loading }}</p>
         </div>
         <div v-else-if="error" class="text-center py-8 text-red-600">{{ error }}</div>
         <div v-else-if="galleryImages.length === 0" class="text-center text-gray-500 py-12">
-          No gallery images yet.
+          {{ galleryContent.empty }}
         </div>
         <div v-else class="relative max-w-5xl mx-auto">
           <div
@@ -194,7 +171,9 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
 import { galleryService } from '@/services/galleryService'
 
 export default {
@@ -206,11 +185,80 @@ export default {
     const error = ref('')
     const galleryImages = ref([])
     const galleryScroll = ref(null)
+    const galleryError = ref('Failed to load gallery images')
+
+    const { selectedLanguage } = storeToRefs(useLanguageStore())
+
+    const translations = {
+      en: {
+        hero: {
+          title: 'Youth Ministry',
+          subtitle: 'Students discovering who they are in Jesus through Scripture, community, and mission.',
+          chips: ['Fridays 6:30PM', 'Ages 12-18', 'Scripture & Worship', 'City Serve']
+        },
+        intro: {
+          eyebrow: 'Question',
+          title: 'What is Youth Ministry?',
+          body: [
+            'Friday nights are designed for <span class="font-semibold text-brand-orange">teens to encounter Jesus</span>, ask honest questions, and build friendships that last beyond the gathering.',
+            'We teach the Bible directly, invite students into <span class="font-semibold text-brand-orange">Spirit-led worship</span>, and create space for conversations that connect faith to Phnom Penh life.',
+            'Serving together—from city outreaches to helping on Sundays—forms students into disciples who love Jesus and their neighbors.'
+          ]
+        },
+        cards: [
+          { id: 'teaching', tag: 'Teaching', title: 'Bible-centered nights', body: 'Verse-by-verse teaching, small-group discussion, and mentoring conversations help students apply Scripture.' },
+          { id: 'community', tag: 'Community', title: 'Shared life & worship', body: 'Student-led worship, hangouts, and retreats build a healthy community where every teen belongs.' },
+          { id: 'mission', tag: 'Mission', title: 'Serve Phnom Penh', body: 'Monthly projects, prayer walks, and partnering with outreaches teach students to live on mission daily.' }
+        ],
+        cta: { primary: 'Connect a student' },
+        gallery: {
+          title: 'Gallery',
+          description: 'Scroll through Youth Ministry moments from gatherings, retreats, and serve days.',
+          loading: 'Loading gallery...',
+          empty: 'No gallery images yet.',
+          error: 'Failed to load gallery images'
+        }
+      },
+      kh: {
+        hero: {
+          title: 'សេវាយុវជន',
+          subtitle: 'យុវជនស្វែងរកអត្តសញ្ញាណក្នុងព្រះយេស៊ូវ តាមរយៈព្រះវចនៈ សហគមន៍ និងភារកិច្ច។',
+          chips: ['ថ្ងៃសុក្រ 6:30 ល្ងាច', 'អាយុ 12-18', 'ព្រះវចនៈ និងការថ្វាយបង្គំ', 'បម្រើទីក្រុង']
+        },
+        intro: {
+          eyebrow: 'សំណួរ',
+          title: 'តើសេវាយុវជនគឺអ្វី?',
+          body: [
+            'យប់ថ្ងៃសុក្រ ត្រូវបានរៀបចំសម្រាប់ <span class="font-semibold text-brand-orange">យុវជនឱ្យជួបព្រះយេស៊ូវ</span> សួរសំណួរពិតប្រាកដ និងស្ថាបនាមិត្តភាពដែលតែងតែបន្តក្រៅការជួបជុំ។',
+            'យើងបង្រៀនព្រះគម្ពីរត្រង់ៗ អញ្ជើញយុវជនចូលរៀងរាល់ <span class="font-semibold text-brand-orange">ការថ្វាយបង្គំដឹកនាំដោយព្រះវិញ្ញាណ</span> និងបង្កើតកន្លែងសន្ទនាដែលភ្ជាប់ជំនឿនឹងជីវិតនៅទីក្រុងភ្នំពេញ។',
+            'ការបម្រើរួមគ្នា ចាប់ពីការចេញផ្សាយក្នុងទីក្រុង ដល់ជួយថ្ងៃអាទិត្យ បង្កើតយុវជនឱ្យក្លាយជាសិស្សដែលស្រឡាញ់ព្រះយេស៊ូវ និងអ្នកជិតខាង។'
+          ]
+        },
+        cards: [
+          { id: 'teaching', tag: 'ការបង្រៀន', title: 'យប់ប្រកបដោយព្រះវចនៈ', body: 'ការបង្រៀនតាមជួរ ក្រុមតូច និងការជួបពិភាក្សា ជួយយុវជនអនុវត្តព្រះគម្ពីរ។' },
+          { id: 'community', tag: 'សហគមន៍', title: 'ជីវិត និងការថ្វាយបង្គំរួម', body: 'ការថ្វាយបង្គំដឹកនាំដោយយុវជន ការស្នាក់ស្នាល និងជំរះ បង្កើតសហគមន៍មានសុខភាពដែលយុវជនគ្រប់រូបមានទីកន្លែង។' },
+          { id: 'mission', tag: 'ភារកិច្ច', title: 'បម្រើទីក្រុងភ្នំពេញ', body: 'គម្រោងប្រចាំខែ ដំណើរការអធិស្ឋាន និងសហការជាមួយការចេញផ្សាយ បង្រៀនយុវជនឱ្យរស់នៅជាអ្នកបម្រើរៀងរាល់ថ្ងៃ។' }
+        ],
+        cta: { primary: 'ភ្ជាប់យុវជនម្នាក់' },
+        gallery: {
+          title: 'វិចិត្រសាល',
+          description: 'រុករករូបភាពពីការជួបជុំយុវជន ជំនួបជំរះ និងថ្ងៃបម្រើ។',
+          loading: 'កំពុងផ្ទុកវិចិត្រសាល...',
+          empty: 'មិនទាន់មានរូបវិចិត្រសាលទេ។',
+          error: 'មិនអាចផ្ទុកវិចិត្រសាលបានទេ'
+        }
+      }
+    }
+
+    const content = computed(() => translations[selectedLanguage.value] || translations.en)
+    const hero = computed(() => content.value.hero)
+    const intro = computed(() => content.value.intro)
+    const cards = computed(() => content.value.cards)
+    const cta = computed(() => content.value.cta)
+    const galleryContent = computed(() => content.value.gallery)
 
     const getImageUrl = (path) => {
-      if (path.startsWith('http')) {
-        return path
-      }
+      if (path.startsWith('http')) return path
       return path.startsWith('/') ? path : `/${path}`
     }
 
@@ -228,7 +276,7 @@ export default {
         loading.value = false
       } catch (err) {
         console.error('Error loading gallery images:', err)
-        error.value = 'Failed to load gallery images'
+        error.value = galleryContent.value.error
         loading.value = false
       }
     }
@@ -282,9 +330,13 @@ export default {
       openLightbox,
       closeLightbox,
       nextImage,
-      prevImage
+      prevImage,
+      hero,
+      intro,
+      cards,
+      cta,
+      galleryContent
     }
   }
 }
 </script>
-

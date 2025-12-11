@@ -9,22 +9,17 @@
         <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
       </div>
       <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Outreaches</h1>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">{{ hero.title }}</h1>
         <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto font-light">
-          Serving Cambodia with tangible compassion, prayer, and the hope of Jesus.
+          {{ hero.subtitle }}
         </p>
         <div class="flex flex-wrap justify-center gap-3">
-          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
-            MercyTeams
-          </span>
-          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
-            Meals & Care
-          </span>
-          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
-            Prayer
-          </span>
-          <span class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm">
-            Gospel Moments
+          <span
+            v-for="chip in hero.chips"
+            :key="chip"
+            class="inline-flex items-center px-4 py-2 rounded-full border border-white/25 text-white/80 text-xs uppercase tracking-[0.3em] backdrop-blur-sm"
+          >
+            {{ chip }}
           </span>
         </div>
       </div>
@@ -34,18 +29,10 @@
     <section class="bg-primary py-12 md:py-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <section class="text-center space-y-6">
-          <p class="text-sm uppercase tracking-[0.35em] text-gray-400">Question</p>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What are our outreaches?</h2>
+          <p class="text-sm uppercase tracking-[0.35em] text-gray-400">{{ intro.eyebrow }}</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">{{ intro.title }}</h2>
           <div class="space-y-4 text-left text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            <p>
-              Outreaches carry <span class="font-semibold text-brand-orange">Calvary Chapel Phnom Penh</span> into neighborhoods, schools, and villages with meals, medical care, prayer, and discipleship.
-            </p>
-            <p>
-              We partner with local leaders, listen to community needs, and respond with <span class="font-semibold text-brand-orange">compassionate action</span> that points every person to Jesus.
-            </p>
-            <p>
-              Whether we’re serving families, youth, or vulnerable neighbors, our teams keep the <span class="font-semibold text-brand-orange">Gospel and presence of the Holy Spirit</span> at the center.
-            </p>
+            <p v-for="(paragraph, idx) in intro.body" :key="idx" v-html="paragraph"></p>
           </div>
         </section>
 
@@ -59,13 +46,13 @@
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs uppercase tracking-[0.35em] bg-white/90 text-gray-900">
-                Araksat
+                {{ cards[0].tag }}
               </span>
             </div>
             <div class="p-8 space-y-4 flex flex-col flex-1">
-              <h3 class="text-2xl font-semibold text-gray-900">Village gatherings</h3>
+              <h3 class="text-2xl font-semibold text-gray-900">{{ cards[0].title }}</h3>
               <p class="text-gray-600 flex-1">
-                Meals, house visits, and Bible studies anchor this long-term relationship with families north of the city.
+                {{ cards[0].body }}
               </p>
             </div>
           </article>
@@ -79,13 +66,13 @@
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs uppercase tracking-[0.35em] bg-white/90 text-gray-900">
-                Steung Meanchey
+                {{ cards[1].tag }}
               </span>
             </div>
             <div class="p-8 space-y-4 flex flex-col flex-1">
-              <h3 class="text-2xl font-semibold text-gray-900">Urban compassion</h3>
+              <h3 class="text-2xl font-semibold text-gray-900">{{ cards[1].title }}</h3>
               <p class="text-gray-600 flex-1">
-                Care packages, medical clinics, and youth ministry support families living around the landfill district.
+                {{ cards[1].body }}
               </p>
             </div>
           </article>
@@ -99,13 +86,13 @@
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               <span class="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs uppercase tracking-[0.35em] bg-white/90 text-gray-900">
-                Prey Veng
+                {{ cards[2].tag }}
               </span>
             </div>
             <div class="p-8 space-y-4 flex flex-col flex-1">
-              <h3 class="text-2xl font-semibold text-gray-900">Regional partnership</h3>
+              <h3 class="text-2xl font-semibold text-gray-900">{{ cards[2].title }}</h3>
               <p class="text-gray-600 flex-1">
-                Monthly teams encourage rural churches with leadership training, prayer, and evangelistic outreaches.
+                {{ cards[2].body }}
               </p>
             </div>
           </article>
@@ -116,7 +103,7 @@
             to="/contact"
             class="inline-flex items-center justify-center px-6 py-3 text-base bg-brand-orange text-white font-semibold rounded-full hover:bg-brand-orange/90 transition-colors shadow-lg shadow-brand-orange/30"
           >
-            Serve with Us
+            {{ cta.primary }}
           </router-link>
         </div>
       </div>
@@ -248,6 +235,8 @@
 
 <script>
 import { ref, computed, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
 import { galleryService } from '@/services/galleryService'
 import araksatImage from '@/assets/gallery/548625714_1236675678494090_1776087346866151382_n.jpg'
 import steunmeancheyImage from '@/assets/gallery/547653470_1236675908494067_1828648105188893790_n.jpg'
@@ -263,6 +252,65 @@ export default {
     const loading = ref(true)
     const error = ref('')
     const galleryImages = ref([])
+    const galleryError = ref('Failed to load gallery images')
+
+    const { selectedLanguage } = storeToRefs(useLanguageStore())
+
+    const translations = {
+      en: {
+        hero: {
+          title: 'Outreaches',
+          subtitle: 'Serving Cambodia with tangible compassion, prayer, and the hope of Jesus.',
+          chips: ['MercyTeams', 'Meals & Care', 'Prayer', 'Gospel Moments']
+        },
+        intro: {
+          eyebrow: 'Question',
+          title: 'What are our outreaches?',
+          body: [
+            'Outreaches carry <span class="font-semibold text-brand-orange">Calvary Chapel Phnom Penh</span> into neighborhoods, schools, and villages with meals, medical care, prayer, and discipleship.',
+            'We partner with local leaders, listen to community needs, and respond with <span class="font-semibold text-brand-orange">compassionate action</span> that points every person to Jesus.',
+            'Whether we’re serving families, youth, or vulnerable neighbors, our teams keep the <span class="font-semibold text-brand-orange">Gospel and presence of the Holy Spirit</span> at the center.'
+          ]
+        },
+        cards: [
+          { id: 'araksat', tag: 'Araksat', title: 'Village gatherings', body: 'Meals, house visits, and Bible studies anchor this long-term relationship with families north of the city.' },
+          { id: 'steung-meanchey', tag: 'Steung Meanchey', title: 'Urban compassion', body: 'Care packages, medical clinics, and youth ministry support families living around the landfill district.' },
+          { id: 'prey-veng', tag: 'Prey Veng', title: 'Regional partnership', body: 'Monthly teams encourage rural churches with leadership training, prayer, and evangelistic outreaches.' }
+        ],
+        cta: { primary: 'Serve with Us' },
+        galleryError: 'Failed to load gallery images'
+      },
+      kh: {
+        hero: {
+          title: 'ការចេញផ្សាយ',
+          subtitle: 'បម្រើកម្ពុជា​ដោយមេត្តាករុណាជាក់ស្តែង ការអធិស្ឋាន និងសេចក្តីសង្ឃឹមក្នុងព្រះយេស៊ូវ។',
+          chips: ['ក្រុមមេត្តាករុណា', 'អាហារ និងការថែទាំ', 'ការអធិស្ឋាន', 'ខណៈពេលសារព្រះ']
+        },
+        intro: {
+          eyebrow: 'សំណួរ',
+          title: 'ការចេញផ្សាយរបស់យើងមានអ្វីខ្លះ?',
+          body: [
+            'ការចេញផ្សាយនាំ <span class="font-semibold text-brand-orange">ព្រះវិហារកាល់វ៉ារីឆាបផលភ្នំពេញ</span> ចូលទៅសង្កាត់ សាលារៀន និងភូមិ ដោយនាំអាហារ ការថែទាំសុខភាព ការអធិស្ឋាន និងការបណ្តុះសិស្ស។',
+            'យើងសហការជាមួយអ្នកដឹកនាំក្នុងស្រុក ស្តាប់តម្រូវការសហគមន៍ និងឆ្លើយតបដោយ <span class="font-semibold text-brand-orange">សកម្មភាពមេត្តាករុណា</span> ដែលបង្ហាញមនុស្សគ្រប់រូបទៅរកព្រះយេស៊ូវ។',
+            'មិនថាកំពុងបម្រើគ្រួសារ យុវជន ឬអ្នកងាយរងគ្រោះ ក្រុមរបស់យើងរក្សា <span class="font-semibold text-brand-orange">សារព្រះ និងវត្តមានព្រះវិញ្ញាណបរិសុទ្ធ</span> ជាមជ្ឈមណ្ឌលជានិច្ច។'
+          ]
+        },
+        cards: [
+          { id: 'araksat', tag: 'អារាក់សាត់', title: 'ការជួបជុំព្រះវិហារ​ភូមិ', body: 'អាហារ ការទៅលេងផ្ទះ និងការសិក្សាព្រះគម្ពីរ ជាគ្រឹះសម្រាប់ទំនាក់ទំនងរយៈពេលវែងជាមួយគ្រួសារទិសខាងជើងទីក្រុង។' },
+          { id: 'steung-meanchey', tag: 'ស្ទឹងមានជ័យ', title: 'មេត្តាករុណាក្រុង', body: 'កញ្ចប់ជំនួយ គ្លីនិកសុខភាព និងសេវាយុវជន គាំទ្រគ្រួសារនៅជុំវិញតំបន់ល្បាក់សំរាម។' },
+          { id: 'prey-veng', tag: 'ព្រៃវែង', title: 'ដៃគូតំបន់', body: 'ក្រុមប្រចាំខែ បំផុសគ្រឹស្តសាសនាចក្រ​ជនបទតាមការបណ្តុះបណ្តាលភាពជាអ្នកដឹកនាំ ការអធិស្ឋាន និងការចេញផ្សាយសារ​សង្គ្រោះ។' }
+        ],
+        cta: { primary: 'ចូលរួមបម្រើជាមួយយើង' },
+        galleryError: 'មិនអាចផ្ទុកវិចិត្រសាលបានទេ'
+      }
+    }
+
+    const content = computed(() => translations[selectedLanguage.value] || translations.en)
+    galleryError.value = content.value.galleryError
+    const hero = computed(() => content.value.hero)
+    const intro = computed(() => content.value.intro)
+    const cards = computed(() => content.value.cards)
+    const cta = computed(() => content.value.cta)
 
     const getImageUrl = (path) => {
       if (path.startsWith('http')) {
@@ -285,7 +333,7 @@ export default {
         loading.value = false
       } catch (err) {
         console.error('Error loading gallery images:', err)
-        error.value = 'Failed to load gallery images'
+        error.value = galleryError.value
         loading.value = false
       }
     }
@@ -359,7 +407,12 @@ export default {
       handleImageError,
       araksatImage,
       steunmeancheyImage,
-      preyVengImage
+      preyVengImage,
+      hero,
+      intro,
+      cards,
+      cta,
+      galleryError
     }
   },
 };
