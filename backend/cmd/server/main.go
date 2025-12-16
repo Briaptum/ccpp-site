@@ -7,8 +7,8 @@ import (
 	"ccpp-backend/internal/domain/models"
 	"ccpp-backend/internal/infrastructure/database"
 	infraRepos "ccpp-backend/internal/infrastructure/repositories"
-	infraServices "ccpp-backend/internal/infrastructure/services"
 	"ccpp-backend/internal/infrastructure/routes"
+	infraServices "ccpp-backend/internal/infrastructure/services"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"

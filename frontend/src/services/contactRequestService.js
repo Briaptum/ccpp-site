@@ -17,3 +17,4 @@ export const contactRequestService = {
     return await api.delete(`/contact-requests/${id}`)
   },
 }
+

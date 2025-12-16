@@ -12,3 +12,4 @@ CREATE TABLE IF NOT EXISTS contact_requests (
 
 CREATE INDEX IF NOT EXISTS idx_contact_requests_email ON contact_requests (email);
 CREATE INDEX IF NOT EXISTS idx_contact_requests_created_at ON contact_requests (created_at);
+

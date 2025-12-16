@@ -5,6 +5,7 @@ import (
 
 	"ccpp-backend/internal/domain/services"
 	"ccpp-backend/internal/infrastructure/handlers"
+	"ccpp-backend/internal/infrastructure/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,19 +23,34 @@ func SetupRoutes(
 	contactRequestHandler := handlers.NewContactRequestHandler(contactRequestService)
 	galleryHandler := handlers.NewGalleryHandler(galleryService)
 	eventHandler := handlers.NewEventHandler(eventService)
+	authHandler := handlers.NewAuthHandler()
 
 	// Legacy-free routes copied from Rolston HVAC for contact requests
 	contactRequests := router.Group("/api/contact-requests")
 	{
 		contactRequests.POST("", contactRequestHandler.CreateContactRequest)
-		contactRequests.GET("", contactRequestHandler.GetContactRequests)
-		contactRequests.GET("/:id", contactRequestHandler.GetContactRequest)
-		contactRequests.DELETE("/:id", contactRequestHandler.DeleteContactRequest)
+	}
+	legacyProtected := contactRequests.Group("")
+	legacyProtected.Use(middleware.Auth0Middleware())
+	{
+		legacyProtected.GET("", contactRequestHandler.GetContactRequests)
+		legacyProtected.GET("/:id", contactRequestHandler.GetContactRequest)
+		legacyProtected.DELETE("/:id", contactRequestHandler.DeleteContactRequest)
 	}
 
 	api := router.Group("/api/v1")
 	{
-		users := api.Group("/users")
+		auth := api.Group("/auth")
+		{
+			auth.POST("/login", authHandler.Login)
+			auth.GET("/logout", authHandler.Logout)
+			auth.GET("/profile", middleware.Auth0Middleware(), authHandler.Profile)
+		}
+
+		protected := api.Group("")
+		protected.Use(middleware.Auth0Middleware())
+
+		users := protected.Group("/users")
 		{
 			users.POST("", userHandler.CreateUser)
 			users.GET("", userHandler.GetAllUsers)
@@ -46,12 +62,16 @@ func SetupRoutes(
 		contactRequestsV1 := api.Group("/contact-requests")
 		{
 			contactRequestsV1.POST("", contactRequestHandler.CreateContactRequest)
-			contactRequestsV1.GET("", contactRequestHandler.GetContactRequests)
-			contactRequestsV1.GET("/:id", contactRequestHandler.GetContactRequest)
-			contactRequestsV1.DELETE("/:id", contactRequestHandler.DeleteContactRequest)
+			protectedContactRequests := contactRequestsV1.Group("")
+			protectedContactRequests.Use(middleware.Auth0Middleware())
+			{
+				protectedContactRequests.GET("", contactRequestHandler.GetContactRequests)
+				protectedContactRequests.GET("/:id", contactRequestHandler.GetContactRequest)
+				protectedContactRequests.DELETE("/:id", contactRequestHandler.DeleteContactRequest)
+			}
 		}
 
-		contacts := api.Group("/contacts")
+		contacts := protected.Group("/contacts")
 		{
 			contacts.POST("", contactHandler.CreateContact)
 			contacts.GET("", contactHandler.GetAllContacts)
@@ -61,26 +81,26 @@ func SetupRoutes(
 
 		gallery := api.Group("/gallery")
 		{
-			gallery.POST("/upload", galleryHandler.UploadGallery)
+			gallery.POST("/upload", middleware.Auth0Middleware(), galleryHandler.UploadGallery)
 			gallery.GET("", galleryHandler.GetAllGalleries)
 			gallery.GET("/:id", galleryHandler.GetGalleryByID)
-			gallery.DELETE("/:id", galleryHandler.DeleteGallery)
+			gallery.DELETE("/:id", middleware.Auth0Middleware(), galleryHandler.DeleteGallery)
 		}
 
 		events := api.Group("/events")
 		{
-			events.POST("", eventHandler.CreateEvent)
+			events.POST("", middleware.Auth0Middleware(), eventHandler.CreateEvent)
 			events.GET("", eventHandler.GetAllEvents)
 			events.GET("/:id", eventHandler.GetEventByID)
-			events.PUT("/:id", eventHandler.UpdateEvent)
-			events.DELETE("/:id", eventHandler.DeleteEvent)
+			events.PUT("/:id", middleware.Auth0Middleware(), eventHandler.UpdateEvent)
+			events.DELETE("/:id", middleware.Auth0Middleware(), eventHandler.DeleteEvent)
 		}
 	}
 
 	// Health check endpoint
 	router.GET("/health", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"status": "ok",
+			"status":  "ok",
 			"message": "API is running",
 		})
 	})

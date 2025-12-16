@@ -104,7 +104,8 @@ const routes = [
   {
     path: '/users',
     name: 'Users',
-    component: Users
+    component: Users,
+    meta: { requiresAdmin: true }
   },
   {
     path: '/donate',
@@ -124,38 +125,66 @@ const routes = [
   {
     path: '/admin/dashboard',
     name: 'AdminDashboard',
-    component: AdminDashboard
+    component: AdminDashboard,
+    meta: { requiresAdmin: true }
   },
   {
     path: '/admin/gallery',
     name: 'GalleryManagement',
-    component: GalleryManagement
+    component: GalleryManagement,
+    meta: { requiresAdmin: true }
   },
   {
     path: '/admin/events',
     name: 'EventManagement',
-    component: EventManagement
+    component: EventManagement,
+    meta: { requiresAdmin: true }
   },
   {
     path: '/admin/content',
     name: 'ContentManagement',
-    component: ContentManagement
+    component: ContentManagement,
+    meta: { requiresAdmin: true }
   },
   {
     path: '/admin/contacts',
     name: 'ContactMessages',
-    component: ContactMessages
+    component: ContactMessages,
+    meta: { requiresAdmin: true }
   },
   {
     path: '/admin/settings',
     name: 'Settings',
-    component: Settings
+    component: Settings,
+    meta: { requiresAdmin: true }
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const requiresAdmin = to.matched.some(record => record.meta?.requiresAdmin)
+  const token = localStorage.getItem('authToken')
+  const userRaw = localStorage.getItem('authUser')
+  const user = userRaw ? JSON.parse(userRaw) : null
+
+  if (requiresAdmin) {
+    if (!token || !user || user.role !== 'admin') {
+      return next({
+        name: 'AdminLogin',
+        query: { redirect: to.fullPath }
+      })
+    }
+  }
+
+  if (to.name === 'AdminLogin' && token && user?.role === 'admin') {
+    return next({ name: 'AdminDashboard' })
+  }
+
+  next()
 })
 
 export default router

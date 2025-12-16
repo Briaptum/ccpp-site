@@ -102,11 +102,17 @@
         <div class="p-4 border-t border-gray-800">
           <div class="flex items-center space-x-3 mb-4">
             <div class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center">
-              <span class="text-white font-semibold">A</span>
+              <span class="text-white font-semibold">
+                {{ displayInitial }}
+              </span>
             </div>
             <div class="flex-1">
-              <p class="text-sm font-medium text-white">Admin User</p>
-              <p class="text-xs text-gray-400">admin@ccpp.org</p>
+              <p class="text-sm font-medium text-white">
+                {{ displayName }}
+              </p>
+              <p class="text-xs text-gray-400">
+                {{ displayEmail }}
+              </p>
             </div>
           </div>
           <button
@@ -173,7 +179,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 export default {
@@ -182,6 +188,7 @@ export default {
     const route = useRoute()
     const router = useRouter()
     const sidebarOpen = ref(false)
+    const user = ref(null)
 
     const pageTitle = computed(() => {
       const titles = {
@@ -195,14 +202,34 @@ export default {
       return titles[route.path] || 'Admin Panel'
     })
 
+    const displayName = computed(() => user.value?.name || 'Admin User')
+    const displayEmail = computed(() => user.value?.email || 'admin@ccpp.org')
+    const displayInitial = computed(() => displayName.value.charAt(0).toUpperCase())
+
     const handleLogout = () => {
-      // TODO: Implement logout logic
+      localStorage.removeItem('authToken')
+      localStorage.removeItem('authUser')
       router.push('/admin/login')
     }
+
+    onMounted(() => {
+      const savedUser = localStorage.getItem('authUser')
+      if (savedUser) {
+        try {
+          user.value = JSON.parse(savedUser)
+        } catch {
+          user.value = null
+        }
+      }
+    })
 
     return {
       sidebarOpen,
       pageTitle,
+      user,
+      displayName,
+      displayEmail,
+      displayInitial,
       handleLogout
     }
   }

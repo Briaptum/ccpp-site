@@ -5,6 +5,13 @@
         <h1 class="text-3xl font-bold text-gray-900 mb-2">Admin Login</h1>
         <p class="text-gray-600">Calvary Chapel Phnom Penh</p>
       </div>
+
+      <div
+        v-if="error"
+        class="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+      >
+        {{ error }}
+      </div>
       
       <form @submit.prevent="handleLogin" class="space-y-6">
         <div>
@@ -37,9 +44,11 @@
         
         <button
           type="submit"
+          :disabled="loading"
           class="w-full bg-main text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-colors shadow-lg"
+          :class="{ 'opacity-70 cursor-not-allowed': loading }"
         >
-          Sign In
+          {{ loading ? 'Signing in...' : 'Sign In' }}
         </button>
       </form>
       
@@ -54,25 +63,41 @@
 
 <script>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { login } from '@/services/auth'
 
 export default {
   name: 'AdminLogin',
   setup() {
     const router = useRouter()
+    const route = useRoute()
     const email = ref('')
     const password = ref('')
+    const loading = ref(false)
+    const error = ref('')
     
-    const handleLogin = () => {
-      // TODO: Implement login logic
-      console.log('Login attempt:', email.value)
-      // For now, just redirect to dashboard
-      router.push('/admin/dashboard')
+    const handleLogin = async () => {
+      error.value = ''
+      loading.value = true
+      try {
+        const { token, user } = await login(email.value, password.value)
+        localStorage.setItem('authToken', token)
+        localStorage.setItem('authUser', JSON.stringify(user))
+
+        const redirectTo = route.query.redirect || '/admin/dashboard'
+        router.push(redirectTo)
+      } catch (err) {
+        error.value = err.message || 'Unable to sign in'
+      } finally {
+        loading.value = false
+      }
     }
     
     return {
       email,
       password,
+      loading,
+      error,
       handleLogin
     }
   }
